@@ -1,0 +1,16 @@
+Character[] eng = {};
+
+f(a) -> g(ξ)
+f(b) -> g(ς)
+...
+
+
+read file
+
+iterate through lines 
+method(){ 
+character x -> Object<T>[][] img
+}
+
+draw picture from img
+

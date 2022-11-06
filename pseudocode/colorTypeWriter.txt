@@ -6,10 +6,10 @@ f(b) -> g(ς)
 
 
 read file
-
-iterate through lines 
+ 
 method(){ 
-character x -> Object<T>[][] img
+iterate through lines
+character x -> Object<T>[i][j] img
 }
 
 draw picture from img

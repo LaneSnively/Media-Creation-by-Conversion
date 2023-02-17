@@ -1,9 +1,14 @@
 package com.example.mediacreationbyconversion;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,6 +27,40 @@ public class FirstFragment extends Fragment {
     ) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
+
+        binding.drawingView.requestFocus();
+        binding.drawingView.setOnKeyListener(new View.OnKeyListener(){
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event){
+                switch(keyCode){
+                    case KeyEvent.KEYCODE_A:
+                        binding.drawingView.paint.setColor(Color.RED);
+                        break;
+                    case KeyEvent.KEYCODE_B:
+                        binding.drawingView.paint.setColor(Color.GREEN);
+                        break;
+                    case KeyEvent.KEYCODE_C:
+                        binding.drawingView.paint.setColor(Color.BLUE);
+                        break;
+                    case KeyEvent.KEYCODE_SPACE:
+                        binding.drawingView.paint.setColor(Color.YELLOW);
+                        break;
+                    default:
+                        break;
+                }
+                binding.drawingView.invalidate();
+                return true;
+            }
+        });
+
+        binding.drawingView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.drawingView.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
+            }
+        });
         return binding.getRoot();
 
     }

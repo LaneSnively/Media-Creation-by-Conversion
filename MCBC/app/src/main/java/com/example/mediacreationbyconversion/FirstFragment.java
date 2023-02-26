@@ -1,6 +1,7 @@
 package com.example.mediacreationbyconversion;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +47,8 @@ public class FirstFragment extends Fragment {
                         binding.drawingView.paint.setColor(Color.YELLOW);
                         break;
                     default:
+                        binding.drawingView.canvas.drawCircle((float) (Math.random()*binding.drawingView.canvas.getWidth()), (float) (Math.random()*binding.drawingView.canvas.getHeight()), (float) (Math.random()*100), binding.drawingView.paint);
+                        binding.drawingView.previousBitmap = binding.drawingView.bitmap.copy(Bitmap.Config.ARGB_8888, true);
                         break;
                 }
                 binding.drawingView.invalidate();

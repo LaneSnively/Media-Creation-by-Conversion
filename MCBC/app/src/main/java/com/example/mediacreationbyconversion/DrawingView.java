@@ -1,6 +1,7 @@
 package com.example.mediacreationbyconversion;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,7 +12,9 @@ import androidx.annotation.Nullable;
 
 public class DrawingView extends View {
     public Paint paint;
-
+    public Bitmap previousBitmap;
+    public Bitmap bitmap;
+    public Canvas canvas;
 
     public DrawingView(Context context) {
         super(context);
@@ -41,10 +44,21 @@ public class DrawingView extends View {
     }
 
     @Override
+    protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight){
+        super.onSizeChanged(width, height, oldWidth, oldHeight);
+        bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        canvas = new Canvas(bitmap);
+        canvas.drawColor(Color.BLACK);
+        previousBitmap = Bitmap.createBitmap(bitmap);
+        previousBitmap.eraseColor(Color.TRANSPARENT);
+        previousBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+    }
+
+    @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-        canvas.drawColor(Color.BLACK);
-        canvas.drawCircle((float) (Math.random()*canvas.getWidth()), (float) (Math.random()*canvas.getHeight()), (float) (Math.random()*100), paint);
+        canvas.drawBitmap(previousBitmap, 0, 0, paint);
+        canvas.drawBitmap(bitmap, 0, 0, paint);
     }
 
 }

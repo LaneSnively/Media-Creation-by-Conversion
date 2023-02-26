@@ -60,5 +60,4 @@ public class DrawingView extends View {
         canvas.drawBitmap(previousBitmap, 0, 0, paint);
         canvas.drawBitmap(bitmap, 0, 0, paint);
     }
-
 }

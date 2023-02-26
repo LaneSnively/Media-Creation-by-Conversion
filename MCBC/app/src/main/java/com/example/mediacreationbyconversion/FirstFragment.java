@@ -18,7 +18,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
-
     private FragmentFirstBinding binding;
 
     @Override
@@ -26,9 +25,7 @@ public class FirstFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
         binding = FragmentFirstBinding.inflate(inflater, container, false);
-
         binding.drawingView.requestFocus();
         binding.drawingView.setOnKeyListener(new View.OnKeyListener(){
             @Override
@@ -47,8 +44,13 @@ public class FirstFragment extends Fragment {
                         binding.drawingView.paint.setColor(Color.YELLOW);
                         break;
                     default:
-                        binding.drawingView.canvas.drawCircle((float) (Math.random()*binding.drawingView.canvas.getWidth()), (float) (Math.random()*binding.drawingView.canvas.getHeight()), (float) (Math.random()*100), binding.drawingView.paint);
-                        binding.drawingView.previousBitmap = binding.drawingView.bitmap.copy(Bitmap.Config.ARGB_8888, true);
+                        binding.drawingView.canvas
+                                .drawCircle((float) (Math.random()*binding.drawingView.canvas.getWidth()),
+                                        (float) (Math.random()*binding.drawingView.canvas.getHeight()),
+                                        (float) (Math.random()*100),
+                                        binding.drawingView.paint);
+                        binding.drawingView.previousBitmap = binding.drawingView.bitmap
+                                .copy(Bitmap.Config.ARGB_8888, true);
                         break;
                 }
                 binding.drawingView.invalidate();
@@ -60,17 +62,16 @@ public class FirstFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 binding.drawingView.requestFocus();
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getActivity()
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
             }
         });
         return binding.getRoot();
-
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,5 +86,4 @@ public class FirstFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }

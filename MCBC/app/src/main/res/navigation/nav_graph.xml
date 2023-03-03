@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.example.mediacreationbyconversion.FirstFragment"
-        android:label="Chromatic Typewriter"
+        android:label="Keyboard Input -> Drawing"
         tools:layout="@layout/fragment_first">
 
         <action
@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.mediacreationbyconversion.SecondFragment"
-        android:label="Chromatic Typewriter"
+        android:label="Text Input -> Drawing"
         tools:layout="@layout/fragment_second">
 
         <action

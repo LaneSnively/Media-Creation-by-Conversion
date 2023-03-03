@@ -16,6 +16,49 @@ public class DrawingView extends View {
     public Bitmap bitmap;
     public Canvas canvas;
 
+    int white = Color.parseColor("#FFFFFF");
+    int black = Color.parseColor("#000000");
+
+    int grayLight = Color.parseColor("#A9A9A9");
+    int gray = Color.parseColor("#808080");
+    int grayDark = Color.parseColor("#696969");
+
+    int pinkLight = Color.parseColor("#FFC0CB");
+    int pink = Color.parseColor("#FF69B4");
+    int pinkDark = Color.parseColor("#FF1493");
+
+    int purpleLight = Color.parseColor("#EE82EE");
+    int purple = Color.parseColor("#9932CC");
+    int purpleDark = Color.parseColor("#800080");
+
+    int redLight = Color.parseColor("#FFA07A");
+    int red = Color.parseColor("#FF0000");
+    int redDark = Color.parseColor("#800000");
+
+    int orangeLight = Color.parseColor("#FF7F50");
+    int orange = Color.parseColor("#FFA500");
+    int orangeDark = Color.parseColor("#FF4500");
+
+    int brownLight = Color.parseColor("#FFD180");
+    int brown = Color.parseColor("#FF9100");
+    int brownDark = Color.parseColor("#DD2C00");
+
+    int yellowLight = Color.parseColor("#FFFFCC");
+    int yellow = Color.parseColor("#FFFF00");
+    int yellowDark = Color.parseColor("#CCCC00");
+
+    int greenLight = Color.parseColor("#98FB98");
+    int green = Color.parseColor("#00FF00");
+    int greenDark = Color.parseColor("#556B2F");
+
+    int tealLight = Color.parseColor("#7FFFD4");
+    int teal = Color.parseColor("#00CED1");
+    int tealDark = Color.parseColor("#008080");
+
+    int blueLight = Color.parseColor("#87CEFA");
+    int blue = Color.parseColor("#0000FF");
+    int blueDark = Color.parseColor("#00008B");
+
     public DrawingView(Context context) {
         super(context);
         init();
@@ -48,7 +91,7 @@ public class DrawingView extends View {
         super.onSizeChanged(width, height, oldWidth, oldHeight);
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
-        canvas.drawColor(Color.BLACK);
+        canvas.drawColor(yellowLight);
         previousBitmap = Bitmap.createBitmap(bitmap);
         previousBitmap.eraseColor(Color.TRANSPARENT);
         previousBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);

@@ -30,31 +30,34 @@ public class FirstFragment extends Fragment {
         binding.drawingView.setOnKeyListener(new View.OnKeyListener(){
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event){
-                switch(keyCode){
-                    case KeyEvent.KEYCODE_A:
-                        binding.drawingView.paint.setColor(Color.RED);
-                        break;
-                    case KeyEvent.KEYCODE_B:
-                        binding.drawingView.paint.setColor(Color.GREEN);
-                        break;
-                    case KeyEvent.KEYCODE_C:
-                        binding.drawingView.paint.setColor(Color.BLUE);
-                        break;
-                    case KeyEvent.KEYCODE_SPACE:
-                        binding.drawingView.paint.setColor(Color.YELLOW);
-                        break;
-                    default:
-                        binding.drawingView.canvas
-                                .drawCircle((float) (Math.random()*binding.drawingView.canvas.getWidth()),
-                                        (float) (Math.random()*binding.drawingView.canvas.getHeight()),
-                                        (float) (Math.random()*100),
-                                        binding.drawingView.paint);
-                        binding.drawingView.previousBitmap = binding.drawingView.bitmap
-                                .copy(Bitmap.Config.ARGB_8888, true);
-                        break;
+                if(event.getAction() == KeyEvent.ACTION_DOWN){
+                    switch(keyCode){
+                        case KeyEvent.KEYCODE_A:
+                            binding.drawingView.paint.setColor(Color.RED);
+                            break;
+                        case KeyEvent.KEYCODE_B:
+                            binding.drawingView.paint.setColor(Color.GREEN);
+                            break;
+                        case KeyEvent.KEYCODE_C:
+                            binding.drawingView.paint.setColor(Color.BLUE);
+                            break;
+                        case KeyEvent.KEYCODE_SPACE:
+                            binding.drawingView.paint.setColor(Color.YELLOW);
+                            break;
+                        default:
+                            binding.drawingView.canvas
+                                    .drawCircle((float) (Math.random()*binding.drawingView.canvas.getWidth()),
+                                            (float) (Math.random()*binding.drawingView.canvas.getHeight()),
+                                            (float) (Math.random()*100),
+                                            binding.drawingView.paint);
+                            binding.drawingView.previousBitmap = binding.drawingView.bitmap
+                                    .copy(Bitmap.Config.ARGB_8888, true);
+                            break;
+                    }
+                    binding.drawingView.invalidate();
+                    return true;
                 }
-                binding.drawingView.invalidate();
-                return true;
+                return false;
             }
         });
 

@@ -2,17 +2,19 @@
     <!-- Base application theme. -->
     <style name="Theme.MediaCreationByConversion" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimary">@color/teal</item>
         <item name="colorPrimaryVariant">@color/black</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal</item>
-        <item name="colorSecondaryVariant">@color/teal</item>
+        <item name="colorSecondaryVariant">@color/brownLight</item>
         <item name="colorOnSecondary">@color/yellowLight</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+
         <!-- Customize your theme here. -->
-        <item name="android:colorBackground">?attr/colorPrimaryVariant</item>
+        <item name="android:colorBackground">@color/white</item>
     </style>
 
     <style name="Theme.MediaCreationByConversion.NoActionBar">
@@ -20,7 +22,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.MediaCreationByConversion.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.MediaCreationByConversion.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+    </style>
 
-    <style name="Theme.MediaCreationByConversion.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
+    <style name="Theme.MediaCreationByConversion.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" >
+        <item name="android:textColor">@color/tealDark</item>
+        <item name="android:background">@color/white</item>
+    </style>
 </resources>

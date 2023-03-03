@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="DDcolor">#48e0de</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <color name="grayLight">#A9A9A9</color>
+    <color name="gray">#808080</color>
+    <color name="grayDark">#696969</color>
+
+    <color name="pinkLight">#FFC0CB</color>
+    <color name="pink">#FF69B4</color>
+    <color name="pinkDark">#FF1493</color>
+
+    <color name="purpleLight">#EE82EE</color>
+    <color name="purple">#9932CC</color>
+    <color name="purpleDark">#800080</color>
+
+    <color name="redLight">#FFA07A</color>
+    <color name="red">#FF0000</color>
+    <color name="redDark">#800000</color>
+
+    <color name="orangeLight">#FF7F50</color>
+    <color name="orange">#FFA500</color>
+    <color name="orangeDark">#FF4500</color>
+
+    <color name="brownLight">#FFD180</color>
+    <color name="brown">#FF9100</color>
+    <color name="brownDark">#DD2C00</color>
+
+    <color name="yellowLight">#FFFFCC</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="yellowDark">#CCCC00</color>
+
+    <color name="greenLight">#98FB98</color>
+    <color name="green">#00FF00</color>
+    <color name="greenDark">#556B2F</color>
+
+    <color name="tealLight">#7FFFD4</color>
+    <color name="teal">#00CED1</color>
+    <color name="tealDark">#008080</color>
+
+    <color name="blueLight">#87CEFA</color>
+    <color name="blue">#0000FF</color>
+    <color name="blueDark">#00008B</color>
 </resources>

@@ -8,8 +8,8 @@
 
     <com.example.mediacreationbyconversion.DrawingView
         android:id="@+id/drawing_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="411dp"
+        android:layout_height="342dp"
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
@@ -48,4 +48,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.778" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="173dp"
+        android:layout_height="41dp"
+        android:src="@drawable/color_keyboard_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drawing_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

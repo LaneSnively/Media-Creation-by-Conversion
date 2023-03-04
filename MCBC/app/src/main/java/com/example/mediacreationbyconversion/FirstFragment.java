@@ -2,11 +2,10 @@ package com.example.mediacreationbyconversion;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -21,8 +20,9 @@ public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
 
     private int s=30; //size of canvas paint brush
-    public int w=s; //canvas brush horizontal location
-    public int h=s; //canvas brush vertical location
+    private int w=s; //canvas brush horizontal location
+    private int h=s; //canvas brush vertical location
+    private boolean editing = false;
 
     @Override
     public View onCreateView(
@@ -30,7 +30,6 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentFirstBinding.inflate(inflater, container, false);
-
         return binding.getRoot();
     }
 
@@ -145,16 +144,12 @@ public class FirstFragment extends Fragment {
                         default:
                             break;
                     }
-
-
                     //random drawing
 //                    binding.drawingView.canvas
 //                        .drawCircle((float) (Math.random()*binding.drawingView.canvas.getWidth()),
 //                                (float) (Math.random()*binding.drawingView.canvas.getHeight()),
 //                                (float) (Math.random()*100),
 //                                binding.drawingView.paint);
-
-
 
                     //drawing on the canvas at location (w,h)
                     binding.drawingView.canvas
@@ -167,10 +162,10 @@ public class FirstFragment extends Fragment {
                         if(h>binding.drawingView.canvas.getHeight()-2*s){
                             h = s; //brush hit bottom, move back to top
                         } else {
-                            h += s; //move brush right
+                            h += 2*s; //move brush right
                         }
                     } else {
-                        w += s; //move brush down
+                        w += 2*s; //move brush down
                     }
 
                     //update bitmap
@@ -191,7 +186,17 @@ public class FirstFragment extends Fragment {
                 InputMethodManager imm = (InputMethodManager) getActivity()
                         .getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
+                editing = true;
             }
+        });
+
+        binding.drawingView.setOnTouchListener((v, event) -> {
+            if(editing){
+                binding.drawingView.requestFocus();
+                w = (int) event.getX();
+                h = (int) event.getY();
+            }
+            return false;
         });
     }
 

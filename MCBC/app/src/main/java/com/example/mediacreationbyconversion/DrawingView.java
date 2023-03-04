@@ -83,7 +83,8 @@ public class DrawingView extends View {
         paint = new Paint();
         paint.setStrokeWidth(5);
         paint.setColor(Color.WHITE);
-        paint.setStyle(Paint.Style.STROKE);
+//        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL);
     }
 
     @Override

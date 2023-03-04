@@ -20,8 +20,8 @@ public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
 
     private int s=30; //size of canvas paint brush
-    private int w=s; //canvas brush horizontal location
-    private int h=s; //canvas brush vertical location
+    private int w=0; //canvas brush horizontal location
+    private int h=0; //canvas brush vertical location
     private boolean editing = false;
 
     @Override
@@ -127,45 +127,47 @@ public class FirstFragment extends Fragment {
                         case KeyEvent.KEYCODE_M:
                             binding.drawingView.paint.setColor(binding.drawingView.blueLight);
                             break;
+                        case KeyEvent.KEYCODE_ENTER:
+                            if(h<binding.drawingView.canvas.getHeight()-s){
+                                h += s; //move brush down
+                            } else {
+                                h = 0; //brush hit bottom, move back to top
+                            }
+                            binding.drawingView.invalidate();
+                            return true;
                         case KeyEvent.KEYCODE_SPACE:
-                            //brush moving logic
-                            if(w>binding.drawingView.canvas.getWidth()-2*s){
-                                w = s; //brush hit right side, move back to left
-                                if(h>binding.drawingView.canvas.getHeight()-2*s){
-                                    h = s; //brush hit bottom, move back to top
+                            //rectangle brush moving logic
+                            if(w>=binding.drawingView.canvas.getWidth()-s){
+                                w = 0; //brush hit right side, move back to left
+                                if(h>=binding.drawingView.canvas.getHeight()-s){
+                                    h = 0; //brush hit bottom, move back to top
                                 } else {
-                                    h += s; //move brush right
+                                    h += s; //move brush down
                                 }
                             } else {
-                                w += s; //move brush down
+                                w += s; //move brush right
                             }
                             binding.drawingView.invalidate();
                             return true;
                         default:
                             break;
                     }
-                    //random drawing
-//                    binding.drawingView.canvas
-//                        .drawCircle((float) (Math.random()*binding.drawingView.canvas.getWidth()),
-//                                (float) (Math.random()*binding.drawingView.canvas.getHeight()),
-//                                (float) (Math.random()*100),
-//                                binding.drawingView.paint);
 
                     //drawing on the canvas at location (w,h)
                     binding.drawingView.canvas
-                            .drawCircle((float) w, (float) h, (float) s,
+                            .drawRect((float) w, (float) h, (float) w+s, (float) h+s,
                                     binding.drawingView.paint);
 
-                    //brush moving logic
-                    if(w>binding.drawingView.canvas.getWidth()-2*s){
-                        w = s; //brush hit right side, move back to left
-                        if(h>binding.drawingView.canvas.getHeight()-2*s){
-                            h = s; //brush hit bottom, move back to top
+                    //rectangle brush moving logic
+                    if(w>=binding.drawingView.canvas.getWidth()-s){
+                        w = 0; //brush hit right side, move back to left
+                        if(h>=binding.drawingView.canvas.getHeight()-s){
+                            h = 0; //brush hit bottom, move back to top
                         } else {
-                            h += 2*s; //move brush right
+                            h += s; //move brush down
                         }
                     } else {
-                        w += 2*s; //move brush down
+                        w += s; //move brush right
                     }
 
                     //update bitmap

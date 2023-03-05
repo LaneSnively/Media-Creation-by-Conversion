@@ -147,6 +147,7 @@ public class FirstFragment extends Fragment {
                             } else {
                                 h = 0; //brush hit bottom, move back to top
                             }
+                            w -= s;
                             binding.drawingView.invalidate();
                             return true;
                         case KeyEvent.KEYCODE_SPACE:

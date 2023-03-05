@@ -57,6 +57,51 @@ public class FirstFragment extends Fragment {
             }
         });
 
+        binding.smallbrush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                s = 10;
+            }
+        });
+
+        binding.mediumbrush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                s = 30;
+            }
+        });
+
+        binding.largebrush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                s = 50;
+            }
+        });
+
+        binding.whitecanvas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.drawingView.canvasColor = binding.drawingView.white;
+                binding.drawingView.canvas.drawColor(binding.drawingView.canvasColor);
+            }
+        });
+
+        binding.blackcanvas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.drawingView.canvasColor = binding.drawingView.black;
+                binding.drawingView.canvas.drawColor(binding.drawingView.canvasColor);
+            }
+        });
+
+        binding.clearcanvas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.drawingView.canvasColor = binding.drawingView.yellowLight;
+                binding.drawingView.canvas.drawColor(binding.drawingView.canvasColor);
+            }
+        });
+
         binding.drawingView.requestFocus();
         binding.drawingView.setOnKeyListener(new View.OnKeyListener(){
             @Override
@@ -163,6 +208,9 @@ public class FirstFragment extends Fragment {
                                 w += s; //move brush right
                             }
                             binding.drawingView.invalidate();
+                            return true;
+                        case KeyEvent.KEYCODE_NAVIGATE_OUT:
+                            editing = false;
                             return true;
                         default:
                             break;

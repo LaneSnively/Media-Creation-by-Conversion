@@ -66,6 +66,8 @@ public class DrawingView extends View {
     int blue = Color.parseColor("#0000FF");
     int blueDark = Color.parseColor("#00008B");
 
+    public int canvasColor = yellowLight;
+
     public DrawingView(Context context) {
         super(context);
         init();
@@ -89,7 +91,7 @@ public class DrawingView extends View {
     private void init(){
         paint = new Paint();
         paint.setStrokeWidth(5);
-        paint.setColor(Color.WHITE);
+        paint.setColor(canvasColor);
 //        paint.setStyle(Paint.Style.STROKE);
         paint.setStyle(Paint.Style.FILL);
     }

@@ -7,4 +7,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/save"
+        android:orderInCategory="100"
+        android:title="Save As .PNG"
+        app:showAsAction="never" />
 </menu>

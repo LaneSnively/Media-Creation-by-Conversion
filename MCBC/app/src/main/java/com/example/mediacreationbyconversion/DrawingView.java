@@ -5,10 +5,17 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Environment;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class DrawingView extends View {
     public Paint paint;
@@ -103,5 +110,22 @@ public class DrawingView extends View {
         super.onDraw(canvas);
         canvas.drawBitmap(previousBitmap, 0, 0, paint);
         canvas.drawBitmap(bitmap, 0, 0, paint);
+    }
+
+    public void save(){
+        Bitmap b = previousBitmap;
+        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ChromaticTypewriter");
+        if(!dir.exists()) dir.mkdirs();
+        File file = new File(dir, "asdf.png");
+        try{
+            FileOutputStream fos = new FileOutputStream(file);
+            b.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.close();
+            Toast.makeText(getContext(), "Image saved to " + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

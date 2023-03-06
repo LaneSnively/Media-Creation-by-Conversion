@@ -62,7 +62,7 @@ A written status summary document [30pts]
 
 6. Details Description of Goals/ Plan for ​Next 3 Weeks [5pts]
 
-*Note in final summary discuss where your project could go from here)
+* Note in final summary discuss where your project could go from here)
 
 # We are ahead of schedule. It is very possible that we'll be able to add more features to our app than originally planned. 
 

@@ -94,7 +94,7 @@ public class FirstFragment extends Fragment {
             }
         });
 
-        binding.clearcanvas.setOnClickListener(new View.OnClickListener() {
+        binding.papyruscanvas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 binding.drawingView.canvasColor = binding.drawingView.yellowLight;

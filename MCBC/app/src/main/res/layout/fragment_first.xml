@@ -118,7 +118,7 @@
     <com.example.mediacreationbyconversion.DrawingView
         android:id="@+id/drawing_view"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"

@@ -6,8 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
+    <ImageView
+        android:id="@+id/keycolorlayout"
+        android:layout_width="115dp"
+        android:layout_height="40dp"
+        android:src="@drawable/color_keyboard_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drawing_view" />
+
     <TextView
-        android:id="@+id/textview_first3"
+        android:id="@+id/resetcanvas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" Reset Canvas"
@@ -21,7 +31,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textview_first2"
+        android:id="@+id/brushsize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Brush Size "
@@ -93,6 +103,18 @@
         app:layout_constraintBottom_toTopOf="@+id/smallbrush"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:id="@+id/smallbrush"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:backgroundTint="@color/tealLight"
+        android:text="small"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textview_first2"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <com.example.mediacreationbyconversion.DrawingView
         android:id="@+id/drawing_view"
         android:layout_width="match_parent"
@@ -108,7 +130,7 @@
         app:layout_constraintWidth_percent="1" />
 
     <TextView
-        android:id="@+id/textview_first"
+        android:id="@+id/credits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
@@ -122,11 +144,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_first"
+        android:id="@+id/totextinput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/tealLight"
-        android:text="Keyboard Input ->"
+        android:text="Text Input ->"
         android:textColor="@color/tealDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -143,26 +165,4 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="115dp"
-        android:layout_height="40dp"
-        android:src="@drawable/color_keyboard_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/drawing_view" />
-
-    <Button
-        android:id="@+id/smallbrush"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
-        android:backgroundTint="@color/tealLight"
-        android:text="small"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/textview_first2"
-        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

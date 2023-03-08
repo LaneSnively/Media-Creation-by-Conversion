@@ -118,10 +118,10 @@ public class DrawingView extends View {
         Bitmap b = previousBitmap;
         File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ChromaticTypewriter");
         if(!dir.exists()) dir.mkdirs();
-        File file = new File(dir, "asdf.png");
+        File file = new File(dir, "asdf.jpeg");
         try{
             FileOutputStream fos = new FileOutputStream(file);
-            b.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.close();
             Toast.makeText(getContext(), "Image saved to " + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {

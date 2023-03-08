@@ -119,6 +119,15 @@ public class DrawingView extends View {
         File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ChromaticTypewriter");
         if(!dir.exists()) dir.mkdirs();
         File file = new File(dir, "asdf.jpeg");
+        boolean newFile = false;
+        long num = 1;
+        while(!newFile){
+            if(file.exists()){
+                file = new File(dir, "asdf" + num + ".jpeg");
+                num++;
+            }
+            else newFile = true;
+        }
         try{
             FileOutputStream fos = new FileOutputStream(file);
             b.compress(Bitmap.CompressFormat.JPEG, 100, fos);

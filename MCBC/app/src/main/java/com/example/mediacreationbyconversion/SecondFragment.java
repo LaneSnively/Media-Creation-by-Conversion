@@ -36,7 +36,12 @@ public class SecondFragment extends Fragment {
         });
 
         text = binding.inputtext.getText().toString();
-        binding.test.setText(text);
+        binding.submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.test.setText(text);
+            }
+        });
     }
 
     @Override

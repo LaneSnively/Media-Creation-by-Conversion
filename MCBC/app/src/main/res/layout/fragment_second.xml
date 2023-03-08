@@ -67,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="test"
+        android:textColor="@color/teal"
         app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -123,7 +123,7 @@ public class DrawingView extends View {
         long num = 1;
         while(!newFile){
             if(file.exists()){
-                file = new File(dir, "asdf" + num + ".jpeg");
+                file = new File(dir, "ChromaticTypewriter" + num + ".jpeg");
                 num++;
             }
             else newFile = true;

@@ -17,13 +17,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class DrawingView extends View {
     public Paint paint;
     public Bitmap bitmap;
     public Canvas canvas;
-    public ArrayList<Bitmap> history = new ArrayList<Bitmap>();
-    public int historyIndex = 0;
+    public Stack<Bitmap> history = new Stack<Bitmap>();
 
     int white = Color.parseColor("#FFFFFF");
     int black = Color.parseColor("#000000");
@@ -104,7 +104,7 @@ public class DrawingView extends View {
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
         canvas.drawColor(canvasColor);
-        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
+        history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
     }
 
     @Override
@@ -114,27 +114,32 @@ public class DrawingView extends View {
     }
 
     public void backspace(){
-        if(historyIndex > 0){
-            historyIndex--;
-            bitmap = history.get(historyIndex);
-            canvas = new Canvas(bitmap);
+        if(history.isEmpty()){
+            history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
         } else {
-            historyIndex = 0;
-            history.clear();
-            history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
+            bitmap = history.pop();
+            canvas = new Canvas(bitmap);
         }
     }
 
+    public void resetCanvas(){
+        history.clear();
+        history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
+    }
+
     public void addHistory(){
-        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
-        historyIndex++;
+        history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
     }
 
     public void save(){
-        Bitmap b = history.get(historyIndex);
+        Bitmap b;
+        if(history.isEmpty())
+            b = bitmap;
+        else
+            b = history.peek();
         File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ChromaticTypewriter");
         if(!dir.exists()) dir.mkdirs();
-        File file = new File(dir, "asdf.jpeg");
+        File file = new File(dir, "ChromaticTypewriter.jpeg");
         boolean newFile = false;
         long num = 1;
         while(!newFile){
@@ -148,7 +153,7 @@ public class DrawingView extends View {
             FileOutputStream fos = new FileOutputStream(file);
             b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.close();
-            Toast.makeText(getContext(), "Image saved to " + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Image saved to " + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

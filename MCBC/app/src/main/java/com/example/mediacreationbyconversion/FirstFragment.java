@@ -2,6 +2,7 @@ package com.example.mediacreationbyconversion;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.KeyEvent;
@@ -30,6 +31,7 @@ public class FirstFragment extends Fragment {
     private int w=0; //canvas brush horizontal location
     private int h=0; //canvas brush vertical location
     private boolean editing = false;
+    private boolean entered = false;
 
     @Override
     public View onCreateView(
@@ -192,7 +194,10 @@ public class FirstFragment extends Fragment {
                             } else {
                                 h = 0; //brush hit bottom, move back to top
                             }
-                            w -= s;
+                            if(!entered) {
+                                w -= s;
+                                entered = true;
+                            }
                             binding.drawingView.invalidate();
                             return true;
                         case KeyEvent.KEYCODE_SPACE:
@@ -209,11 +214,15 @@ public class FirstFragment extends Fragment {
                             }
                             binding.drawingView.invalidate();
                             return true;
+                        case KeyEvent.KEYCODE_DEL:
+                            binding.drawingView.backspace();
+                            binding.drawingView.invalidate();
+                            return true;
                         case KeyEvent.KEYCODE_NAVIGATE_OUT:
                             editing = false;
                             return true;
                         default:
-                            break;
+                            return true;
                     }
 
                     //drawing on the canvas at location (w,h)
@@ -233,10 +242,9 @@ public class FirstFragment extends Fragment {
                         w += s; //move brush right
                     }
 
-                    //update bitmap
-                    binding.drawingView.previousBitmap = binding.drawingView.bitmap
-                            .copy(Bitmap.Config.ARGB_8888, true);
+                    entered = false;
 
+                    binding.drawingView.addHistory();
                     binding.drawingView.invalidate();
                     return true;
                 }

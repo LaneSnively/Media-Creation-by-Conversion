@@ -16,12 +16,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DrawingView extends View {
     public Paint paint;
-    public Bitmap previousBitmap;
     public Bitmap bitmap;
     public Canvas canvas;
+    public ArrayList<Bitmap> history = new ArrayList<Bitmap>();
+    public int historyIndex = 0;
 
     int white = Color.parseColor("#FFFFFF");
     int black = Color.parseColor("#000000");
@@ -91,7 +93,7 @@ public class DrawingView extends View {
     private void init(){
         paint = new Paint();
         paint.setStrokeWidth(5);
-        paint.setColor(canvasColor);
+        paint.setColor(black);
 //        paint.setStyle(Paint.Style.STROKE);
         paint.setStyle(Paint.Style.FILL);
     }
@@ -101,21 +103,35 @@ public class DrawingView extends View {
         super.onSizeChanged(width, height, oldWidth, oldHeight);
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
-        canvas.drawColor(yellowLight);
-        previousBitmap = Bitmap.createBitmap(bitmap);
-        previousBitmap.eraseColor(Color.TRANSPARENT);
-        previousBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+        canvas.drawColor(canvasColor);
+        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
     }
 
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-        canvas.drawBitmap(previousBitmap, 0, 0, paint);
         canvas.drawBitmap(bitmap, 0, 0, paint);
     }
 
+    public void backspace(){
+        if(historyIndex > 0){
+            historyIndex--;
+            bitmap = history.get(historyIndex);
+            canvas = new Canvas(bitmap);
+        } else {
+            historyIndex = 0;
+            history.clear();
+            history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
+        }
+    }
+
+    public void addHistory(){
+        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
+        historyIndex++;
+    }
+
     public void save(){
-        Bitmap b = previousBitmap;
+        Bitmap b = history.get(historyIndex);
         File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ChromaticTypewriter");
         if(!dir.exists()) dir.mkdirs();
         File file = new File(dir, "asdf.jpeg");

@@ -1,28 +1,17 @@
 package com.example.mediacreationbyconversion;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
@@ -30,7 +19,6 @@ public class FirstFragment extends Fragment {
     private int s=30; //size of canvas paint brush
     private int w=0; //canvas brush horizontal location
     private int h=0; //canvas brush vertical location
-    private boolean editing = false;
     private boolean entered = false;
 
     @Override
@@ -44,6 +32,7 @@ public class FirstFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         binding.totextinput.setOnClickListener(view15 -> NavHostFragment.findNavController(FirstFragment.this)
                 .navigate(R.id.action_FirstFragment_to_SecondFragment));
 
@@ -78,15 +67,12 @@ public class FirstFragment extends Fragment {
             InputMethodManager imm = (InputMethodManager) getActivity()
                     .getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
-            editing = true;
         });
 
         binding.drawingView.setOnTouchListener((v, event) -> {
-            if(editing){
-                binding.drawingView.requestFocus();
-                w = (int) event.getX();
-                h = (int) event.getY();
-            }
+            binding.drawingView.requestFocus();
+            w = (int) event.getX();
+            h = (int) event.getY();
             return false;
         });
 
@@ -201,9 +187,6 @@ public class FirstFragment extends Fragment {
                     case KeyEvent.KEYCODE_DEL:
                         binding.drawingView.backspace();
                         binding.drawingView.invalidate();
-                        return true;
-                    case KeyEvent.KEYCODE_NAVIGATE_OUT:
-                        editing = false;
                         return true;
                     default:
                         return true;

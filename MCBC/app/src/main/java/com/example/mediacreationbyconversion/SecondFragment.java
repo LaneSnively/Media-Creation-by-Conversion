@@ -38,14 +38,18 @@ public class SecondFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.tokeyboardinput.setOnClickListener(view1 -> NavHostFragment.findNavController(SecondFragment.this)
-                .navigate(R.id.action_SecondFragment_to_FirstFragment));
+        binding.tokeyboardinput.setOnClickListener(view1 -> {
+            text = "";
+            sendDataToOtherFragment(text);
+            NavHostFragment.findNavController(SecondFragment.this)
+                    .navigate(R.id.action_SecondFragment_to_FirstFragment);
+        });
 
         binding.submit.setOnClickListener(v -> {
             text = binding.inputtext.getText().toString();
+            sendDataToOtherFragment(text);
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
-            sendDataToOtherFragment(text);
         });
     }
 

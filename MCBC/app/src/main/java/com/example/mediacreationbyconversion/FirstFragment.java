@@ -18,7 +18,6 @@ import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
 public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
     private String text = "";
-    private boolean entered = false;
     private SharedViewModel viewModel;
 
     @Override
@@ -40,7 +39,8 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.totextinput.setOnClickListener(view15 -> NavHostFragment.findNavController(FirstFragment.this)
+        binding.totextinput.setOnClickListener(view15 -> NavHostFragment
+                .findNavController(FirstFragment.this)
                 .navigate(R.id.action_FirstFragment_to_SecondFragment));
 
         binding.save.setOnClickListener(view16 -> binding.drawingView.save());
@@ -69,18 +69,21 @@ public class FirstFragment extends Fragment {
             binding.drawingView.resetCanvas();
         });
 
+        //make a keyboard button, not onclicklistener
         binding.drawingView.setOnClickListener(v -> {
-            binding.drawingView.requestFocus();
-            InputMethodManager imm = (InputMethodManager) getActivity()
-                    .getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
-            convertText(text, false);
+            if(text.equals("")){
+                binding.drawingView.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getActivity()
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
+            }
         });
 
         binding.drawingView.setOnTouchListener((v, event) -> {
             binding.drawingView.requestFocus();
-            binding.drawingView.canvasWidth = (int) event.getX();
-            binding.drawingView.canvasHeight = (int) event.getY();
+            binding.drawingView.canvasX = (int) event.getX();
+            binding.drawingView.canvasY = (int) event.getY();
+            convertText(text, false);
             return false;
         });
 
@@ -88,32 +91,6 @@ public class FirstFragment extends Fragment {
         binding.drawingView.setOnKeyListener((v, keyCode, event) -> {
             if(event.getAction() == KeyEvent.ACTION_DOWN){
                 switch(keyCode){
-                    case KeyEvent.KEYCODE_ENTER:
-                        if(binding.drawingView.canvasHeight<binding.drawingView.canvas.getHeight()-binding.drawingView.brushSize){
-                            binding.drawingView.canvasHeight += binding.drawingView.brushSize; //move brush down
-                        } else {
-                            binding.drawingView.canvasHeight = 0; //brush hit bottom, move back to top
-                        }
-                        if(!entered) {
-                            binding.drawingView.canvasWidth -= binding.drawingView.brushSize;
-                            entered = true;
-                        }
-                        binding.drawingView.invalidate();
-                        return true;
-                    case KeyEvent.KEYCODE_SPACE:
-                        //rectangle brush moving logic
-                        if(binding.drawingView.canvasWidth>=binding.drawingView.canvas.getWidth()-binding.drawingView.brushSize){
-                            binding.drawingView.canvasWidth = 0; //brush hit right side, move back to left
-                            if(binding.drawingView.canvasHeight>=binding.drawingView.canvas.getHeight()-binding.drawingView.brushSize){
-                                binding.drawingView.canvasHeight = 0; //brush hit bottom, move back to top
-                            } else {
-                                binding.drawingView.canvasHeight += binding.drawingView.brushSize; //move brush down
-                            }
-                        } else {
-                            binding.drawingView.canvasWidth += binding.drawingView.brushSize; //move brush right
-                        }
-                        binding.drawingView.invalidate();
-                        return true;
                     case KeyEvent.KEYCODE_DEL:
                         binding.drawingView.backspace();
                         binding.drawingView.invalidate();
@@ -122,10 +99,8 @@ public class FirstFragment extends Fragment {
                         break;
                 }
                 if(binding.drawingView.keymap.containsKey(keyCode))
-                    convertText(binding.drawingView.keymap.get(keyCode).toString(), true);
-
-                entered = false;
-                binding.drawingView.invalidate();
+                    convertText(binding.drawingView.keymap
+                            .get(keyCode).toString(), true);
                 return true;
             }
             return false;

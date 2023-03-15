@@ -74,7 +74,7 @@ public class FirstFragment extends Fragment {
             InputMethodManager imm = (InputMethodManager) getActivity()
                     .getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
-            convertText();
+            convertText(text, false);
         });
 
         binding.drawingView.setOnTouchListener((v, event) -> {
@@ -122,7 +122,7 @@ public class FirstFragment extends Fragment {
                         break;
                 }
                 if(binding.drawingView.keymap.containsKey(keyCode))
-                    binding.drawingView.convertText(binding.drawingView.keymap.get(keyCode).toString());
+                    convertText(binding.drawingView.keymap.get(keyCode).toString(), true);
 
                 entered = false;
                 binding.drawingView.invalidate();
@@ -132,8 +132,8 @@ public class FirstFragment extends Fragment {
         });
     }
 
-    public void convertText(){
-        binding.drawingView.convertText(text);
+    public void convertText(String s, boolean addHistory){
+        binding.drawingView.convertText(s, addHistory);
         binding.drawingView.invalidate();
     }
 

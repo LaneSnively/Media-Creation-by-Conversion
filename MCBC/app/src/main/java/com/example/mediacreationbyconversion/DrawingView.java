@@ -193,11 +193,7 @@ public class DrawingView extends View {
     }
 
     public void save(){
-        Bitmap b;
-        if(history.isEmpty())
-            b = bitmap;
-        else
-            b = history.peek();
+        Bitmap b = bitmap;
         File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ChromaticTypewriter");
         if(!dir.exists()) dir.mkdirs();
         File file = new File(dir, "ChromaticTypewriter.jpeg");
@@ -222,7 +218,7 @@ public class DrawingView extends View {
         }
     }
 
-    public void convertText(String s){
+    public void convertText(String s, boolean addHistory){
         for (int i = 0; i < s.length(); i++) {
             Character c = s.charAt(i);
             switch (c) {
@@ -326,7 +322,7 @@ public class DrawingView extends View {
             } else {
                 canvasWidth += brushSize; //move brush right
             }
-            addHistory();
+            if(addHistory) addHistory();
         }
     }
 }

@@ -6,12 +6,15 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.media.MediaScannerConnection;
+import android.os.Bundle;
 import android.os.Environment;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.io.File;
@@ -93,32 +96,9 @@ public class DrawingView extends View {
         put(KeyEvent.KEYCODE_X, 'x');
         put(KeyEvent.KEYCODE_Y, 'y');
         put(KeyEvent.KEYCODE_Z, 'z');
-        put(KeyEvent.KEYCODE_A + 32, 'A');
-        put(KeyEvent.KEYCODE_B + 32, 'B');
-        put(KeyEvent.KEYCODE_C + 32, 'C');
-        put(KeyEvent.KEYCODE_D + 32, 'D');
-        put(KeyEvent.KEYCODE_E + 32, 'E');
-        put(KeyEvent.KEYCODE_F + 32, 'F');
-        put(KeyEvent.KEYCODE_G + 32, 'G');
-        put(KeyEvent.KEYCODE_H + 32, 'H');
-        put(KeyEvent.KEYCODE_I + 32, 'I');
-        put(KeyEvent.KEYCODE_J + 32, 'J');
-        put(KeyEvent.KEYCODE_K + 32, 'K');
-        put(KeyEvent.KEYCODE_L + 32, 'L');
-        put(KeyEvent.KEYCODE_M + 32, 'M');
-        put(KeyEvent.KEYCODE_N + 32, 'N');
-        put(KeyEvent.KEYCODE_O + 32, 'O');
-        put(KeyEvent.KEYCODE_P + 32, 'P');
-        put(KeyEvent.KEYCODE_Q + 32, 'Q');
-        put(KeyEvent.KEYCODE_R + 32, 'R');
-        put(KeyEvent.KEYCODE_S + 32, 'S');
-        put(KeyEvent.KEYCODE_T + 32, 'T');
-        put(KeyEvent.KEYCODE_U + 32, 'U');
-        put(KeyEvent.KEYCODE_V + 32, 'V');
-        put(KeyEvent.KEYCODE_W + 32, 'W');
-        put(KeyEvent.KEYCODE_X + 32, 'X');
-        put(KeyEvent.KEYCODE_Y + 32, 'Y');
-        put(KeyEvent.KEYCODE_Z + 32, 'Z');
+        put(KeyEvent.KEYCODE_ENTER, '\n');
+        put(KeyEvent.KEYCODE_TAB, '\t');
+        put(KeyEvent.KEYCODE_SPACE, ' ');
     }};
 
     public Paint paint;
@@ -127,8 +107,8 @@ public class DrawingView extends View {
     public Stack<Bitmap> history = new Stack<Bitmap>();
 
     public int brushSize=30; //size of canvas paint brush
-    public int canvasWidth=0; //canvas brush horizontal location
-    public int canvasHeight=0; //canvas brush vertical location
+    public int canvasX=0; //canvas brush horizontal location
+    public int canvasY=0; //canvas brush vertical location
     public int canvasColor = yellowLight;
 
     public DrawingView(Context context) {
@@ -146,7 +126,8 @@ public class DrawingView extends View {
         init();
     }
 
-    public DrawingView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public DrawingView(Context context, @Nullable AttributeSet attrs,
+                       int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
@@ -194,7 +175,9 @@ public class DrawingView extends View {
 
     public void save(){
         Bitmap b = bitmap;
-        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ChromaticTypewriter");
+        File dir = new File(Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                "ChromaticTypewriter");
         if(!dir.exists()) dir.mkdirs();
         File file = new File(dir, "ChromaticTypewriter.jpeg");
         boolean newFile = false;
@@ -210,18 +193,18 @@ public class DrawingView extends View {
             FileOutputStream fos = new FileOutputStream(file);
             b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.close();
-            MediaScannerConnection.scanFile(getContext(), new String[] {file.toString()}, null, null);
-            Toast.makeText(getContext(), "Image saved to " + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            MediaScannerConnection.scanFile(getContext(), new String[] {file.toString()},
+                    null, null);
+            Toast.makeText(getContext(), "image saved", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void convertText(String s, boolean addHistory){
+        Character c;
         for (int i = 0; i < s.length(); i++) {
-            Character c = s.charAt(i);
+            c = s.charAt(i);
             switch (c) {
                 case 'q':
                     paint.setColor(grayDark);
@@ -301,27 +284,51 @@ public class DrawingView extends View {
                 case 'm':
                     paint.setColor(blueLight);
                     break;
+                case '\n':
+                    if(canvasY<canvas.getHeight()-brushSize){
+                        canvasY += brushSize; //move brush down
+                    } else {
+                        canvasY = 0; //brush hit bottom, move back to top
+                    }
+                    canvasX = 0;
+                    break;
+//                case '\t':
+//                    break;
+                case ' ':
+                    if(canvasX>=canvas.getWidth()-brushSize){
+                        canvasX = 0; //brush hit right side, move back to left
+                        if(canvasY>=canvas.getHeight()-brushSize){
+                            canvasY = 0; //brush hit bottom, move back to top
+                        } else {
+                            canvasY += brushSize; //move brush down
+                        }
+                    } else {
+                        canvasX += brushSize; //move brush right
+                    }
+                    break;
                 default:
                     break;
             }
 
-            //drawing on the canvas at location (w,h)
-            canvas.drawRect((float) canvasWidth,
-                    (float) canvasHeight,
-                    (float) canvasWidth + brushSize,
-                    (float) canvasHeight + brushSize,
-                    paint);
+            if(!c.equals(' ') && !c.equals('\n')){
+                //drawing on the canvas at location (w,h)
+                canvas.drawRect((float) canvasX,
+                        (float) canvasY,
+                        (float) canvasX + brushSize,
+                        (float) canvasY + brushSize,
+                        paint);
 
-            //rectangle brush moving logic
-            if (canvasWidth >= canvas.getWidth() - brushSize) {
-                canvasWidth = 0; //brush hit right side, move back to left
-                if (canvasHeight >= canvas.getHeight() - brushSize) {
-                    canvasHeight = 0; //brush hit bottom, move back to top
+                //rectangle brush moving logic
+                if (canvasX >= canvas.getWidth() - brushSize) {
+                    canvasX = 0; //brush hit right side, move back to left
+                    if (canvasY >= canvas.getHeight() - brushSize) {
+                        canvasY = 0; //brush hit bottom, move back to top
+                    } else {
+                        canvasY += brushSize; //move brush down
+                    }
                 } else {
-                    canvasHeight += brushSize; //move brush down
+                    canvasX += brushSize; //move brush right
                 }
-            } else {
-                canvasWidth += brushSize; //move brush right
             }
             if(addHistory) addHistory();
         }

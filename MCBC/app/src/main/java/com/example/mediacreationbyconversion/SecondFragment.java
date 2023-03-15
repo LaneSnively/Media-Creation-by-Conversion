@@ -7,13 +7,25 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.mediacreationbyconversion.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
     private FragmentSecondBinding binding;
-    private String text;
+    private String text = "";
+    private SharedViewModel viewModel;
+
+    private void sendDataToOtherFragment(String data) {
+        viewModel.setData(data);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+    }
 
     @Override
     public View onCreateView(
@@ -31,7 +43,9 @@ public class SecondFragment extends Fragment {
 
         binding.submit.setOnClickListener(v -> {
             text = binding.inputtext.getText().toString();
-            binding.test.setText(text);
+            NavHostFragment.findNavController(SecondFragment.this)
+                    .navigate(R.id.action_SecondFragment_to_FirstFragment);
+            sendDataToOtherFragment(text);
         });
     }
 

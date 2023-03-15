@@ -9,14 +9,17 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
 
 public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
-
+    private String text = "";
     private boolean entered = false;
+    private SharedViewModel viewModel;
 
     @Override
     public View onCreateView(
@@ -24,6 +27,13 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentFirstBinding.inflate(inflater, container, false);
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        viewModel.getData().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String data) {
+                text = data;
+            }
+        });
         return binding.getRoot();
     }
 
@@ -64,6 +74,8 @@ public class FirstFragment extends Fragment {
             InputMethodManager imm = (InputMethodManager) getActivity()
                     .getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
+            binding.drawingView.convertText(text);
+            binding.drawingView.invalidate();
         });
 
         binding.drawingView.setOnTouchListener((v, event) -> {

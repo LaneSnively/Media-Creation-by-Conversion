@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaScannerConnection;
 import android.os.Environment;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -209,6 +210,7 @@ public class DrawingView extends View {
             FileOutputStream fos = new FileOutputStream(file);
             b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.close();
+            MediaScannerConnection.scanFile(getContext(), new String[] {file.toString()}, null, null);
             Toast.makeText(getContext(), "Image saved to " + file.getAbsolutePath(), Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

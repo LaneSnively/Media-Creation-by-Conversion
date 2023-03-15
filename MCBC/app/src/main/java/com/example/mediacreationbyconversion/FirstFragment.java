@@ -74,8 +74,7 @@ public class FirstFragment extends Fragment {
             InputMethodManager imm = (InputMethodManager) getActivity()
                     .getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
-            binding.drawingView.convertText(text);
-            binding.drawingView.invalidate();
+            convertText();
         });
 
         binding.drawingView.setOnTouchListener((v, event) -> {
@@ -131,6 +130,11 @@ public class FirstFragment extends Fragment {
             }
             return false;
         });
+    }
+
+    public void convertText(){
+        binding.drawingView.convertText(text);
+        binding.drawingView.invalidate();
     }
 
     @Override

@@ -23,15 +23,6 @@ import java.util.Map;
 import java.util.Stack;
 
 public class DrawingView extends View {
-    public Paint paint;
-    public Bitmap bitmap;
-    public Canvas canvas;
-    public Stack<Bitmap> history = new Stack<Bitmap>();
-
-    public int brushSize=30; //size of canvas paint brush
-    public int canvasWidth=0; //canvas brush horizontal location
-    public int canvasHeight=0; //canvas brush vertical location
-
     int white = Color.parseColor("#FFFFFF");
     int black = Color.parseColor("#000000");
 
@@ -130,6 +121,14 @@ public class DrawingView extends View {
         put(KeyEvent.KEYCODE_Z + 32, 'Z');
     }};
 
+    public Paint paint;
+    public Bitmap bitmap;
+    public Canvas canvas;
+    public Stack<Bitmap> history = new Stack<Bitmap>();
+
+    public int brushSize=30; //size of canvas paint brush
+    public int canvasWidth=0; //canvas brush horizontal location
+    public int canvasHeight=0; //canvas brush vertical location
     public int canvasColor = yellowLight;
 
     public DrawingView(Context context) {
@@ -152,14 +151,6 @@ public class DrawingView extends View {
         init();
     }
 
-    private void init(){
-        paint = new Paint();
-        paint.setStrokeWidth(5);
-        paint.setColor(black);
-//        paint.setStyle(Paint.Style.STROKE);
-        paint.setStyle(Paint.Style.FILL);
-    }
-
     @Override
     protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight){
         super.onSizeChanged(width, height, oldWidth, oldHeight);
@@ -173,6 +164,14 @@ public class DrawingView extends View {
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
         canvas.drawBitmap(bitmap, 0, 0, paint);
+    }
+
+    private void init(){
+        paint = new Paint();
+        paint.setStrokeWidth(5);
+        paint.setColor(black);
+//        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL);
     }
 
     public void backspace(){

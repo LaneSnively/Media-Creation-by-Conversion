@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Environment;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,6 +17,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 
 public class DrawingView extends View {
@@ -23,6 +26,10 @@ public class DrawingView extends View {
     public Bitmap bitmap;
     public Canvas canvas;
     public Stack<Bitmap> history = new Stack<Bitmap>();
+
+    public int brushSize=30; //size of canvas paint brush
+    public int canvasWidth=0; //canvas brush horizontal location
+    public int canvasHeight=0; //canvas brush vertical location
 
     int white = Color.parseColor("#FFFFFF");
     int black = Color.parseColor("#000000");
@@ -66,6 +73,61 @@ public class DrawingView extends View {
     int blueLight = Color.parseColor("#87CEFA");
     int blue = Color.parseColor("#0000FF");
     int blueDark = Color.parseColor("#00008B");
+
+    public Map<Integer, Character> keymap = new HashMap<Integer, Character>() {{
+        put(KeyEvent.KEYCODE_A, 'a');
+        put(KeyEvent.KEYCODE_B, 'b');
+        put(KeyEvent.KEYCODE_C, 'c');
+        put(KeyEvent.KEYCODE_D, 'd');
+        put(KeyEvent.KEYCODE_E, 'e');
+        put(KeyEvent.KEYCODE_F, 'f');
+        put(KeyEvent.KEYCODE_G, 'g');
+        put(KeyEvent.KEYCODE_H, 'h');
+        put(KeyEvent.KEYCODE_I, 'i');
+        put(KeyEvent.KEYCODE_J, 'j');
+        put(KeyEvent.KEYCODE_K, 'k');
+        put(KeyEvent.KEYCODE_L, 'l');
+        put(KeyEvent.KEYCODE_M, 'm');
+        put(KeyEvent.KEYCODE_N, 'n');
+        put(KeyEvent.KEYCODE_O, 'o');
+        put(KeyEvent.KEYCODE_P, 'p');
+        put(KeyEvent.KEYCODE_Q, 'q');
+        put(KeyEvent.KEYCODE_R, 'r');
+        put(KeyEvent.KEYCODE_S, 's');
+        put(KeyEvent.KEYCODE_T, 't');
+        put(KeyEvent.KEYCODE_U, 'u');
+        put(KeyEvent.KEYCODE_V, 'v');
+        put(KeyEvent.KEYCODE_W, 'w');
+        put(KeyEvent.KEYCODE_X, 'x');
+        put(KeyEvent.KEYCODE_Y, 'y');
+        put(KeyEvent.KEYCODE_Z, 'z');
+        put(KeyEvent.KEYCODE_A + 32, 'A');
+        put(KeyEvent.KEYCODE_B + 32, 'B');
+        put(KeyEvent.KEYCODE_C + 32, 'C');
+        put(KeyEvent.KEYCODE_D + 32, 'D');
+        put(KeyEvent.KEYCODE_E + 32, 'E');
+        put(KeyEvent.KEYCODE_F + 32, 'F');
+        put(KeyEvent.KEYCODE_G + 32, 'G');
+        put(KeyEvent.KEYCODE_H + 32, 'H');
+        put(KeyEvent.KEYCODE_I + 32, 'I');
+        put(KeyEvent.KEYCODE_J + 32, 'J');
+        put(KeyEvent.KEYCODE_K + 32, 'K');
+        put(KeyEvent.KEYCODE_L + 32, 'L');
+        put(KeyEvent.KEYCODE_M + 32, 'M');
+        put(KeyEvent.KEYCODE_N + 32, 'N');
+        put(KeyEvent.KEYCODE_O + 32, 'O');
+        put(KeyEvent.KEYCODE_P + 32, 'P');
+        put(KeyEvent.KEYCODE_Q + 32, 'Q');
+        put(KeyEvent.KEYCODE_R + 32, 'R');
+        put(KeyEvent.KEYCODE_S + 32, 'S');
+        put(KeyEvent.KEYCODE_T + 32, 'T');
+        put(KeyEvent.KEYCODE_U + 32, 'U');
+        put(KeyEvent.KEYCODE_V + 32, 'V');
+        put(KeyEvent.KEYCODE_W + 32, 'W');
+        put(KeyEvent.KEYCODE_X + 32, 'X');
+        put(KeyEvent.KEYCODE_Y + 32, 'Y');
+        put(KeyEvent.KEYCODE_Z + 32, 'Z');
+    }};
 
     public int canvasColor = yellowLight;
 
@@ -157,6 +219,114 @@ public class DrawingView extends View {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void convertText(String s){
+        for (int i = 0; i < s.length(); i++) {
+            Character c = s.charAt(i);
+            switch (c) {
+                case 'q':
+                    paint.setColor(grayDark);
+                    break;
+                case 'w':
+                    paint.setColor(pinkDark);
+                    break;
+                case 'e':
+                    paint.setColor(purpleDark);
+                    break;
+                case 'r':
+                    paint.setColor(redDark);
+                    break;
+                case 't':
+                    paint.setColor(orangeDark);
+                    break;
+                case 'y':
+                    paint.setColor(brownDark);
+                    break;
+                case 'u':
+                    paint.setColor(yellowDark);
+                    break;
+                case 'i':
+                    paint.setColor(greenDark);
+                    break;
+                case 'o':
+                    paint.setColor(tealDark);
+                    break;
+                case 'p':
+                    paint.setColor(blueDark);
+                    break;
+                case 'a':
+                    paint.setColor(pink);
+                    break;
+                case 's':
+                    paint.setColor(purple);
+                    break;
+                case 'd':
+                    paint.setColor(red);
+                    break;
+                case 'f':
+                    paint.setColor(orange);
+                    break;
+                case 'g':
+                    paint.setColor(brown);
+                    break;
+                case 'h':
+                    paint.setColor(yellow);
+                    break;
+                case 'j':
+                    paint.setColor(green);
+                    break;
+                case 'k':
+                    paint.setColor(teal);
+                    break;
+                case 'l':
+                    paint.setColor(blue);
+                    break;
+                case 'z':
+                    paint.setColor(purpleLight);
+                    break;
+                case 'x':
+                    paint.setColor(redLight);
+                    break;
+                case 'c':
+                    paint.setColor(orangeLight);
+                    break;
+                case 'v':
+                    paint.setColor(brownLight);
+                    break;
+                case 'b':
+                    paint.setColor(greenLight);
+                    break;
+                case 'n':
+                    paint.setColor(tealLight);
+                    break;
+                case 'm':
+                    paint.setColor(blueLight);
+                    break;
+                default:
+                    break;
+            }
+
+            //drawing on the canvas at location (w,h)
+            canvas.drawRect((float) canvasWidth,
+                    (float) canvasHeight,
+                    (float) canvasWidth + brushSize,
+                    (float) canvasHeight + brushSize,
+                    paint);
+
+            //rectangle brush moving logic
+            if (canvasWidth >= canvas.getWidth() - brushSize) {
+                canvasWidth = 0; //brush hit right side, move back to left
+                if (canvasHeight >= canvas.getHeight() - brushSize) {
+                    canvasHeight = 0; //brush hit bottom, move back to top
+                } else {
+                    canvasHeight += brushSize; //move brush down
+                }
+            } else {
+                canvasWidth += brushSize; //move brush right
+            }
+            addHistory();
         }
     }
 }

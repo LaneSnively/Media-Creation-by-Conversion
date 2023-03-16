@@ -90,13 +90,10 @@ public class FirstFragment extends Fragment {
         binding.drawingView.requestFocus();
         binding.drawingView.setOnKeyListener((v, keyCode, event) -> {
             if(event.getAction() == KeyEvent.ACTION_DOWN){
-                switch(keyCode){
-                    case KeyEvent.KEYCODE_DEL:
-                        binding.drawingView.backspace();
-                        binding.drawingView.invalidate();
-                        return true;
-                    default:
-                        break;
+                if (keyCode == KeyEvent.KEYCODE_DEL) {
+                    binding.drawingView.backspace();
+                    binding.drawingView.invalidate();
+                    return true;
                 }
                 if(binding.drawingView.keymap.containsKey(keyCode))
                     convertText(binding.drawingView.keymap

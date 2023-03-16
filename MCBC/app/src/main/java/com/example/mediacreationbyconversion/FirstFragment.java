@@ -18,7 +18,6 @@ import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
 public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
     private String text = "";
-    private SharedViewModel viewModel;
 
     @Override
     public View onCreateView(
@@ -26,8 +25,8 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentFirstBinding.inflate(inflater, container, false);
-        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        viewModel.getData().observe(getViewLifecycleOwner(), new Observer<String>() {
+        SharedViewModel textVM = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        textVM.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String data) {
                 text = data;

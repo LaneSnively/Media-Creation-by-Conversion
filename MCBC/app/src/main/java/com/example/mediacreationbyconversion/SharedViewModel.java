@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class SharedViewModel extends ViewModel {
-    private MutableLiveData<String> data = new MutableLiveData<>();
+    private MutableLiveData<String> text = new MutableLiveData<>();
 
-    public void setData(String data) {
-        this.data.setValue(data);
+    public void setText(String data) {
+        this.text.setValue(data);
     }
 
-    public LiveData<String> getData() {
-        return data;
+    public LiveData<String> getText() {
+        return text;
     }
 }

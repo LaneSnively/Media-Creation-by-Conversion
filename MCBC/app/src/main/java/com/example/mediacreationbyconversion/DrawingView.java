@@ -97,15 +97,31 @@ public class DrawingView extends View {
         put(KeyEvent.KEYCODE_SPACE, ' ');
     }};
 
+    //state of the drawing
     public Paint paint;
     public Bitmap bitmap;
     public Canvas canvas;
     public Stack<Bitmap> history = new Stack<>();
-
     public int brushSize=30; //size of canvas paint brush
     public int canvasX=0; //canvas brush horizontal location
     public int canvasY=0; //canvas brush vertical location
     public int canvasColor = yellowLight;
+    public Paint getPaint(){return paint;}
+    public void setPaint(Paint paint){this.paint = paint;}
+    public Bitmap getBitmap(){return bitmap;}
+    public void setBitmap(Bitmap bitmap){this.bitmap = bitmap;}
+    public Canvas getCanvas(){return canvas;}
+    public void setCanvas(Canvas canvas){this.canvas = canvas;}
+    public Stack<Bitmap> getHistory(){return history;}
+    public void setHistory(Stack<Bitmap> history){this.history = history;}
+    public int getBrushSize(){return brushSize;}
+    public void setBrushSize(int brushSize){this.brushSize = brushSize;}
+    public int getCanvasX(){return canvasX;}
+    public void setCanvasX(int canvasX){this.canvasX = canvasX;}
+    public int getCanvasY(){return canvasY;}
+    public void setCanvasY(int canvasY){this.canvasY = canvasY;}
+    public int getCanvasColor(){return canvasColor;}
+    public void setCanvasColor(int canvasColor){this.canvasColor = canvasColor;}
 
     public DrawingView(Context context) {
         super(context);

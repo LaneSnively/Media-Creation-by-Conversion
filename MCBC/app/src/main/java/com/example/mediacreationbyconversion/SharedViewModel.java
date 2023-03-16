@@ -14,4 +14,14 @@ public class SharedViewModel extends ViewModel {
     public LiveData<String> getText() {
         return text;
     }
+
+    private MutableLiveData<DrawingView> drawing = new MutableLiveData<>();
+
+    public void setDrawing(DrawingView drawing) {
+        this.drawing.setValue(drawing);
+    }
+
+    public LiveData<DrawingView> getDrawing() {
+        return drawing;
+    }
 }

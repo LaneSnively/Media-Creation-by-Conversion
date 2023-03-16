@@ -100,7 +100,7 @@ public class DrawingView extends View {
     public Paint paint;
     public Bitmap bitmap;
     public Canvas canvas;
-    public Stack<Bitmap> history = new Stack<Bitmap>();
+    public Stack<Bitmap> history = new Stack<>();
 
     public int brushSize=30; //size of canvas paint brush
     public int canvasX=0; //canvas brush horizontal location

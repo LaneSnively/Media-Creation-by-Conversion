@@ -12,13 +12,15 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.mediacreationbyconversion.databinding.FragmentSecondBinding;
 
+import java.util.Objects;
+
 public class SecondFragment extends Fragment {
     private FragmentSecondBinding binding;
     private String text = "";
     private SharedViewModel viewModel;
 
     private void sendDataToOtherFragment(String data) {
-        viewModel.setData(data);
+        viewModel.setText(data);
     }
 
     @Override
@@ -46,7 +48,7 @@ public class SecondFragment extends Fragment {
         });
 
         binding.submit.setOnClickListener(v -> {
-            text = binding.inputtext.getText().toString();
+            text = Objects.requireNonNull(binding.inputtext.getText()).toString();
             sendDataToOtherFragment(text);
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);

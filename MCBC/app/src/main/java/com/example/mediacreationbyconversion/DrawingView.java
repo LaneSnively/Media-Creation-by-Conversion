@@ -106,6 +106,7 @@ public class DrawingView extends View {
     public int canvasX=0; //canvas brush horizontal location
     public int canvasY=0; //canvas brush vertical location
     public int canvasColor = yellowLight;
+
     public Paint getPaint(){return paint;}
     public void setPaint(Paint paint){this.paint = paint;}
     public Bitmap getBitmap(){return bitmap;}

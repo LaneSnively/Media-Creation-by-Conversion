@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -18,10 +19,15 @@ public class SecondFragment extends Fragment {
     private FragmentSecondBinding binding;
     private String text = "";
     private SharedViewModel viewModel;
+    private DrawingView drawing;
 
-    private void sendDataToOtherFragment(String data) {
+    private void storeText(String data) {
         viewModel.setText(data);
     }
+
+//    private void storeDrawing(DrawingView data) {
+//        viewModel.setDrawing(data);
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,21 +41,25 @@ public class SecondFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
+        viewModel.getText().observe(getViewLifecycleOwner(), data -> text = data);
+//        viewModel.getDrawing().observe(getViewLifecycleOwner(), data -> drawing = data);
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         binding.tokeyboardinput.setOnClickListener(view1 -> {
-            text = "";
-            sendDataToOtherFragment(text);
+            storeText(text);
+//            storeDrawing(drawing);
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });
 
         binding.submit.setOnClickListener(v -> {
             text = Objects.requireNonNull(binding.inputtext.getText()).toString();
-            sendDataToOtherFragment(text);
+            storeText(text);
+//            storeDrawing(drawing);
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });

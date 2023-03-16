@@ -2,6 +2,7 @@ package com.example.mediacreationbyconversion;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,22 @@ import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
 public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
     private String text = "";
+    private DrawingView drawing;
+    private SharedViewModel viewModel;
+
+    private void storeText(String data) {
+        viewModel.setText(data);
+    }
+
+//    private void storeDrawing(DrawingView data) {
+//        viewModel.setDrawing(data);
+//    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+    }
 
     @Override
     public View onCreateView(
@@ -25,30 +42,42 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentFirstBinding.inflate(inflater, container, false);
-        SharedViewModel textVM = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        textVM.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String data) {
-                text = data;
-            }
-        });
+        viewModel.getText().observe(getViewLifecycleOwner(), data -> text = data);
+//        viewModel.getDrawing().observe(getViewLifecycleOwner(), data -> drawing = data);
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.totextinput.setOnClickListener(view15 -> NavHostFragment
-                .findNavController(FirstFragment.this)
-                .navigate(R.id.action_FirstFragment_to_SecondFragment));
+        if(drawing != null){
+            binding.drawingView.setPaint(drawing.getPaint());
+            binding.drawingView.setBitmap(drawing.getBitmap());
+            binding.drawingView.setCanvas(drawing.getCanvas());
+            binding.drawingView.setHistory(drawing.getHistory());
+            binding.drawingView.setBrushSize(drawing.getBrushSize());
+            binding.drawingView.setCanvasX(drawing.getCanvasX());
+            binding.drawingView.setCanvasY(drawing.getCanvasY());
+            binding.drawingView.setCanvasColor(drawing.getCanvasColor());
+            binding.drawingView.invalidate();
+            Log.v("asdfasdfasdfasdfasdf", text);
+        }
+
+        binding.totextinput.setOnClickListener(view15 -> {
+            storeText(text);
+//            storeDrawing(binding.drawingView);
+            NavHostFragment
+                    .findNavController(FirstFragment.this)
+                    .navigate(R.id.action_FirstFragment_to_SecondFragment);
+        });
 
         binding.save.setOnClickListener(view16 -> binding.drawingView.save());
 
-        binding.smallbrush.setOnClickListener(view17 -> binding.drawingView.brushSize = 10);
+        binding.smallbrush.setOnClickListener(view17 -> binding.drawingView.setBrushSize(10));
 
-        binding.mediumbrush.setOnClickListener(view18 -> binding.drawingView.brushSize = 30);
+        binding.mediumbrush.setOnClickListener(view18 -> binding.drawingView.setBrushSize(30));
 
-        binding.largebrush.setOnClickListener(view14 -> binding.drawingView.brushSize = 50);
+        binding.largebrush.setOnClickListener(view14 -> binding.drawingView.setBrushSize(55));
 
         binding.whitecanvas.setOnClickListener(view13 -> {
             binding.drawingView.canvasColor = binding.drawingView.white;

@@ -304,7 +304,6 @@ public class DrawingView extends View {
                     } else {
                         canvasY = 0; //brush hit bottom, move back to top
                     }
-                    canvasX = 0;
                     break;
 //                case '\t':
 //                    break;

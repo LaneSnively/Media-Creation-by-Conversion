@@ -300,10 +300,14 @@ public class DrawingView extends View {
                     paint.setColor(blueLight);
                     break;
                 case '\n':
-                    if(canvasY<canvas.getHeight()-brushSize){
-                        canvasY += brushSize; //move brush down
+                    if(addHistory){
+                        if(canvasY<canvas.getHeight()-brushSize){
+                            canvasY += brushSize; //move brush down
+                        } else {
+                            canvasY = 0; //brush hit bottom, move back to top
+                        }
                     } else {
-                        canvasY = 0; //brush hit bottom, move back to top
+                        canvasY += brushSize; //move brush down
                     }
                     if(!addHistory) {
                         for(int k = 0; k < lineLength; k++)
@@ -314,12 +318,16 @@ public class DrawingView extends View {
 //                case '\t':
 //                    break;
                 case ' ':
-                    if(canvasX>=canvas.getWidth()-brushSize){
-                        canvasX = 0; //brush hit right side, move back to left
-                        if(canvasY>=canvas.getHeight()-brushSize){
-                            canvasY = 0; //brush hit bottom, move back to top
+                    if(addHistory){
+                        if(canvasX>=canvas.getWidth()-brushSize){
+                            canvasX = 0; //brush hit right side, move back to left
+                            if(canvasY>=canvas.getHeight()-brushSize){
+                                canvasY = 0; //brush hit bottom, move back to top
+                            } else {
+                                canvasY += brushSize; //move brush down
+                            }
                         } else {
-                            canvasY += brushSize; //move brush down
+                            canvasX += brushSize; //move brush right
                         }
                     } else {
                         canvasX += brushSize; //move brush right
@@ -341,12 +349,16 @@ public class DrawingView extends View {
                         paint);
 
                 //rectangle brush moving logic
-                if (canvasX >= canvas.getWidth() - brushSize) {
-                    if(addHistory) canvasX = 0; //brush hit right side, move back to left
-                    if (canvasY >= canvas.getHeight() - brushSize) {
-                        if(addHistory) canvasY = 0; //brush hit bottom, move back to top
+                if(addHistory){
+                    if (canvasX >= canvas.getWidth() - brushSize) {
+                        canvasX = 0; //brush hit right side, move back to left
+                        if (canvasY >= canvas.getHeight() - brushSize) {
+                            canvasY = 0; //brush hit bottom, move back to top
+                        } else {
+                            canvasY += brushSize; //move brush down
+                        }
                     } else {
-                        canvasY += brushSize; //move brush down
+                        canvasX += brushSize; //move brush right
                     }
                 } else {
                     canvasX += brushSize; //move brush right

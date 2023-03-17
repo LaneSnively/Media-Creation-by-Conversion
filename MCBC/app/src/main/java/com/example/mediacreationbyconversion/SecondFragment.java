@@ -1,5 +1,8 @@
 package com.example.mediacreationbyconversion;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,27 +10,32 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
 import com.example.mediacreationbyconversion.databinding.FragmentSecondBinding;
 
 import java.util.Objects;
+import java.util.Stack;
 
 public class SecondFragment extends Fragment {
+
     private FragmentSecondBinding binding;
-    private String text = "";
     private SharedViewModel viewModel;
-    private DrawingView drawing;
+    private String text = "";
+//    private Paint paint = new Paint();
+//    private Bitmap bitmap = null;
+//    private Canvas canvas = null;
+//    private Stack<Bitmap> history = new Stack<>();
+//    private int brushSize = 0;
+//    private int canvasX = 0;
+//    private int canvasY = 0;
+//    private int canvasColor = 0;
 
     private void storeText(String data) {
         viewModel.setText(data);
     }
-
-//    private void storeDrawing(DrawingView data) {
-//        viewModel.setDrawing(data);
-//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +50,14 @@ public class SecondFragment extends Fragment {
     ) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
         viewModel.getText().observe(getViewLifecycleOwner(), data -> text = data);
-//        viewModel.getDrawing().observe(getViewLifecycleOwner(), data -> drawing = data);
+//        viewModel.getPaint().observe(getViewLifecycleOwner(), data -> paint = data);
+//        viewModel.getBitmap().observe(getViewLifecycleOwner(), data -> bitmap = data);
+//        viewModel.getCanvas().observe(getViewLifecycleOwner(), data -> canvas = data);
+//        viewModel.getHistory().observe(getViewLifecycleOwner(), data -> history = data);
+//        viewModel.getBrushSize().observe(getViewLifecycleOwner(), data -> brushSize = data);
+//        viewModel.getCanvasX().observe(getViewLifecycleOwner(), data -> canvasX = data);
+//        viewModel.getCanvasY().observe(getViewLifecycleOwner(), data -> canvasY = data);
+//        viewModel.getCanvasColor().observe(getViewLifecycleOwner(), data -> canvasColor = data);
         return binding.getRoot();
     }
 
@@ -51,7 +66,6 @@ public class SecondFragment extends Fragment {
 
         binding.tokeyboardinput.setOnClickListener(view1 -> {
             storeText(text);
-//            storeDrawing(drawing);
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });
@@ -59,7 +73,6 @@ public class SecondFragment extends Fragment {
         binding.submit.setOnClickListener(v -> {
             text = Objects.requireNonNull(binding.inputtext.getText()).toString();
             storeText(text);
-//            storeDrawing(drawing);
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });

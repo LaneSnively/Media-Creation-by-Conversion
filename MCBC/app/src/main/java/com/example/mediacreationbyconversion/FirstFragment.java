@@ -1,6 +1,9 @@
 package com.example.mediacreationbyconversion;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -10,25 +13,45 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
 
+import java.util.Stack;
+
 public class FirstFragment extends Fragment {
+
     private FragmentFirstBinding binding;
-    private String text = "";
-    private DrawingView drawing;
     private SharedViewModel viewModel;
+    private String text = "";
 
-    private void storeText(String data) {
-        viewModel.setText(data);
-    }
+//    private Paint paint = binding.drawingView.getPaint();
+//    private Bitmap bitmap = binding.drawingView.getBitmap();
+//    private Canvas canvas = binding.drawingView.getCanvas();
+//    private Stack<Bitmap> history = binding.drawingView.getHistory();
+//    private int brushSize = binding.drawingView.getBrushSize();
+//    private int canvasX = binding.drawingView.getCanvasX();
+//    private int canvasY = binding.drawingView.getCanvasY();
+//    private int canvasColor = binding.drawingView.getCanvasColor();
 
-//    private void storeDrawing(DrawingView data) {
-//        viewModel.setDrawing(data);
-//    }
+//    private Paint paint;
+//    private Bitmap bitmap;
+//    private Canvas canvas;
+//    private Stack<Bitmap> history;
+//    private int brushSize;
+//    private int canvasX = 0;
+//    private int canvasY = 0;
+//    private int canvasColor;
+
+//    private void storePaint(Paint data) { viewModel.setPaint(data); }
+//    private void storeBitmap(Bitmap data) { viewModel.setBitmap(data); }
+//    private void storeCanvas(Canvas data) { viewModel.setCanvas(data); }
+//    private void storeHistory(Stack<Bitmap> data) { viewModel.setHistory(data); }
+//    private void storeBrushSize(int data) { viewModel.setBrushSize(data); }
+//    private void storeCanvasX(int data) { viewModel.setCanvasX(data); }
+//    private void storeCanvasY(int data) { viewModel.setCanvasY(data); }
+//    private void storeCanvasColor(int data) { viewModel.setCanvasColor(data); }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,29 +66,27 @@ public class FirstFragment extends Fragment {
     ) {
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         viewModel.getText().observe(getViewLifecycleOwner(), data -> text = data);
-//        viewModel.getDrawing().observe(getViewLifecycleOwner(), data -> drawing = data);
+//        viewModel.getPaint().observe(getViewLifecycleOwner(), data -> paint = data);
+//        viewModel.getBitmap().observe(getViewLifecycleOwner(), data -> bitmap = data);
+//        viewModel.getCanvas().observe(getViewLifecycleOwner(), data -> canvas = data);
+//        viewModel.getHistory().observe(getViewLifecycleOwner(), data -> history = data);
+//        viewModel.getBrushSize().observe(getViewLifecycleOwner(), data -> brushSize = data);
+//        viewModel.getCanvasX().observe(getViewLifecycleOwner(), data -> canvasX = data);
+//        viewModel.getCanvasY().observe(getViewLifecycleOwner(), data -> canvasY = data);
+//        viewModel.getCanvasColor().observe(getViewLifecycleOwner(), data -> canvasColor = data);
+//        if(bitmap != null) resetDrawing();
         return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if(drawing != null){
-            binding.drawingView.setPaint(drawing.getPaint());
-            binding.drawingView.setBitmap(drawing.getBitmap());
-            binding.drawingView.setCanvas(drawing.getCanvas());
-            binding.drawingView.setHistory(drawing.getHistory());
-            binding.drawingView.setBrushSize(drawing.getBrushSize());
-            binding.drawingView.setCanvasX(drawing.getCanvasX());
-            binding.drawingView.setCanvasY(drawing.getCanvasY());
-            binding.drawingView.setCanvasColor(drawing.getCanvasColor());
-            binding.drawingView.invalidate();
-            Log.v("asdfasdfasdfasdfasdf", text);
-        }
+//        updateDrawingViewModel();
+//        resetDrawing();
+//        if(bitmap != null) resetDrawing();
 
         binding.totextinput.setOnClickListener(view15 -> {
-            storeText(text);
-//            storeDrawing(binding.drawingView);
+//            updateDrawingViewModel();
             NavHostFragment
                     .findNavController(FirstFragment.this)
                     .navigate(R.id.action_FirstFragment_to_SecondFragment);
@@ -134,8 +155,37 @@ public class FirstFragment extends Fragment {
 
     public void convertText(String s, boolean addHistory){
         binding.drawingView.convertText(s, addHistory);
+//        updateDrawingViewModel();
         binding.drawingView.invalidate();
     }
+
+//    public void resetDrawing(){
+//        binding.drawingView.setPaint(paint);
+//        binding.drawingView.setBitmap(bitmap);
+//        binding.drawingView.setCanvas(canvas);
+//        binding.drawingView.setHistory(history);
+//        binding.drawingView.setBrushSize(brushSize);
+//        binding.drawingView.setCanvasX(canvasX);
+//        binding.drawingView.setCanvasY(canvasY);
+//        binding.drawingView.setCanvasColor(canvasColor);
+//        if(history!=binding.drawingView.getHistory()) Log.v("asdf", "history null");
+//        if(paint!=binding.drawingView.getPaint()) Log.v("asdf", "paint null");
+//        if(bitmap!=binding.drawingView.getBitmap()) Log.v("asdf", "bitmap null");
+//        if(canvas!=binding.drawingView.getCanvas()) Log.v("asdf", "canvas null");
+//        if(brushSize!=binding.drawingView.getBrushSize()) Log.v("asdf", "brushSize null");
+//        if(canvasColor!=binding.drawingView.getCanvasColor()) Log.v("asdf", "canvasColor null");
+//    }
+
+//    public void updateDrawingViewModel(){
+//        storePaint(binding.drawingView.getPaint());
+//        storeBitmap(binding.drawingView.getBitmap());
+//        storeCanvas(binding.drawingView.getCanvas());
+//        storeHistory(binding.drawingView.getHistory());
+//        storeBrushSize(binding.drawingView.getBrushSize());
+//        storeCanvasX(binding.drawingView.getCanvasX());
+//        storeCanvasY(binding.drawingView.getCanvasY());
+//        storeCanvasColor(binding.drawingView.getCanvasColor());
+//    }
 
     @Override
     public void onDestroyView() {

@@ -216,6 +216,7 @@ public class DrawingView extends View {
     }
 
     public void convertText(String s, boolean addHistory){
+        int lineLength = 0;
         Character c;
         for (int i = 0; i < s.length(); i++) {
             c = s.charAt(i);
@@ -304,7 +305,11 @@ public class DrawingView extends View {
                     } else {
                         canvasY = 0; //brush hit bottom, move back to top
                     }
-                    if(!addHistory) canvasX = 0;
+                    if(!addHistory) {
+                        for(int k = 0; k < lineLength; k++)
+                        canvasX -= brushSize;
+                        if(canvasX < 0) canvasX = canvas.getWidth() - brushSize;
+                    }
                     break;
 //                case '\t':
 //                    break;
@@ -323,6 +328,9 @@ public class DrawingView extends View {
                 default:
                     break;
             }
+
+            if(!c.equals('\n')) lineLength++;
+            else lineLength = 0;
 
             if(!c.equals(' ') && !c.equals('\n')){
                 //drawing on the canvas at location (w,h)

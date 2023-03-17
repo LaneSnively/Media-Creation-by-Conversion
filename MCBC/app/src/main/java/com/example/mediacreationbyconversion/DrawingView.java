@@ -342,9 +342,9 @@ public class DrawingView extends View {
 
                 //rectangle brush moving logic
                 if (canvasX >= canvas.getWidth() - brushSize) {
-                    canvasX = 0; //brush hit right side, move back to left
+                    if(addHistory) canvasX = 0; //brush hit right side, move back to left
                     if (canvasY >= canvas.getHeight() - brushSize) {
-                        canvasY = 0; //brush hit bottom, move back to top
+                        if(addHistory) canvasY = 0; //brush hit bottom, move back to top
                     } else {
                         canvasY += brushSize; //move brush down
                     }

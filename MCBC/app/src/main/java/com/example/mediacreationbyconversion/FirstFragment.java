@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -84,6 +85,13 @@ public class FirstFragment extends Fragment {
 //        updateDrawingViewModel();
 //        resetDrawing();
 //        if(bitmap != null) resetDrawing();
+
+//        if (savedInstanceState != null) {
+//            Parcelable drawingViewState = savedInstanceState.getParcelable("DRAWINGVIEWSTATE");
+//            if (drawingViewState != null) {
+//                binding.drawingView.restoreState(drawingViewState);
+//            }
+//        }
 
         binding.totextinput.setOnClickListener(view15 -> {
 //            updateDrawingViewModel();
@@ -185,6 +193,15 @@ public class FirstFragment extends Fragment {
 //        storeCanvasX(binding.drawingView.getCanvasX());
 //        storeCanvasY(binding.drawingView.getCanvasY());
 //        storeCanvasColor(binding.drawingView.getCanvasColor());
+//    }
+
+//    private DrawingView drawingView;
+//
+//
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putParcelable("DRAWINGVIEWSTATE", binding.drawingView.saveState());
 //    }
 
     @Override

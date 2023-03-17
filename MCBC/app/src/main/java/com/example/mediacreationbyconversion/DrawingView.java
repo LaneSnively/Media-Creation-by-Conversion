@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.media.MediaScannerConnection;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
@@ -346,4 +347,31 @@ public class DrawingView extends View {
             if(addHistory) addHistory();
         }
     }
+
+//    public Parcelable saveState() {
+//        DrawingViewState state = new DrawingViewState();
+//        state.brushSize = brushSize;
+//        state.canvasX = canvasX;
+//        state.canvasY = canvasY;
+//        state.canvasColor = canvasColor;
+//        state.bitmap = bitmap;
+//        state.paint = paint;
+//        state.history = history;
+//        return state;
+//    }
+//
+//    public void restoreState(Parcelable state) {
+//        if (state instanceof DrawingViewState) {
+//            DrawingViewState drawingViewState = (DrawingViewState) state;
+//            brushSize = drawingViewState.brushSize;
+//            canvasX = drawingViewState.canvasX;
+//            canvasY = drawingViewState.canvasY;
+//            canvasColor = drawingViewState.canvasColor;
+//            bitmap = drawingViewState.bitmap;
+//            paint = drawingViewState.paint;
+//            history = drawingViewState.history;
+//            canvas = new Canvas(bitmap);
+//            invalidate();
+//        }
+//    }
 }

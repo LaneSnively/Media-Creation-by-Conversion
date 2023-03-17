@@ -140,10 +140,24 @@ public class FirstFragment extends Fragment {
             binding.drawingView.requestFocus();
             binding.drawingView.canvasX = (int) event.getX();
             binding.drawingView.canvasY = (int) event.getY();
-            if(text.length() > 42){
-                binding.drawingView.canvasX = 0;
-                binding.drawingView.canvasY = 0;
-            }
+//            if(binding.drawingView.brushSize <= 10){
+//                if(text.length() > 1000){
+//                    binding.drawingView.canvasX = 0;
+//                    binding.drawingView.canvasY = 0;
+//                }
+//            }
+//            else if(binding.drawingView.brushSize <= 30){
+//                if(text.length() > 500){
+//                    binding.drawingView.canvasX = 0;
+//                    binding.drawingView.canvasY = 0;
+//                }
+//            }
+//            else if(binding.drawingView.brushSize >= 50){
+//                if(text.length() > 100){
+//                    binding.drawingView.canvasX = 0;
+//                    binding.drawingView.canvasY = 0;
+//                }
+//            }
             convertText(text, false);
             return false;
         });

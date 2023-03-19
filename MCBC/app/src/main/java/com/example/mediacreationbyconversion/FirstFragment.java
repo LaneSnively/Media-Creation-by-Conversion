@@ -112,13 +112,15 @@ public class FirstFragment extends Fragment {
         });
 
         binding.keyboard.setOnClickListener(v -> {
-            if(bitmap != null) restoreDrawing();
-            binding.drawingView.invalidate();
-
             binding.drawingView.requestFocus();
             InputMethodManager imm = (InputMethodManager) getActivity()
                     .getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
+        });
+
+        binding.restore.setOnClickListener(v -> {
+            if(bitmap != null) restoreDrawing();
+            binding.drawingView.invalidate();
         });
 
         binding.drawingView.setOnTouchListener((v, event) -> {

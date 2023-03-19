@@ -179,6 +179,17 @@ public class DrawingView extends View {
         } else {
             bitmap = history.pop();
             canvas = new Canvas(bitmap);
+            //doesn't work when deleting enter history
+            if (canvasX <= 0) {
+                canvasX = canvas.getWidth() - brushSize; //brush hit right side, move back to left
+                if (canvasY <= 0) {
+                    canvasY = canvas.getHeight() - brushSize; //brush hit bottom, move back to top
+                } else {
+                    canvasY -= brushSize; //move brush down
+                }
+            } else {
+                canvasX -= brushSize; //move brush right
+            }
         }
     }
 

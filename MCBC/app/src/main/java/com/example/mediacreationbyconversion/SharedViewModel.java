@@ -36,13 +36,17 @@ public class SharedViewModel extends ViewModel {
     public void setBrushSize(Integer data) { this.brushSize.setValue(data); }
     public LiveData<Integer> getBrushSize() { return brushSize; }
 
-    private MutableLiveData<Integer> canvasX = new MutableLiveData<>();
-    public void setCanvasX(Integer data) { this.canvasX.setValue(data); }
-    public LiveData<Integer> getCanvasX() { return canvasX; }
+    private MutableLiveData<String> brushShape = new MutableLiveData<>();
+    public void setBrushShape(String data) { this.brushShape.setValue(data); }
+    public LiveData<String> getBrushShape() { return brushShape; }
 
-    private MutableLiveData<Integer> canvasY = new MutableLiveData<>();
-    public void setCanvasY(Integer data) { this.canvasY.setValue(data); }
-    public LiveData<Integer> getCanvasY() { return canvasY; }
+    private MutableLiveData<Float> canvasX = new MutableLiveData<>();
+    public void setCanvasX(Float data) { this.canvasX.setValue(data); }
+    public LiveData<Float> getCanvasX() { return canvasX; }
+
+    private MutableLiveData<Float> canvasY = new MutableLiveData<>();
+    public void setCanvasY(Float data) { this.canvasY.setValue(data); }
+    public LiveData<Float> getCanvasY() { return canvasY; }
 
     private MutableLiveData<Integer> canvasColor = new MutableLiveData<>();
     public void setCanvasColor(Integer data) { this.canvasColor.setValue(data); }

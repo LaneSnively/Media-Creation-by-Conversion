@@ -108,23 +108,6 @@ public class DrawingView extends View {
     public int canvasY=0; //canvas brush vertical location
     public int canvasColor = yellowLight;
 
-    public Paint getPaint(){return paint;}
-    public void setPaint(Paint paint){this.paint = paint;}
-    public Bitmap getBitmap(){return bitmap;}
-    public void setBitmap(Bitmap bitmap){this.bitmap = bitmap;}
-    public Canvas getCanvas(){return canvas;}
-    public void setCanvas(Canvas canvas){this.canvas = canvas;}
-    public Stack<Bitmap> getHistory(){return history;}
-    public void setHistory(Stack<Bitmap> history){this.history = history;}
-    public int getBrushSize(){return brushSize;}
-    public void setBrushSize(int brushSize){this.brushSize = brushSize;}
-    public int getCanvasX(){return canvasX;}
-    public void setCanvasX(int canvasX){this.canvasX = canvasX;}
-    public int getCanvasY(){return canvasY;}
-    public void setCanvasY(int canvasY){this.canvasY = canvasY;}
-    public int getCanvasColor(){return canvasColor;}
-    public void setCanvasColor(int canvasColor){this.canvasColor = canvasColor;}
-
     public DrawingView(Context context) {
         super(context);
         init();
@@ -169,6 +152,10 @@ public class DrawingView extends View {
         paint.setStyle(Paint.Style.FILL);
     }
 
+    public void initializeDrawingView(){
+
+    }
+
     public void backspace(){
         if(history.isEmpty()){
             history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
@@ -185,6 +172,18 @@ public class DrawingView extends View {
 
     public void addHistory(){
         history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
+        int stacksize = 1000;
+        if(history.size() > stacksize){
+            Stack<Bitmap> rs = new Stack<>();
+            Stack<Bitmap> s = new Stack<>();
+            for(int i = 0; i < stacksize; i++){
+                rs.push(history.pop());
+            }
+            for(int i = 0; i < stacksize; i++){
+                s.push(rs.pop());
+            }
+            history = s;
+        }
     }
 
     public void save(){
@@ -366,5 +365,6 @@ public class DrawingView extends View {
             }
             if(addHistory) addHistory();
         }
+        if(!addHistory) addHistory();
     }
 }

@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding.keycolorlayout.setOnClickListener(v -> {
+
+        });
         View view = binding.getRoot();
         setContentView(view);
     }

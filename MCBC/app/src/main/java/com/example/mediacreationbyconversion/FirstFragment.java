@@ -95,12 +95,11 @@ public class FirstFragment extends Fragment {
 
         binding.save.setOnClickListener(view16 -> binding.drawingView.save());
 
-        binding.smallbrush.setOnClickListener(view17 -> binding.drawingView.setBrushSize(10));
+        binding.smallbrush.setOnClickListener(view17 -> binding.drawingView.brushSize = 10);
 
-        binding.mediumbrush.setOnClickListener(view18 -> binding.drawingView.setBrushSize(30));
+        binding.mediumbrush.setOnClickListener(view18 -> binding.drawingView.brushSize = 30);
 
-        binding.largebrush.setOnClickListener(view14 -> binding.drawingView.setBrushSize(55));
-
+        binding.largebrush.setOnClickListener(view14 -> binding.drawingView.brushSize = 55);
         binding.whitecanvas.setOnClickListener(view13 -> {
             binding.drawingView.canvasColor = binding.drawingView.white;
             binding.drawingView.canvas.drawColor(binding.drawingView.canvasColor);

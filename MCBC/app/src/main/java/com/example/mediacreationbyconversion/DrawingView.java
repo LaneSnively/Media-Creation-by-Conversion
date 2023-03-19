@@ -201,7 +201,7 @@ public class DrawingView extends View {
 
     public void addHistory(){
         history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
-        int stacksize = 1000;
+        int stacksize = 500;
         if(history.size() > stacksize){
             Stack<Bitmap> rs = new Stack<>();
             Stack<Bitmap> s = new Stack<>();
@@ -352,7 +352,7 @@ public class DrawingView extends View {
                     }
                     if(!addHistory) {
                         for(int k = 0; k < lineLength; k++)
-                        canvasX -= brushSize;
+                            canvasX -= brushSize;
                         if(canvasX < 0) canvasX = canvas.getWidth() - brushSize;
                     }
                     break;

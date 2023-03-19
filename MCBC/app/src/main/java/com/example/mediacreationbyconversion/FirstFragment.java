@@ -112,17 +112,14 @@ public class FirstFragment extends Fragment {
             binding.drawingView.resetCanvas();
         });
 
-        //make a keyboard button, not onclicklistener
-        binding.drawingView.setOnClickListener(v -> {
+        binding.keyboard.setOnClickListener(v -> {
             if(bitmap != null) restoreDrawing();
             binding.drawingView.invalidate();
 
-            if(text.equals("")){
-                binding.drawingView.requestFocus();
-                InputMethodManager imm = (InputMethodManager) getActivity()
-                        .getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
-            }
+            binding.drawingView.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getActivity()
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
         });
 
         binding.drawingView.setOnTouchListener((v, event) -> {

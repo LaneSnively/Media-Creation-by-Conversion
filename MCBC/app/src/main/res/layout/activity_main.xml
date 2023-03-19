@@ -18,7 +18,7 @@
             android:layout_marginTop="13dp"
             android:src="@drawable/color_keyboard_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.04"
+            app:layout_constraintHeight_percent="0.025"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

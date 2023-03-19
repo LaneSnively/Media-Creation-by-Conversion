@@ -91,6 +91,12 @@ public class FirstFragment extends Fragment {
 
         binding.largebrush.setOnClickListener(view14 -> binding.drawingView.brushSize = 55);
 
+        binding.square.setOnClickListener(view14 -> binding.drawingView.brushShape = "square");
+
+        binding.circle.setOnClickListener(view14 -> binding.drawingView.brushShape = "circle");
+
+        binding.character.setOnClickListener(view14 -> binding.drawingView.brushShape = "character");
+
         binding.whitecanvas.setOnClickListener(view13 -> {
             binding.drawingView.canvasColor = binding.drawingView.white;
             binding.drawingView.resetCanvas();

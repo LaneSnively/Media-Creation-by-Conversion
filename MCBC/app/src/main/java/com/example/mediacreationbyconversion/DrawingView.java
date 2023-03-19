@@ -237,7 +237,7 @@ public class DrawingView extends View {
     }
 
     public void drawCircle(){
-        canvas.drawCircle(canvasX, canvasY, 2*brushSize, paint);
+        canvas.drawCircle(canvasX, canvasY, brushSize/2, paint);
     }
 
     public void drawText(String s){
@@ -378,7 +378,7 @@ public class DrawingView extends View {
                     case "circle":
                         drawCircle();
                         break;
-                    case "text":
+                    case "character":
                         drawText(c.toString());
                         break;
                     default:

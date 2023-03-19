@@ -86,13 +86,6 @@ public class FirstFragment extends Fragment {
 //        resetDrawing();
 //        if(bitmap != null) resetDrawing();
 
-//        if (savedInstanceState != null) {
-//            Parcelable drawingViewState = savedInstanceState.getParcelable("DRAWINGVIEWSTATE");
-//            if (drawingViewState != null) {
-//                binding.drawingView.restoreState(drawingViewState);
-//            }
-//        }
-
         binding.totextinput.setOnClickListener(view15 -> {
 //            updateDrawingViewModel();
             NavHostFragment
@@ -140,24 +133,6 @@ public class FirstFragment extends Fragment {
             binding.drawingView.requestFocus();
             binding.drawingView.canvasX = (int) event.getX();
             binding.drawingView.canvasY = (int) event.getY();
-//            if(binding.drawingView.brushSize <= 10){
-//                if(text.length() > 1000){
-//                    binding.drawingView.canvasX = 0;
-//                    binding.drawingView.canvasY = 0;
-//                }
-//            }
-//            else if(binding.drawingView.brushSize <= 30){
-//                if(text.length() > 500){
-//                    binding.drawingView.canvasX = 0;
-//                    binding.drawingView.canvasY = 0;
-//                }
-//            }
-//            else if(binding.drawingView.brushSize >= 50){
-//                if(text.length() > 100){
-//                    binding.drawingView.canvasX = 0;
-//                    binding.drawingView.canvasY = 0;
-//                }
-//            }
             convertText(text, false);
             return false;
         });
@@ -211,15 +186,6 @@ public class FirstFragment extends Fragment {
 //        storeCanvasX(binding.drawingView.getCanvasX());
 //        storeCanvasY(binding.drawingView.getCanvasY());
 //        storeCanvasColor(binding.drawingView.getCanvasColor());
-//    }
-
-//    private DrawingView drawingView;
-//
-//
-//    @Override
-//    public void onSaveInstanceState(@NonNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putParcelable("DRAWINGVIEWSTATE", binding.drawingView.saveState());
 //    }
 
     @Override

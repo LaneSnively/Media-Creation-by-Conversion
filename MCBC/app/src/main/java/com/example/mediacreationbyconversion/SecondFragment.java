@@ -24,14 +24,6 @@ public class SecondFragment extends Fragment {
     private FragmentSecondBinding binding;
     private SharedViewModel viewModel;
     private String text = "";
-//    private Paint paint = new Paint();
-//    private Bitmap bitmap = null;
-//    private Canvas canvas = null;
-//    private Stack<Bitmap> history = new Stack<>();
-//    private int brushSize = 0;
-//    private int canvasX = 0;
-//    private int canvasY = 0;
-//    private int canvasColor = 0;
 
     private void storeText(String data) {
         viewModel.setText(data);
@@ -50,14 +42,6 @@ public class SecondFragment extends Fragment {
     ) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
         viewModel.getText().observe(getViewLifecycleOwner(), data -> text = data);
-//        viewModel.getPaint().observe(getViewLifecycleOwner(), data -> paint = data);
-//        viewModel.getBitmap().observe(getViewLifecycleOwner(), data -> bitmap = data);
-//        viewModel.getCanvas().observe(getViewLifecycleOwner(), data -> canvas = data);
-//        viewModel.getHistory().observe(getViewLifecycleOwner(), data -> history = data);
-//        viewModel.getBrushSize().observe(getViewLifecycleOwner(), data -> brushSize = data);
-//        viewModel.getCanvasX().observe(getViewLifecycleOwner(), data -> canvasX = data);
-//        viewModel.getCanvasY().observe(getViewLifecycleOwner(), data -> canvasY = data);
-//        viewModel.getCanvasColor().observe(getViewLifecycleOwner(), data -> canvasColor = data);
         return binding.getRoot();
     }
 

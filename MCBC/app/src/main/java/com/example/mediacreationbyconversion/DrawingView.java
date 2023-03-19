@@ -104,8 +104,9 @@ public class DrawingView extends View {
     public Canvas canvas;
     public Stack<Bitmap> history = new Stack<>();
     public int brushSize=30; //size of canvas paint brush
-    public int canvasX=0; //canvas brush horizontal location
-    public int canvasY=0; //canvas brush vertical location
+    public String brushShape = "square";
+    public float canvasX=0; //canvas brush horizontal location
+    public float canvasY=0; //canvas brush vertical location
     public int canvasColor = yellowLight;
 
     public DrawingView(Context context) {
@@ -129,6 +130,14 @@ public class DrawingView extends View {
         init();
     }
 
+    private void init(){
+        paint = new Paint();
+        paint.setStrokeWidth(5);
+        paint.setColor(black);
+//        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL);
+    }
+
     @Override
     protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight){
         super.onSizeChanged(width, height, oldWidth, oldHeight);
@@ -144,16 +153,24 @@ public class DrawingView extends View {
         canvas.drawBitmap(bitmap, 0, 0, paint);
     }
 
-    private void init(){
-        paint = new Paint();
-        paint.setStrokeWidth(5);
-        paint.setColor(black);
-//        paint.setStyle(Paint.Style.STROKE);
-        paint.setStyle(Paint.Style.FILL);
-    }
-
-    public void initializeDrawingView(){
-
+    public void restoreDrawingView(Paint paint,
+                                      Bitmap bitmap,
+                                      Canvas canvas,
+                                      Stack<Bitmap> history,
+                                      int brushSize,
+                                      String brushShape,
+                                      float canvasX,
+                                      float canvasY,
+                                      int canvasColor){
+        this.bitmap = bitmap;
+        this.paint = paint;
+        this.canvas = canvas;
+        this.history = history;
+        this.brushSize = brushSize;
+        this.brushShape = brushShape;
+        this.canvasX = canvasX;
+        this.canvasY = canvasY;
+        this.canvasColor = canvasColor;
     }
 
     public void backspace(){
@@ -166,6 +183,7 @@ public class DrawingView extends View {
     }
 
     public void resetCanvas(){
+        canvas.drawColor(canvasColor);
         history.clear();
         history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
     }
@@ -212,6 +230,19 @@ public class DrawingView extends View {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void drawSqure(){
+        canvas.drawRect(canvasX, canvasY,canvasX + brushSize,canvasY + brushSize, paint);
+    }
+
+    public void drawCircle(){
+        canvas.drawCircle(canvasX, canvasY, 2*brushSize, paint);
+    }
+
+    public void drawText(String s){
+        paint.setTextSize((float) brushSize);
+        canvas.drawText(s, canvasX, canvasY, paint);
     }
 
     public void convertText(String s, boolean addHistory){
@@ -340,12 +371,19 @@ public class DrawingView extends View {
             else lineLength = 0;
 
             if(!c.equals(' ') && !c.equals('\n')){
-                //drawing on the canvas at location (w,h)
-                canvas.drawRect((float) canvasX,
-                        (float) canvasY,
-                        (float) canvasX + brushSize,
-                        (float) canvasY + brushSize,
-                        paint);
+                switch (brushShape){
+                    case "square":
+                        drawSqure();
+                        break;
+                    case "circle":
+                        drawCircle();
+                        break;
+                    case "text":
+                        drawText(c.toString());
+                        break;
+                    default:
+                        break;
+                }
 
                 //rectangle brush moving logic
                 if(addHistory){

@@ -41,7 +41,6 @@ public class SecondFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
-        viewModel.getText().observe(getViewLifecycleOwner(), data -> text = data);
         return binding.getRoot();
     }
 
@@ -49,7 +48,6 @@ public class SecondFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.tokeyboardinput.setOnClickListener(view1 -> {
-            storeText(text);
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });

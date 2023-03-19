@@ -77,7 +77,6 @@ public class FirstFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.totextinput.setOnClickListener(view15 -> {
-            updateDrawingViewModel();
             NavHostFragment
                     .findNavController(FirstFragment.this)
                     .navigate(R.id.action_FirstFragment_to_SecondFragment);
@@ -158,6 +157,7 @@ public class FirstFragment extends Fragment {
 
     public void convertText(String s, boolean addHistory){
         binding.drawingView.convertText(s, addHistory);
+        updateDrawingViewModel();
         binding.drawingView.invalidate();
     }
 

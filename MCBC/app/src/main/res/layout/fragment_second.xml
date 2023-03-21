@@ -7,9 +7,21 @@
     tools:context=".SecondFragment">
 
     <Button
+        android:id="@+id/savefile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:backgroundTint="@color/tealLight"
+        android:text="save text file"
+        android:textColor="@color/tealDark"
+        app:layout_constraintBottom_toTopOf="@+id/selectfile"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/selectfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
         android:backgroundTint="@color/tealLight"
         android:text="select text file"
         android:textColor="@color/tealDark"

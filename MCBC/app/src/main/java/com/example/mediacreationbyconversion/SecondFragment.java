@@ -7,6 +7,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.provider.DocumentsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +23,8 @@ import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
 import com.example.mediacreationbyconversion.databinding.FragmentSecondBinding;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -66,29 +71,52 @@ public class SecondFragment extends Fragment {
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });
 
-        binding.selectfile.setOnClickListener(v -> {
-            readFile();
-        });
+        binding.selectfile.setOnClickListener(v -> readFile());
+
+        binding.savefile.setOnClickListener(v -> createFile());
     }
 
+    private boolean read = false;
+    private boolean write = false;
     private static final int READ_REQUEST_CODE = 42;
 
     public void readFile() {
+        read = true;
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/plain"); // Only show text files in the file picker
         startActivityForResult(intent, READ_REQUEST_CODE);
     }
 
+    private static final int CREATE_FILE = 42;
+
+    private void createFile() {
+        write = true;
+        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("text/plain"); // Only show text files in the file picker
+        intent.putExtra(Intent.EXTRA_TITLE, "brush.txt");
+        startActivityForResult(intent, CREATE_FILE);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Uri uri = resultData.getData();
-            String path = uri.getPath();
-            if (path != null && path.endsWith(".txt")) {
-                String text = readTextFromUri(uri);
-                // Do something with the text
-            }
+            try {
+                if(read){
+                    binding.inputtext.setText(readTextFromUri(uri));
+                    text = Objects.requireNonNull(binding.inputtext.getText()).toString();
+                    storeText(text);
+                    binding.inputtext.invalidate();
+                    read = false;
+                } else if(write){
+                    text = Objects.requireNonNull(binding.inputtext.getText()).toString();
+                    storeText(text);
+                    alterDocument(uri);
+                    write = false;
+                }
+            } catch (Exception e){}
         }
     }
 
@@ -100,12 +128,29 @@ public class SecondFragment extends Fragment {
             String line;
             while ((line = reader.readLine()) != null) {
                 stringBuilder.append(line);
+                stringBuilder.append('\n');
             }
             inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return stringBuilder.toString();
+    }
+
+    private void alterDocument(Uri uri) {
+        try {
+            ParcelFileDescriptor txt = getActivity().getContentResolver().
+                    openFileDescriptor(uri, "w");
+            FileOutputStream fileOutputStream =
+                    new FileOutputStream(txt.getFileDescriptor());
+            fileOutputStream.write(text.getBytes());
+            fileOutputStream.close();
+            txt.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

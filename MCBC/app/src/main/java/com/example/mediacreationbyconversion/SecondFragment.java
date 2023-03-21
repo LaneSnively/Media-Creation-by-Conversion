@@ -143,6 +143,7 @@ public class SecondFragment extends Fragment {
                     openFileDescriptor(uri, "w");
             FileOutputStream fileOutputStream =
                     new FileOutputStream(txt.getFileDescriptor());
+            fileOutputStream.getChannel().truncate(0);
             fileOutputStream.write(text.getBytes());
             fileOutputStream.close();
             txt.close();

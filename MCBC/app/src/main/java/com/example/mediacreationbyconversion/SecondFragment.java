@@ -60,11 +60,6 @@ public class SecondFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.tokeyboardinput.setOnClickListener(view1 -> {
-            NavHostFragment.findNavController(SecondFragment.this)
-                    .navigate(R.id.action_SecondFragment_to_FirstFragment);
-        });
-
-        binding.submit.setOnClickListener(v -> {
             text = Objects.requireNonNull(binding.inputtext.getText()).toString();
             storeText(text);
             NavHostFragment.findNavController(SecondFragment.this)

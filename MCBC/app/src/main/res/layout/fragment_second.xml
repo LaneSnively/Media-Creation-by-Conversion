@@ -10,23 +10,23 @@
         android:id="@+id/savefile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
         android:backgroundTint="@color/tealLight"
         android:text="save text file"
         android:textColor="@color/tealDark"
-        app:layout_constraintBottom_toTopOf="@+id/selectfile"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputtext" />
 
     <Button
         android:id="@+id/selectfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:backgroundTint="@color/tealLight"
         android:text="select text file"
         android:textColor="@color/tealDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputtext" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -37,24 +37,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/tealLight"
-        android:text="submit"
-        android:textColor="@color/tealDark"
-        android:textSize="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
         android:id="@+id/tokeyboardinput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
         android:backgroundTint="@color/tealLight"
         android:text="Drawing"
         android:textColor="@color/tealDark"
@@ -74,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/submit"
+        app:layout_constraintTop_toBottomOf="@+id/tokeyboardinput"
         app:layout_constraintWidth_percent="1"
         app:layout_constraintHeight_percent="0.49"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

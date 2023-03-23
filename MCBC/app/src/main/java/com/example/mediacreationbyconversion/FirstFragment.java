@@ -83,17 +83,35 @@ public class FirstFragment extends Fragment {
 
         binding.save.setOnClickListener(view16 -> binding.drawingView.save());
 
-        binding.smallbrush.setOnClickListener(view17 -> binding.drawingView.brushSize = 10);
+        binding.smallbrush.setOnClickListener(view17 -> {
+            binding.drawingView.brushSize = 10;
+            updateDrawingViewModel();
+        });
 
-        binding.mediumbrush.setOnClickListener(view18 -> binding.drawingView.brushSize = 30);
+        binding.mediumbrush.setOnClickListener(view18 -> {
+            binding.drawingView.brushSize = 30;
+            updateDrawingViewModel();
+        });
 
-        binding.largebrush.setOnClickListener(view14 -> binding.drawingView.brushSize = 55);
+        binding.largebrush.setOnClickListener(view14 -> {
+            binding.drawingView.brushSize = 55;
+            updateDrawingViewModel();
+        });
 
-        binding.square.setOnClickListener(view14 -> binding.drawingView.brushShape = "square");
+        binding.square.setOnClickListener(view14 -> {
+            binding.drawingView.brushShape = "square";
+            updateDrawingViewModel();
+        });
 
-        binding.circle.setOnClickListener(view14 -> binding.drawingView.brushShape = "circle");
+        binding.circle.setOnClickListener(view14 -> {
+            binding.drawingView.brushShape = "circle";
+            updateDrawingViewModel();
+        });
 
-        binding.character.setOnClickListener(view14 -> binding.drawingView.brushShape = "character");
+        binding.character.setOnClickListener(view14 -> {
+            binding.drawingView.brushShape = "character";
+            updateDrawingViewModel();
+        });
 
         binding.whitecanvas.setOnClickListener(view13 -> {
             binding.drawingView.canvasColor = binding.drawingView.white;
@@ -135,6 +153,7 @@ public class FirstFragment extends Fragment {
             if(event.getAction() == KeyEvent.ACTION_DOWN){
                 if (keyCode == KeyEvent.KEYCODE_DEL) {
                     binding.drawingView.backspace();
+                    updateDrawingViewModel();
                     binding.drawingView.invalidate();
                     return true;
                 }
@@ -158,6 +177,7 @@ public class FirstFragment extends Fragment {
 
     public void convertText(String s, boolean addHistory){
         binding.drawingView.convertText(s, addHistory);
+        updateDrawingViewModel();
         binding.drawingView.invalidate();
     }
 

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -70,7 +71,10 @@ public class SecondFragment extends Fragment {
 
         binding.selectfile.setOnClickListener(v -> readFile());
 
-        binding.savefile.setOnClickListener(v -> createFile());
+        binding.savefile.setOnClickListener(v -> {
+            createFile();
+            Toast.makeText(getContext(), "saved brush", Toast.LENGTH_SHORT).show();
+        });
     }
 
     private static final int READ_REQUEST_CODE = 42;

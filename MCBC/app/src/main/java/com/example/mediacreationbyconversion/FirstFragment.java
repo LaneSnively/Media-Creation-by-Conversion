@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -89,7 +90,17 @@ public class FirstFragment extends Fragment {
                     .navigate(R.id.action_FirstFragment_to_SecondFragment);
         });
 
-        binding.save.setOnClickListener(view16 -> binding.drawingView.save());
+        binding.save.setOnClickListener(view16 -> {
+            binding.drawingView.save(binding.drawingView.bitmap);
+            Toast.makeText(getContext(), "image saved", Toast.LENGTH_SHORT).show();
+        });
+
+        binding.saveEvery.setOnClickListener(v -> {
+            int count = binding.drawingView.saveEvery();
+            Toast.makeText(getContext(),
+                    "Saved " + count + " Edit",
+                    Toast.LENGTH_SHORT).show();
+        });
 
         binding.loadimage.setOnClickListener(v -> selectImage());
 
@@ -107,23 +118,30 @@ public class FirstFragment extends Fragment {
         binding.stroke.setOnClickListener(v -> {
             binding.drawingView.paint.setStyle(Paint.Style.STROKE);
             binding.drawingView.paint.setStrokeWidth(1);
+            Toast.makeText(getContext(), "Stroke Bristle", Toast.LENGTH_SHORT).show();
         });
 
-        binding.fill.setOnClickListener(v -> binding.drawingView.paint.setStyle(Paint.Style.FILL));
+        binding.fill.setOnClickListener(v -> {
+            binding.drawingView.paint.setStyle(Paint.Style.FILL);
+            Toast.makeText(getContext(), "Fill Bristle", Toast.LENGTH_SHORT).show();
+        });
 
         binding.square.setOnClickListener(view14 -> {
             binding.drawingView.brushShape = "square";
             updateDrawingViewModel();
+            Toast.makeText(getContext(), "Square Bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.circle.setOnClickListener(view14 -> {
             binding.drawingView.brushShape = "circle";
             updateDrawingViewModel();
+            Toast.makeText(getContext(), "Circle Bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.character.setOnClickListener(view14 -> {
             binding.drawingView.brushShape = "character";
             updateDrawingViewModel();
+            Toast.makeText(getContext(), "Character Bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.keyboard.setOnClickListener(v -> {

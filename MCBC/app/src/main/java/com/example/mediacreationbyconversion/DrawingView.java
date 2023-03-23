@@ -10,7 +10,6 @@ import android.os.Environment;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -191,22 +190,15 @@ public class DrawingView extends View {
         }
     }
 
-    public void resetCanvas(){
-        canvas.drawColor(canvasColor);
-        history.clear();
-        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
-    }
-
     public void addHistory(){
         history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
-        int stacksize = 300;
-        if(history.size() > stacksize){
-            history.remove(0);
+        int historySize = 400;
+        if(history.size() > historySize){
+            history.remove((int) (Math.random()*history.size()));
         }
     }
 
-    public void save(){
-        Bitmap b = bitmap;
+    public void save(Bitmap b){
         File dir = new File(Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
                 "ChromaticTypewriter");
@@ -227,10 +219,55 @@ public class DrawingView extends View {
             fos.close();
             MediaScannerConnection.scanFile(getContext(), new String[] {file.toString()},
                     null, null);
-            Toast.makeText(getContext(), "image saved", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int saveEvery(){
+        int count = 0;
+        int interval = (history.size() < 50) ? 1 : (int) history.size() / 50;
+        File dir = new File(Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                "ChromaticTypewriter");
+        boolean newDir = false;
+        long num = 1;
+        while(!newDir){
+            if(dir.exists()){
+                dir = new File(Environment
+                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                        "ChromaticTypewriter" + num);
+                num++;
+            }
+            else {
+                newDir = true;
+                dir.mkdirs();
+            }
+        }
+        File file = new File(dir, "ChromaticTypewriter.jpeg");
+        for(int i = 0; i < 50; i++){
+            Bitmap b = history.get(i*interval);
+            boolean newFile = false;
+            num = 1;
+            while(!newFile){
+                if(file.exists()){
+                    file = new File(dir, "ChromaticTypewriter" + num + ".jpeg");
+                    num++;
+                }
+                else newFile = true;
+            }
+            try{
+                FileOutputStream fos = new FileOutputStream(file);
+                b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                fos.close();
+                count++;
+                MediaScannerConnection.scanFile(getContext(), new String[] {file.toString()},
+                        null, null);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return count;
     }
 
     public void drawSqure(){

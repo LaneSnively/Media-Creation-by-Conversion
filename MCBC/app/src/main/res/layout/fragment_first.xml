@@ -6,171 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
-    <Button
-        android:id="@+id/restore"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="164dp"
-        android:backgroundTint="@color/tealLight"
-        android:text="restore"
-        android:textColor="@color/tealDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.05"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/drawing_view"
-        app:layout_constraintWidth_percent="0.25" />
-
-    <Button
-        android:id="@+id/keyboard"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="0dp"
-        android:backgroundTint="@color/tealLight"
-        android:text="keyboard"
-        android:textColor="@color/tealDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/drawing_view"
-        app:layout_constraintWidth_percent="0.28" />
-
-    <Button
-        android:id="@+id/character"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="0dp"
-        android:backgroundTint="@color/teal"
-        android:text="character"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.31"
-        app:layout_constraintHeight_percent="0.05" />
-
-    <Button
-        android:id="@+id/square"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/teal"
-        android:text="square"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.23"
-        app:layout_constraintHeight_percent="0.05" />
-
-    <Button
-        android:id="@+id/circle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:backgroundTint="@color/teal"
-        android:text="circle"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/square"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/papyruscanvas"
-        app:layout_constraintWidth_percent="0.21"
-        app:layout_constraintHeight_percent="0.05" />
-
-    <TextView
-        android:id="@+id/resetcanvas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Canvas"
-        android:textAlignment="center"
-        android:textColor="@color/teal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/brush"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Brush"
-        android:textAlignment="center"
-        android:textColor="@color/teal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/brushsize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Brush Size"
-        android:textColor="@color/teal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/whitecanvas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/resetcanvas"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.25"
-        app:layout_constraintHeight_percent="0.05"/>
-
-    <Button
-        android:id="@+id/blackcanvas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
-        android:backgroundTint="@color/black"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/whitecanvas"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.25"
-        app:layout_constraintHeight_percent="0.05" />
-
-    <Button
-        android:id="@+id/papyruscanvas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
-        android:backgroundTint="@color/yellowLight"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/blackcanvas"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.25"
-        app:layout_constraintHeight_percent="0.05"/>
-
-    <NumberPicker
-        android:id="@+id/brushSizePicker"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal"
-        android:backgroundTint="@color/yellowLight"
-        app:layout_constraintBottom_toTopOf="@id/brushsize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.21"
-        app:layout_constraintHeight_percent="0.15" />
-
     <com.example.mediacreationbyconversion.DrawingView
         android:id="@+id/drawing_view"
         android:layout_width="0dp"
@@ -179,7 +14,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintHeight_percent="0.45"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -200,6 +35,24 @@
         app:layout_constraintTop_toBottomOf="@+id/drawing_view"
         app:layout_constraintWidth_percent="0.2" />
 
+    <ImageButton
+        android:id="@+id/keyboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="0dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/color_keyboard_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drawing_view"
+        app:layout_constraintWidth_percent="0.2" />
+
     <Button
         android:id="@+id/save"
         android:layout_width="0dp"
@@ -213,4 +66,180 @@
         app:layout_constraintHeight_percent="0.05"
         app:layout_constraintTop_toBottomOf="@+id/drawing_view"
         app:layout_constraintWidth_percent="0.2" />
+
+    <Button
+        android:id="@+id/restore"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/tealLight"
+        android:text="restore"
+        android:textColor="@color/tealDark"
+        android:textSize="10dp"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totextinput"
+        app:layout_constraintWidth_percent="0.2" />
+
+    <Button
+        android:id="@+id/fill"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/teal"
+        android:text="fill"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/stroke"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.16" />
+
+    <Button
+        android:id="@+id/stroke"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/teal"
+        android:text="stroke"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/character"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.23" />
+
+    <Button
+        android:id="@+id/character"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:backgroundTint="@color/teal"
+        android:text="character"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/circle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.31"
+        app:layout_constraintHeight_percent="0.05" />
+
+    <Button
+        android:id="@+id/circle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/teal"
+        android:text="circle"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/square"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/papyruscanvas"
+        app:layout_constraintWidth_percent="0.21"
+        app:layout_constraintHeight_percent="0.05" />
+
+    <Button
+        android:id="@+id/square"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/teal"
+        android:text="square"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.23"
+        app:layout_constraintHeight_percent="0.05" />
+
+    <TextView
+        android:id="@+id/brush"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brush"
+        android:textAlignment="center"
+        android:textColor="@color/teal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/papyruscanvas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:backgroundTint="@color/yellowLight"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/blackcanvas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHeight_percent="0.05"/>
+
+    <Button
+        android:id="@+id/blackcanvas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/whitecanvas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHeight_percent="0.05" />
+
+    <Button
+        android:id="@+id/whitecanvas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/resetcanvas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintHeight_percent="0.05"/>
+
+    <TextView
+        android:id="@+id/resetcanvas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Canvas"
+        android:textAlignment="center"
+        android:textColor="@color/teal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <NumberPicker
+        android:id="@+id/brushSizePicker"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:backgroundTint="@color/yellowLight"
+        app:layout_constraintBottom_toTopOf="@id/brushsize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.21"
+        app:layout_constraintHeight_percent="0.20" />
+
+    <TextView
+        android:id="@+id/brushsize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brush Size"
+        android:textColor="@color/teal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

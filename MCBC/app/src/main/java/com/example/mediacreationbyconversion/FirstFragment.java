@@ -91,11 +91,18 @@ public class FirstFragment extends Fragment {
             binding.brushSizePicker.setTextSize(100);
             binding.brushSizePicker.setValue(30);
             binding.brushSizePicker.setMinValue(0);
-            binding.brushSizePicker.setMaxValue(200);
+            binding.brushSizePicker.setMaxValue(400);
             binding.brushSizePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
                 binding.drawingView.brushSize = newVal;
             });
         }
+
+        binding.stroke.setOnClickListener(v -> {
+            binding.drawingView.paint.setStyle(Paint.Style.STROKE);
+            binding.drawingView.paint.setStrokeWidth(1);
+        });
+
+        binding.fill.setOnClickListener(v -> binding.drawingView.paint.setStyle(Paint.Style.FILL));
 
         binding.square.setOnClickListener(view14 -> {
             binding.drawingView.brushShape = "square";

@@ -106,7 +106,7 @@ public class DrawingView extends View {
     public String brushShape = "square";
     public float canvasX=0; //canvas brush horizontal location
     public float canvasY=0; //canvas brush vertical location
-    public int canvasColor = yellowLight;
+    public int canvasColor = black;
 
     public DrawingView(Context context) {
         super(context);

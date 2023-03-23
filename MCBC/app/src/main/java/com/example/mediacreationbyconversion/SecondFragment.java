@@ -1,6 +1,7 @@
 package com.example.mediacreationbyconversion;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.os.ParcelFileDescriptor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -51,6 +53,13 @@ public class SecondFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.keyboard.setOnClickListener(v -> {
+            binding.inputtext.requestFocus();
+            InputMethodManager imm = (InputMethodManager) getActivity()
+                    .getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(binding.inputtext, InputMethodManager.SHOW_IMPLICIT);
+        });
 
         binding.tokeyboardinput.setOnClickListener(view1 -> {
             text = Objects.requireNonNull(binding.inputtext.getText()).toString();

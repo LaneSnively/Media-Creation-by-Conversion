@@ -27,13 +27,14 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:backgroundTint="@color/tealLight"
-        android:text="Text"
+        android:text="edit brush"
         android:textColor="@color/tealDark"
+        android:textAllCaps="false"
         android:textSize="10dp"
-        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drawing_view"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintWidth_percent="0.23" />
 
     <ImageButton
         android:id="@+id/keyboard"
@@ -47,11 +48,11 @@
         android:scaleType="centerInside"
         android:src="@drawable/color_keyboard_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drawing_view"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintWidth_percent="0.3" />
 
     <Button
         android:id="@+id/save"
@@ -59,13 +60,14 @@
         android:layout_height="0dp"
         android:layout_marginEnd="0dp"
         android:backgroundTint="@color/tealLight"
-        android:text="save"
+        android:text="save image"
         android:textColor="@color/tealDark"
+        android:textAllCaps="false"
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintTop_toBottomOf="@+id/drawing_view"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintWidth_percent="0.23" />
 
     <Button
         android:id="@+id/restore"
@@ -73,10 +75,11 @@
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
         android:backgroundTint="@color/tealLight"
-        android:text="restore"
+        android:text="restore\nprevious\ndrawing"
         android:textColor="@color/tealDark"
+        android:textAllCaps="false"
         android:textSize="10dp"
-        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHeight_percent="0.09"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/totextinput"
         app:layout_constraintWidth_percent="0.2" />
@@ -85,12 +88,15 @@
         android:id="@+id/fill"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:backgroundTint="@color/teal"
+        android:layout_marginBottom="0dp"
+        android:backgroundTint="@color/blueDark"
         android:text="fill"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/stroke"
+        app:layout_constraintBottom_toTopOf="@+id/character"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.16" />
 
@@ -98,12 +104,15 @@
         android:id="@+id/stroke"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:backgroundTint="@color/teal"
+        android:layout_marginBottom="0dp"
+        android:backgroundTint="@color/blueLight"
         android:text="stroke"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/character"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintEnd_toStartOf="@+id/fill"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.23" />
 
@@ -112,47 +121,50 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="0dp"
-        android:backgroundTint="@color/teal"
+        android:backgroundTint="@color/redLight"
         android:text="character"
         android:textColor="@color/white"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.31"
-        app:layout_constraintHeight_percent="0.05" />
+        app:layout_constraintHeight_percent="0.07" />
 
     <Button
         android:id="@+id/circle"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:backgroundTint="@color/teal"
+        android:backgroundTint="@color/red"
         android:text="circle"
         android:textColor="@color/white"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/square"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/papyruscanvas"
         app:layout_constraintWidth_percent="0.21"
-        app:layout_constraintHeight_percent="0.05" />
+        app:layout_constraintHeight_percent="0.07" />
 
     <Button
         android:id="@+id/square"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/teal"
+        android:backgroundTint="@color/redDark"
         android:text="square"
         android:textColor="@color/white"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.23"
-        app:layout_constraintHeight_percent="0.05" />
+        app:layout_constraintHeight_percent="0.07" />
 
     <TextView
         android:id="@+id/brush"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Brush"
+        android:text="Bristle Shape"
         android:textAlignment="center"
         android:textColor="@color/teal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -173,7 +185,7 @@
         app:layout_constraintBottom_toTopOf="@+id/blackcanvas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.25"
-        app:layout_constraintHeight_percent="0.05"/>
+        app:layout_constraintHeight_percent="0.07" />
 
     <Button
         android:id="@+id/blackcanvas"
@@ -186,7 +198,7 @@
         app:layout_constraintBottom_toTopOf="@+id/whitecanvas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.25"
-        app:layout_constraintHeight_percent="0.05" />
+        app:layout_constraintHeight_percent="0.07" />
 
     <Button
         android:id="@+id/whitecanvas"
@@ -199,18 +211,19 @@
         app:layout_constraintBottom_toTopOf="@+id/resetcanvas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.25"
-        app:layout_constraintHeight_percent="0.05"/>
+        app:layout_constraintHeight_percent="0.07" />
 
     <TextView
         android:id="@+id/resetcanvas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Canvas"
+        android:text="Reset Canvas Color"
         android:textAlignment="center"
         android:textColor="@color/teal"
+        android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -228,17 +241,17 @@
         app:layout_constraintBottom_toTopOf="@id/brushsize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.21"
-        app:layout_constraintHeight_percent="0.20" />
+        app:layout_constraintHeight_percent="0.4" />
 
     <TextView
         android:id="@+id/brushsize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Brush Size"
+        android:text="Bristle Size"
         android:textColor="@color/teal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />

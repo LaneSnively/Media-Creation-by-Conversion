@@ -43,7 +43,7 @@
         android:id="@+id/selectfile"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="0dp"
         android:backgroundTint="@color/tealLight"
         android:text="select\ntext\nbrush"
         android:textColor="@color/tealDark"

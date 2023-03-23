@@ -3,6 +3,7 @@ package com.example.mediacreationbyconversion;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -56,6 +57,7 @@ public class FirstFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+//        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
@@ -122,21 +124,6 @@ public class FirstFragment extends Fragment {
         binding.character.setOnClickListener(view14 -> {
             binding.drawingView.brushShape = "character";
             updateDrawingViewModel();
-        });
-
-        binding.whitecanvas.setOnClickListener(view13 -> {
-            binding.drawingView.canvasColor = binding.drawingView.white;
-            binding.drawingView.resetCanvas();
-        });
-
-        binding.blackcanvas.setOnClickListener(view12 -> {
-            binding.drawingView.canvasColor = binding.drawingView.black;
-            binding.drawingView.resetCanvas();
-        });
-
-        binding.papyruscanvas.setOnClickListener(view1 -> {
-            binding.drawingView.canvasColor = binding.drawingView.yellowLight;
-            binding.drawingView.resetCanvas();
         });
 
         binding.keyboard.setOnClickListener(v -> {

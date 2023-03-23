@@ -98,7 +98,7 @@ public class FirstFragment extends Fragment {
         binding.saveEvery.setOnClickListener(v -> {
             int count = binding.drawingView.saveEvery();
             Toast.makeText(getContext(),
-                    "Saved " + count + " Edit",
+                    "Saved " + count + " images for a GIF",
                     Toast.LENGTH_SHORT).show();
         });
 

@@ -225,6 +225,7 @@ public class DrawingView extends View {
     }
 
     public int saveEvery(){
+        if(history.size() < 1) return 0;
         int count = 0;
         int interval = (history.size() < 50) ? 1 : (int) history.size() / 50;
         File dir = new File(Environment

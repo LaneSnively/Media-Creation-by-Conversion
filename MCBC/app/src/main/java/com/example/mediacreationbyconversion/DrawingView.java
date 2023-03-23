@@ -225,9 +225,9 @@ public class DrawingView extends View {
     }
 
     public int saveEvery(){
-        if(history.size() < 1) return 0;
         int count = 0;
-        int interval = (history.size() < 50) ? 1 : (int) history.size() / 50;
+        int hs = history.size();
+        int interval = (hs < 50) ? 1 : (int) hs / 50;
         File dir = new File(Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
                 "ChromaticTypewriter");
@@ -246,9 +246,12 @@ public class DrawingView extends View {
             }
         }
         File file = new File(dir, "ChromaticTypewriter.jpeg");
-        for(int i = 0; i < 50; i++){
-            Bitmap b = history.get(i*interval);
-            boolean newFile = false;
+        boolean newFile = false;
+        for(int i = 0; i < (Math.min(hs, 50)); i++){
+            Bitmap b = null;
+            if(hs < 50) b = history.get(i*interval);
+            else 
+            newFile = false;
             num = 1;
             while(!newFile){
                 if(file.exists()){

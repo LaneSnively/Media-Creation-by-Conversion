@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -24,9 +23,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 public class FirstFragment extends Fragment {
@@ -92,7 +88,7 @@ public class FirstFragment extends Fragment {
         });
 
         binding.save.setOnClickListener(view16 -> binding.drawingView.save());
-        
+
         binding.loadimage.setOnClickListener(v -> selectImage());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -196,10 +192,27 @@ public class FirstFragment extends Fragment {
             try {
                 Bitmap immutableB = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
                 Bitmap mutableB = immutableB.copy(Bitmap.Config.ARGB_8888, true);
-                binding.drawingView.bitmap = mutableB;
-                binding.drawingView.canvas = new Canvas(mutableB);
+                int desiredWidth = binding.drawingView.getWidth();
+                int desiredHeight = binding.drawingView.getHeight();
+                int width = mutableB.getWidth();
+                int height = mutableB.getHeight();
+                double scaleX = (double) desiredWidth / width;
+                double scaleY = (double) desiredHeight / height;
+
+                if(scaleX > scaleY){
+                    desiredWidth = (int) Math.floor(width * scaleY);
+                    desiredHeight = (int) Math.floor(height * scaleY);
+                }
+                else if(scaleX < scaleY){
+                    desiredWidth = (int) Math.floor(width * scaleX);
+                    desiredHeight = (int) Math.floor(height * scaleX);
+                }
+
+                Bitmap scaledImage = Bitmap.createScaledBitmap(mutableB, desiredWidth, desiredHeight, true);
+                binding.drawingView.bitmap = scaledImage;
+                binding.drawingView.canvas = new Canvas(scaledImage);
                 binding.drawingView.invalidate();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

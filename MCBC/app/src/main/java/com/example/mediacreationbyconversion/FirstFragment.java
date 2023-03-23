@@ -1,11 +1,16 @@
 package com.example.mediacreationbyconversion;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +24,9 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class FirstFragment extends Fragment {
@@ -84,6 +92,8 @@ public class FirstFragment extends Fragment {
         });
 
         binding.save.setOnClickListener(view16 -> binding.drawingView.save());
+        
+        binding.loadimage.setOnClickListener(v -> selectImage());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             binding.brushSizePicker.setTextColor(binding.drawingView.white);
@@ -169,6 +179,30 @@ public class FirstFragment extends Fragment {
             }
             return false;
         });
+    }
+
+    private static final int REQUEST_CODE = 1;
+
+    private void selectImage() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
+            Uri uri = data.getData();
+            try {
+                Bitmap immutableB = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
+                Bitmap mutableB = immutableB.copy(Bitmap.Config.ARGB_8888, true);
+                binding.drawingView.bitmap = mutableB;
+                binding.drawingView.canvas = new Canvas(mutableB);
+                binding.drawingView.invalidate();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 //    @Override

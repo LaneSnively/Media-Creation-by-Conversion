@@ -94,11 +94,11 @@ public class SecondFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+        super.onActivityResult(requestCode, resultCode, resultData);
         Uri uri = null;
-        if(resultCode == Activity.RESULT_OK)
-            uri = resultData.getData();
-        if (requestCode == READ_REQUEST_CODE) {
+        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK && resultData != null && resultData.getData() != null) {
             try {
+                uri = resultData.getData();
                 binding.inputtext.setText(readTextFromUri(uri));
                 text = Objects.requireNonNull(binding.inputtext.getText()).toString();
                 storeText(text);

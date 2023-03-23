@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.NumberPicker;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,7 +19,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.mediacreationbyconversion.databinding.FragmentFirstBinding;
 
-import java.util.Stack;
+import java.util.List;
 
 public class FirstFragment extends Fragment {
 
@@ -31,7 +30,7 @@ public class FirstFragment extends Fragment {
     private Paint paint;
     private Bitmap bitmap;
     private Canvas canvas;
-    private Stack<Bitmap> history;
+    private List<Bitmap> history;
     private int brushSize;
     private String brushShape;
     private float canvasX = 0;
@@ -41,7 +40,7 @@ public class FirstFragment extends Fragment {
     private void storePaint(Paint data) { viewModel.setPaint(data); }
     private void storeBitmap(Bitmap data) { viewModel.setBitmap(data); }
     private void storeCanvas(Canvas data) { viewModel.setCanvas(data); }
-    private void storeHistory(Stack<Bitmap> data) { viewModel.setHistory(data); }
+    private void storeHistory(List<Bitmap> data) { viewModel.setHistory(data); }
     private void storeBrushSize(int data) { viewModel.setBrushSize(data); }
     private void storeBrushShape(String data){ viewModel.setBrushShape(data); }
     private void storeCanvasX(float data) { viewModel.setCanvasX(data); }

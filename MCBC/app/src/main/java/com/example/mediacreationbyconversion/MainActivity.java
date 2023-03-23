@@ -8,9 +8,6 @@ import android.view.View;
 
 import com.example.mediacreationbyconversion.databinding.ActivityMainBinding;
 
-import android.view.Menu;
-import android.view.MenuItem;
-
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 

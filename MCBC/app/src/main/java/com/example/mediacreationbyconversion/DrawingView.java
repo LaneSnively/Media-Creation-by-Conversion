@@ -17,9 +17,10 @@ import androidx.annotation.Nullable;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 
 public class DrawingView extends View {
     int white = Color.parseColor("#FFFFFF");
@@ -97,11 +98,10 @@ public class DrawingView extends View {
         put(KeyEvent.KEYCODE_SPACE, ' ');
     }};
 
-    //state of the drawing
     public Paint paint;
     public Bitmap bitmap;
     public Canvas canvas;
-    public Stack<Bitmap> history = new Stack<>();
+    public List<Bitmap> history = new ArrayList<Bitmap>();
     public int brushSize=30; //size of canvas paint brush
     public String brushShape = "square";
     public float canvasX=0; //canvas brush horizontal location
@@ -142,7 +142,7 @@ public class DrawingView extends View {
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
         canvas.drawColor(canvasColor);
-        history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
+        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
     }
 
     @Override
@@ -154,7 +154,7 @@ public class DrawingView extends View {
     public void restoreDrawingView(Paint paint,
                                       Bitmap bitmap,
                                       Canvas canvas,
-                                      Stack<Bitmap> history,
+                                      List<Bitmap> history,
                                       int brushSize,
                                       String brushShape,
                                       float canvasX,
@@ -173,9 +173,9 @@ public class DrawingView extends View {
 
     public void backspace(){
         if(history.isEmpty()){
-            history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
+            history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
         } else {
-            bitmap = history.pop();
+            bitmap = history.remove(history.size()-1);
             canvas = new Canvas(bitmap);
             //doesn't work when deleting enter history
             if (canvasX <= 0) {
@@ -194,22 +194,14 @@ public class DrawingView extends View {
     public void resetCanvas(){
         canvas.drawColor(canvasColor);
         history.clear();
-        history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
+        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
     }
 
     public void addHistory(){
-        history.push(bitmap.copy(Bitmap.Config.ARGB_8888, true));
-        int stacksize = 500;
+        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
+        int stacksize = 300;
         if(history.size() > stacksize){
-            Stack<Bitmap> rs = new Stack<>();
-            Stack<Bitmap> s = new Stack<>();
-            for(int i = 0; i < stacksize; i++){
-                rs.push(history.pop());
-            }
-            for(int i = 0; i < stacksize; i++){
-                s.push(rs.pop());
-            }
-            history = s;
+            history.remove(0);
         }
     }
 

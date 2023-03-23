@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.util.Stack;
+import java.util.List;
 
 public class SharedViewModel extends ViewModel {
 
@@ -28,9 +28,9 @@ public class SharedViewModel extends ViewModel {
     public void setCanvas(Canvas data) { this.canvas.setValue(data); }
     public LiveData<Canvas> getCanvas() { return canvas; }
 
-    private MutableLiveData<Stack<Bitmap>> history = new MutableLiveData<>();
-    public void setHistory(Stack<Bitmap> data) { this.history.setValue(data); }
-    public LiveData<Stack<Bitmap>> getHistory() { return history; }
+    private MutableLiveData<List<Bitmap>> history = new MutableLiveData<>();
+    public void setHistory(List<Bitmap> data) { this.history.setValue(data); }
+    public LiveData<List<Bitmap>> getHistory() { return history; }
 
     private MutableLiveData<Integer> brushSize = new MutableLiveData<>();
     public void setBrushSize(Integer data) { this.brushSize.setValue(data); }

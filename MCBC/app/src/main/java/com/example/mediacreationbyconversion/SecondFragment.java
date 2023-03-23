@@ -71,22 +71,18 @@ public class SecondFragment extends Fragment {
         binding.savefile.setOnClickListener(v -> createFile());
     }
 
-    private boolean read = false;
-    private boolean write = false;
     private static final int READ_REQUEST_CODE = 42;
 
     public void readFile() {
-        read = true;
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/plain"); // Only show text files in the file picker
         startActivityForResult(intent, READ_REQUEST_CODE);
     }
 
-    private static final int CREATE_FILE = 42;
+    private static final int CREATE_FILE = 43;
 
     private void createFile() {
-        write = true;
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/plain"); // Only show text files in the file picker
@@ -96,21 +92,22 @@ public class SecondFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
-        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            Uri uri = resultData.getData();
+        Uri uri = null;
+        if(resultCode == Activity.RESULT_OK)
+            uri = resultData.getData();
+        if (requestCode == READ_REQUEST_CODE) {
             try {
-                if(read){
-                    binding.inputtext.setText(readTextFromUri(uri));
-                    text = Objects.requireNonNull(binding.inputtext.getText()).toString();
-                    storeText(text);
-                    binding.inputtext.invalidate();
-                    read = false;
-                } else if(write){
-                    text = Objects.requireNonNull(binding.inputtext.getText()).toString();
-                    storeText(text);
-                    alterDocument(uri);
-                    write = false;
-                }
+                binding.inputtext.setText(readTextFromUri(uri));
+                text = Objects.requireNonNull(binding.inputtext.getText()).toString();
+                storeText(text);
+                binding.inputtext.invalidate();
+            } catch (Exception e){}
+        }
+        else if (requestCode == CREATE_FILE) {
+            try {
+                text = Objects.requireNonNull(binding.inputtext.getText()).toString();
+                storeText(text);
+                alterDocument(uri);
             } catch (Exception e){}
         }
     }
@@ -125,6 +122,7 @@ public class SecondFragment extends Fragment {
                 stringBuilder.append(line);
                 stringBuilder.append('\n');
             }
+            reader.close();
             inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();

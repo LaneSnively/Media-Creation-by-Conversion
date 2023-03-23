@@ -4,12 +4,15 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.NumberPicker;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -83,20 +86,16 @@ public class FirstFragment extends Fragment {
 
         binding.save.setOnClickListener(view16 -> binding.drawingView.save());
 
-        binding.smallbrush.setOnClickListener(view17 -> {
-            binding.drawingView.brushSize = 10;
-            updateDrawingViewModel();
-        });
-
-        binding.mediumbrush.setOnClickListener(view18 -> {
-            binding.drawingView.brushSize = 30;
-            updateDrawingViewModel();
-        });
-
-        binding.largebrush.setOnClickListener(view14 -> {
-            binding.drawingView.brushSize = 55;
-            updateDrawingViewModel();
-        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            binding.brushSizePicker.setTextColor(binding.drawingView.white);
+            binding.brushSizePicker.setTextSize(100);
+            binding.brushSizePicker.setValue(30);
+            binding.brushSizePicker.setMinValue(0);
+            binding.brushSizePicker.setMaxValue(200);
+            binding.brushSizePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+                binding.drawingView.brushSize = newVal;
+            });
+        }
 
         binding.square.setOnClickListener(view14 -> {
             binding.drawingView.brushShape = "square";

@@ -10,12 +10,13 @@
         android:id="@+id/restore"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="164dp"
         android:backgroundTint="@color/tealLight"
         android:text="restore"
         android:textColor="@color/tealDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drawing_view"
         app:layout_constraintWidth_percent="0.25" />
@@ -24,13 +25,15 @@
         android:id="@+id/keyboard"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="0dp"
         android:backgroundTint="@color/tealLight"
         android:text="keyboard"
         android:textColor="@color/tealDark"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drawing_view"
-        app:layout_constraintWidth_percent="0.28"
-        app:layout_constraintHeight_percent="0.05" />
+        app:layout_constraintWidth_percent="0.28" />
 
     <Button
         android:id="@+id/character"
@@ -82,7 +85,7 @@
         android:textColor="@color/teal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -105,11 +108,11 @@
         android:id="@+id/brushsize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Size"
+        android:text="Brush Size"
         android:textColor="@color/teal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -153,47 +156,20 @@
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintHeight_percent="0.05"/>
 
-    <Button
-        android:id="@+id/largebrush"
+    <NumberPicker
+        android:id="@+id/brushSizePicker"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="0dp"
         android:layout_marginBottom="0dp"
-        android:backgroundTint="@color/tealDark"
-        android:text="large"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/mediumbrush"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.2"
-        app:layout_constraintHeight_percent="0.05" />
-
-    <Button
-        android:id="@+id/mediumbrush"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
-        android:backgroundTint="@color/tealDark"
-        android:text="medium"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/smallbrush"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.23"
-        app:layout_constraintHeight_percent="0.05" />
-
-    <Button
-        android:id="@+id/smallbrush"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
-        android:backgroundTint="@color/tealDark"
-        android:text="small"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/brushsize"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:backgroundTint="@color/yellowLight"
+        app:layout_constraintBottom_toTopOf="@id/brushsize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.21"
-        app:layout_constraintHeight_percent="0.05" />
+        app:layout_constraintHeight_percent="0.15" />
 
     <com.example.mediacreationbyconversion.DrawingView
         android:id="@+id/drawing_view"
@@ -203,39 +179,38 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/save"
-        app:layout_constraintWidth_percent="1"
-        app:layout_constraintHeight_percent="0.5"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="1" />
 
     <Button
         android:id="@+id/totextinput"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:backgroundTint="@color/tealLight"
         android:text="Text"
-        android:textSize="10dp"
         android:textColor="@color/tealDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="10dp"
+        app:layout_constraintHeight_percent="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.2"
-        app:layout_constraintHeight_percent="0.05" />
+        app:layout_constraintTop_toBottomOf="@+id/drawing_view"
+        app:layout_constraintWidth_percent="0.2" />
 
     <Button
         android:id="@+id/save"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="0dp"
         android:backgroundTint="@color/tealLight"
         android:text="save"
-        android:textSize="10dp"
         android:textColor="@color/tealDark"
+        android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.2"
-        app:layout_constraintHeight_percent="0.05"/>
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintTop_toBottomOf="@+id/drawing_view"
+        app:layout_constraintWidth_percent="0.2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -246,12 +246,9 @@ public class DrawingView extends View {
             }
         }
         File file = new File(dir, "ChromaticTypewriter.jpeg");
-        boolean newFile = false;
         for(int i = 0; i < (Math.min(hs, 50)); i++){
-            Bitmap b = null;
-            if(hs < 50) b = history.get(i*interval);
-            else 
-            newFile = false;
+            Bitmap b = history.get(i*interval);
+            boolean newFile = false;
             num = 1;
             while(!newFile){
                 if(file.exists()){

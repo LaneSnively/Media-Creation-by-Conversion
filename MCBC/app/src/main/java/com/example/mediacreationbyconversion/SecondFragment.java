@@ -31,7 +31,6 @@ public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
     private SharedViewModel viewModel;
-    private String text = "";
 
     private void storeText(String data) {
         viewModel.setText(data);
@@ -63,8 +62,7 @@ public class SecondFragment extends Fragment {
         });
 
         binding.tokeyboardinput.setOnClickListener(view1 -> {
-            text = Objects.requireNonNull(binding.inputtext.getText()).toString();
-            storeText(text);
+            storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });
@@ -104,15 +102,13 @@ public class SecondFragment extends Fragment {
             try {
                 uri = resultData.getData();
                 binding.inputtext.setText(readTextFromUri(uri));
-                text = Objects.requireNonNull(binding.inputtext.getText()).toString();
-                storeText(text);
+                storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
                 binding.inputtext.invalidate();
             } catch (Exception e){}
         }
         else if (requestCode == CREATE_FILE) {
             try {
-                text = Objects.requireNonNull(binding.inputtext.getText()).toString();
-                storeText(text);
+                storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
                 alterDocument(uri);
             } catch (Exception e){}
         }
@@ -143,7 +139,7 @@ public class SecondFragment extends Fragment {
             FileOutputStream fileOutputStream =
                     new FileOutputStream(txt.getFileDescriptor());
             fileOutputStream.getChannel().truncate(0);
-            fileOutputStream.write(text.getBytes());
+            fileOutputStream.write(Objects.requireNonNull(binding.inputtext.getText()).toString().getBytes());
             fileOutputStream.close();
             txt.close();
         } catch (FileNotFoundException e) {

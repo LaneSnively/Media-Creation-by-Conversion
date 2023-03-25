@@ -59,8 +59,8 @@
         android:layout_marginTop="0dp"
         android:backgroundTint="@color/yellow"
         android:text="edit brush"
-        android:textColor="@color/blueDark"
         android:textAllCaps="false"
+        android:textColor="@color/blueDark"
         android:textSize="10dp"
         app:layout_constraintHeight_percent="0.07"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,8 +92,8 @@
         android:layout_marginEnd="0dp"
         android:backgroundTint="@color/red"
         android:text="save image"
-        android:textColor="@color/yellow"
         android:textAllCaps="false"
+        android:textColor="@color/yellow"
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.07"
@@ -155,13 +155,13 @@
         android:layout_marginBottom="0dp"
         android:backgroundTint="@color/blueLight"
         android:text="character"
-        android:textColor="@color/blueDark"
         android:textAllCaps="false"
+        android:textColor="@color/blueDark"
         app:layout_constraintBottom_toTopOf="@+id/circle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.31"
-        app:layout_constraintHeight_percent="0.07" />
+        app:layout_constraintWidth_percent="0.31" />
 
     <Button
         android:id="@+id/circle"
@@ -184,13 +184,13 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/blueDark"
         android:text="square"
-        android:textColor="@color/white"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.23"
-        app:layout_constraintHeight_percent="0.07" />
+        app:layout_constraintWidth_percent="0.23" />
 
     <TextView
         android:id="@+id/brush"
@@ -225,16 +225,16 @@
         android:id="@+id/brushSizePicker"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="16dp"
-        android:gravity="center_horizontal"
+        android:layout_marginBottom="0dp"
         android:backgroundTint="@color/yellowLight"
+        android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@id/brushsize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.21"
-        app:layout_constraintHeight_percent="0.34" />
+        app:layout_constraintHeight_percent="0.34"
+        app:layout_constraintWidth_percent="0.21" />
 
     <TextView
         android:id="@+id/brushsize"

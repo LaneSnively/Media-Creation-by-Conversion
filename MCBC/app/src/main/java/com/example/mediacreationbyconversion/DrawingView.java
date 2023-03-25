@@ -101,10 +101,10 @@ public class DrawingView extends View {
     public Bitmap bitmap;
     public Canvas canvas;
     public List<Bitmap> history = new ArrayList<Bitmap>();
-    public int brushSize=30; //size of canvas paint brush
+    public int brushSize = 30; //size of canvas paint brush
     public String brushShape = "square";
-    public float canvasX=0; //canvas brush horizontal location
-    public float canvasY=0; //canvas brush vertical location
+    public float canvasX = 0; //canvas brush horizontal location
+    public float canvasY = 0; //canvas brush vertical location
     public int canvasColor = black;
 
     public DrawingView(Context context) {
@@ -128,7 +128,7 @@ public class DrawingView extends View {
         init();
     }
 
-    private void init(){
+    private void init() {
         paint = new Paint();
         paint.setStrokeWidth(5);
         paint.setColor(black);
@@ -136,7 +136,7 @@ public class DrawingView extends View {
     }
 
     @Override
-    protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight){
+    protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight) {
         super.onSizeChanged(width, height, oldWidth, oldHeight);
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
@@ -145,20 +145,20 @@ public class DrawingView extends View {
     }
 
     @Override
-    protected void onDraw(Canvas canvas){
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(bitmap, 0, 0, paint);
     }
 
     public void restoreDrawingView(Paint paint,
-                                      Bitmap bitmap,
-                                      Canvas canvas,
-                                      List<Bitmap> history,
-                                      int brushSize,
-                                      String brushShape,
-                                      float canvasX,
-                                      float canvasY,
-                                      int canvasColor){
+                                   Bitmap bitmap,
+                                   Canvas canvas,
+                                   List<Bitmap> history,
+                                   int brushSize,
+                                   String brushShape,
+                                   float canvasX,
+                                   float canvasY,
+                                   int canvasColor) {
         this.bitmap = bitmap;
         this.paint = paint;
         this.canvas = canvas;
@@ -170,11 +170,11 @@ public class DrawingView extends View {
         this.canvasColor = canvasColor;
     }
 
-    public void backspace(){
-        if(history.isEmpty()){
+    public void backspace() {
+        if (history.isEmpty()) {
             history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
         } else {
-            bitmap = history.remove(history.size()-1);
+            bitmap = history.remove(history.size() - 1);
             canvas = new Canvas(bitmap);
             //doesn't work when deleting enter history
             if (canvasX <= 0) {
@@ -190,41 +190,40 @@ public class DrawingView extends View {
         }
     }
 
-    public void addHistory(){
+    public void addHistory() {
         history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
         int historySize = 400;
-        if(history.size() > historySize){
-            history.remove((int) (Math.random()*history.size()));
+        if (history.size() > historySize) {
+            history.remove((int) (Math.random() * history.size()));
         }
     }
 
-    public void save(Bitmap b){
+    public void save(Bitmap b) {
         File dir = new File(Environment
                 .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
                 "ChromaticTypewriter");
-        if(!dir.exists()) dir.mkdirs();
+        if (!dir.exists()) dir.mkdirs();
         File file = new File(dir, "ChromaticTypewriter.jpeg");
         boolean newFile = false;
         long num = 1;
-        while(!newFile){
-            if(file.exists()){
+        while (!newFile) {
+            if (file.exists()) {
                 file = new File(dir, "ChromaticTypewriter" + num + ".jpeg");
                 num++;
-            }
-            else newFile = true;
+            } else newFile = true;
         }
-        try{
+        try {
             FileOutputStream fos = new FileOutputStream(file);
             b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.close();
-            MediaScannerConnection.scanFile(getContext(), new String[] {file.toString()},
+            MediaScannerConnection.scanFile(getContext(), new String[]{file.toString()},
                     null, null);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public int saveEvery(){
+    public int saveEvery() {
         int count = 0;
         int hs = history.size();
         int interval = (hs < 50) ? 1 : (int) hs / 50;
@@ -233,36 +232,34 @@ public class DrawingView extends View {
                 "ChromaticTypewriter");
         boolean newDir = false;
         long num = 1;
-        while(!newDir){
-            if(dir.exists()){
+        while (!newDir) {
+            if (dir.exists()) {
                 dir = new File(Environment
                         .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
                         "ChromaticTypewriter" + num);
                 num++;
-            }
-            else {
+            } else {
                 newDir = true;
                 dir.mkdirs();
             }
         }
         File file = new File(dir, "ChromaticTypewriter.jpeg");
-        for(int i = 0; i < (Math.min(hs, 50)); i++){
-            Bitmap b = history.get(i*interval);
+        for (int i = 0; i < (Math.min(hs, 50)); i++) {
+            Bitmap b = history.get(i * interval);
             boolean newFile = false;
             num = 1;
-            while(!newFile){
-                if(file.exists()){
+            while (!newFile) {
+                if (file.exists()) {
                     file = new File(dir, "ChromaticTypewriter" + num + ".jpeg");
                     num++;
-                }
-                else newFile = true;
+                } else newFile = true;
             }
-            try{
+            try {
                 FileOutputStream fos = new FileOutputStream(file);
                 b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 fos.close();
                 count++;
-                MediaScannerConnection.scanFile(getContext(), new String[] {file.toString()},
+                MediaScannerConnection.scanFile(getContext(), new String[]{file.toString()},
                         null, null);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -271,20 +268,20 @@ public class DrawingView extends View {
         return count;
     }
 
-    public void drawSqure(){
-        canvas.drawRect(canvasX, canvasY,canvasX + brushSize,canvasY + brushSize, paint);
+    public void drawSqure() {
+        canvas.drawRect(canvasX, canvasY, canvasX + brushSize, canvasY + brushSize, paint);
     }
 
-    public void drawCircle(){
-        canvas.drawCircle(canvasX, canvasY, brushSize/2, paint);
+    public void drawCircle() {
+        canvas.drawCircle(canvasX, canvasY, brushSize / 2, paint);
     }
 
-    public void drawText(String s){
+    public void drawText(String s) {
         paint.setTextSize((float) brushSize);
         canvas.drawText(s, canvasX, canvasY, paint);
     }
 
-    public void convertText(String s, boolean addHistory){
+    public void convertText(String s, boolean addHistory) {
         int lineLength = 0;
         Character c;
         for (int i = 0; i < s.length(); i++) {
@@ -369,8 +366,8 @@ public class DrawingView extends View {
                     paint.setColor(blueLight);
                     break;
                 case '\n':
-                    if(addHistory){
-                        if(canvasY<canvas.getHeight()-brushSize){
+                    if (addHistory) {
+                        if (canvasY < canvas.getHeight() - brushSize) {
                             canvasY += brushSize; //move brush down
                         } else {
                             canvasY = 0; //brush hit bottom, move back to top
@@ -378,19 +375,19 @@ public class DrawingView extends View {
                     } else {
                         canvasY += brushSize; //move brush down
                     }
-                    if(!addHistory) {
-                        for(int k = 0; k < lineLength; k++)
+                    if (!addHistory) {
+                        for (int k = 0; k < lineLength; k++)
                             canvasX -= brushSize;
-                        if(canvasX < 0) canvasX = canvas.getWidth() - brushSize;
+                        if (canvasX < 0) canvasX = canvas.getWidth() - brushSize;
                     }
                     break;
 //                case '\t':
 //                    break;
                 case ' ':
-                    if(addHistory){
-                        if(canvasX>=canvas.getWidth()-brushSize){
+                    if (addHistory) {
+                        if (canvasX >= canvas.getWidth() - brushSize) {
                             canvasX = 0; //brush hit right side, move back to left
-                            if(canvasY>=canvas.getHeight()-brushSize){
+                            if (canvasY >= canvas.getHeight() - brushSize) {
                                 canvasY = 0; //brush hit bottom, move back to top
                             } else {
                                 canvasY += brushSize; //move brush down
@@ -406,11 +403,11 @@ public class DrawingView extends View {
                     break;
             }
 
-            if(!c.equals('\n')) lineLength++;
+            if (!c.equals('\n')) lineLength++;
             else lineLength = 0;
 
-            if(!c.equals(' ') && !c.equals('\n')){
-                switch (brushShape){
+            if (!c.equals(' ') && !c.equals('\n')) {
+                switch (brushShape) {
                     case "square":
                         drawSqure();
                         break;
@@ -425,7 +422,7 @@ public class DrawingView extends View {
                 }
 
                 //rectangle brush moving logic
-                if(addHistory){
+                if (addHistory) {
                     if (canvasX >= canvas.getWidth() - brushSize) {
                         canvasX = 0; //brush hit right side, move back to left
                         if (canvasY >= canvas.getHeight() - brushSize) {
@@ -440,8 +437,8 @@ public class DrawingView extends View {
                     canvasX += brushSize; //move brush right
                 }
             }
-            if(addHistory) addHistory();
+            if (addHistory) addHistory();
         }
-        if(!addHistory) addHistory();
+        if (!addHistory) addHistory();
     }
 }

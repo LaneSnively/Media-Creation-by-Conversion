@@ -11,10 +11,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.MediaCreationByConversion.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
-    </style>
+    <style name="Theme.MediaCreationByConversion.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"></style>
 
-    <style name="Theme.MediaCreationByConversion.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" >
+    <style name="Theme.MediaCreationByConversion.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark">
         <item name="android:textColor">@color/tealDark</item>
         <item name="android:background">@color/white</item>
     </style>

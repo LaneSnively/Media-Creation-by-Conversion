@@ -64,9 +64,9 @@ public class SecondFragment extends Fragment {
         });
 
         binding.tokeyboardinput.setOnClickListener(view1 -> {
-            if(binding.inputtext.getText() != null)
+            if (binding.inputtext.getText() != null)
                 text = Objects.requireNonNull(binding.inputtext.getText()).toString();
-            if(!text.equals(""))
+            if (!text.equals(""))
                 storeText(text);
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
@@ -109,13 +109,14 @@ public class SecondFragment extends Fragment {
                 binding.inputtext.setText(readTextFromUri(uri));
                 storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
                 binding.inputtext.invalidate();
-            } catch (Exception e){}
-        }
-        else if (requestCode == CREATE_FILE) {
+            } catch (Exception e) {
+            }
+        } else if (requestCode == CREATE_FILE) {
             try {
                 storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
                 alterDocument(uri);
-            } catch (Exception e){}
+            } catch (Exception e) {
+            }
         }
     }
 

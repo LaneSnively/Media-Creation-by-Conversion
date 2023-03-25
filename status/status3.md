@@ -18,20 +18,32 @@ A written status summary document [30pts]
 
 ## text input:
 -[x] text input box
+
 -[x] save text input button
+
 -[x] load text input button
 
 ## drawing input:
 -[x] save image button
+
 -[x] save images for gif button
+
 -[x] limited backspace key functionality
+
 -[x] restore previous drawing button
+
 -[x] load image as background button
+
 -[x] square bristle button
+
 -[x] circle bristle button
+
 -[x] character bristle button
+
 -[x] stroke bristle button
+
 -[x] fill bristle button
+
 -[x] bristle size number picker
 
 ## format layout so that it works in landscape/portrait orientation and different screen sizes: phone, tablet

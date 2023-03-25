@@ -169,9 +169,10 @@ public class FirstFragment extends Fragment {
                     binding.drawingView.invalidate();
                     return true;
                 }
-                if(binding.drawingView.keymap.containsKey(keyCode))
-                    convertText(binding.drawingView.keymap
-                            .get(keyCode).toString(), true);
+                if(binding.drawingView.keymap.containsKey(keyCode)){
+                    text = binding.drawingView.keymap.get(keyCode).toString();
+                    convertText(text, true);
+                }
                 return true;
             }
             return false;

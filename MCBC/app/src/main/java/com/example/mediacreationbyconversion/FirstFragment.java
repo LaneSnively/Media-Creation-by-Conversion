@@ -3,7 +3,6 @@ package com.example.mediacreationbyconversion;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -257,10 +256,31 @@ public class FirstFragment extends Fragment {
 
     public void convertText(String s, boolean addHistory) {
         binding.drawingView.convertText(s, addHistory);
+        updateDrawingViewModel();
         binding.drawingView.invalidate();
     }
 
     public void restoreDrawing() {
+        Bitmap b = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+        int desiredWidth = binding.drawingView.getWidth();
+        int desiredHeight = binding.drawingView.getHeight();
+        int width = b.getWidth();
+        int height = b.getHeight();
+        double scaleX = (double) desiredWidth / width;
+        double scaleY = (double) desiredHeight / height;
+
+        if (scaleX > scaleY) {
+            desiredWidth = (int) Math.floor(width * scaleY);
+            desiredHeight = (int) Math.floor(height * scaleY);
+        } else if (scaleX < scaleY) {
+            desiredWidth = (int) Math.floor(width * scaleX);
+            desiredHeight = (int) Math.floor(height * scaleX);
+        }
+
+        Bitmap scaledImage = Bitmap.createScaledBitmap(b, desiredWidth, desiredHeight, true);
+        bitmap = scaledImage;
+        canvas = new Canvas(scaledImage);
+
         binding.drawingView.restoreDrawingView(paint,
                 bitmap,
                 canvas,

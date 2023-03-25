@@ -33,7 +33,6 @@ public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
     private SharedViewModel viewModel;
     private String text = "";
-
     private Paint paint;
     private Bitmap bitmap;
     private Canvas canvas;
@@ -44,6 +43,9 @@ public class FirstFragment extends Fragment {
     private float canvasY = 0;
     private int canvasColor;
 
+    private void storeText(String data) {
+        viewModel.setText(data);
+    }
     private void storePaint(Paint data) { viewModel.setPaint(data); }
     private void storeBitmap(Bitmap data) { viewModel.setBitmap(data); }
     private void storeCanvas(Canvas data) { viewModel.setCanvas(data); }
@@ -103,7 +105,10 @@ public class FirstFragment extends Fragment {
                     Toast.LENGTH_SHORT).show();
         });
 
-        binding.loadimage.setOnClickListener(v -> selectImage());
+        binding.loadimage.setOnClickListener(v -> {
+            selectImage();
+            updateDrawingViewModel();
+        });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             binding.brushSizePicker.setTextColor(binding.drawingView.white);
@@ -114,16 +119,19 @@ public class FirstFragment extends Fragment {
             binding.brushSizePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
                 binding.drawingView.brushSize = newVal;
             });
+            updateDrawingViewModel();
         }
 
         binding.stroke.setOnClickListener(v -> {
             binding.drawingView.paint.setStyle(Paint.Style.STROKE);
             binding.drawingView.paint.setStrokeWidth(1);
+            updateDrawingViewModel();
             Toast.makeText(getContext(), "Stroke Bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.fill.setOnClickListener(v -> {
             binding.drawingView.paint.setStyle(Paint.Style.FILL);
+            updateDrawingViewModel();
             Toast.makeText(getContext(), "Fill Bristle", Toast.LENGTH_SHORT).show();
         });
 
@@ -154,7 +162,7 @@ public class FirstFragment extends Fragment {
 
         binding.restore.setOnClickListener(v -> {
             if(bitmap != null) restoreDrawing();
-            binding.drawingView.invalidate();
+            updateDrawingViewModel();
         });
 
         binding.drawingView.setOnTouchListener((v, event) -> {
@@ -162,11 +170,8 @@ public class FirstFragment extends Fragment {
             binding.drawingView.canvasX = event.getX();
             binding.drawingView.canvasY = event.getY();
             convertText(text, false);
-<<<<<<< HEAD
             updateDrawingViewModel();
             Log.v("asdf", text);
-=======
->>>>>>> parent of f195c89 (refactor to allow for persistent text brush)
             return false;
         });
 
@@ -176,21 +181,14 @@ public class FirstFragment extends Fragment {
                 if (keyCode == KeyEvent.KEYCODE_DEL) {
                     binding.drawingView.backspace();
                     updateDrawingViewModel();
-                    binding.drawingView.invalidate();
                     return true;
                 }
-<<<<<<< HEAD
                 if(binding.drawingView.keymap.containsKey(keyCode)){
                     String t = binding.drawingView.keymap.get(keyCode).toString();
                     text = t;
                     convertText(text, true);
                     updateDrawingViewModel();
                 }
-=======
-                if(binding.drawingView.keymap.containsKey(keyCode))
-                    convertText(binding.drawingView.keymap
-                            .get(keyCode).toString(), true);
->>>>>>> parent of f195c89 (refactor to allow for persistent text brush)
                 return true;
             }
             return false;
@@ -249,7 +247,6 @@ public class FirstFragment extends Fragment {
 
     public void convertText(String s, boolean addHistory){
         binding.drawingView.convertText(s, addHistory);
-        updateDrawingViewModel();
         binding.drawingView.invalidate();
     }
 
@@ -263,13 +260,11 @@ public class FirstFragment extends Fragment {
                 canvasX,
                 canvasY,
                 canvasColor);
+        binding.drawingView.invalidate();
     }
 
     public void updateDrawingViewModel(){
-<<<<<<< HEAD
         storeText(text);
-=======
->>>>>>> parent of f195c89 (refactor to allow for persistent text brush)
         storePaint(binding.drawingView.paint);
         storeBitmap(binding.drawingView.bitmap);
         storeCanvas(binding.drawingView.canvas);
@@ -279,10 +274,7 @@ public class FirstFragment extends Fragment {
         storeCanvasX(binding.drawingView.canvasX);
         storeCanvasY(binding.drawingView.canvasY);
         storeCanvasColor(binding.drawingView.canvasColor);
-<<<<<<< HEAD
         binding.drawingView.invalidate();
-=======
->>>>>>> parent of f195c89 (refactor to allow for persistent text brush)
     }
 
     @Override

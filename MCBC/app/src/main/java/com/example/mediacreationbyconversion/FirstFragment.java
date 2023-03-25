@@ -32,7 +32,6 @@ public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
     private SharedViewModel viewModel;
     private String text = "";
-
     private Paint paint;
     private Bitmap bitmap;
     private Canvas canvas;
@@ -43,6 +42,9 @@ public class FirstFragment extends Fragment {
     private float canvasY = 0;
     private int canvasColor;
 
+    private void storeText(String data) {
+        viewModel.setText(data);
+    }
     private void storePaint(Paint data) { viewModel.setPaint(data); }
     private void storeBitmap(Bitmap data) { viewModel.setBitmap(data); }
     private void storeCanvas(Canvas data) { viewModel.setCanvas(data); }
@@ -52,13 +54,11 @@ public class FirstFragment extends Fragment {
     private void storeCanvasX(float data) { viewModel.setCanvasX(data); }
     private void storeCanvasY(float data) { viewModel.setCanvasY(data); }
     private void storeCanvasColor(int data) { viewModel.setCanvasColor(data); }
-    private boolean stored = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-//        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
@@ -251,6 +251,7 @@ public class FirstFragment extends Fragment {
     }
 
     public void updateDrawingViewModel(){
+        storeText(text);
         storePaint(binding.drawingView.paint);
         storeBitmap(binding.drawingView.bitmap);
         storeCanvas(binding.drawingView.canvas);

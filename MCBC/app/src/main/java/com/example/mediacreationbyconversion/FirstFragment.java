@@ -32,6 +32,7 @@ public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
     private SharedViewModel viewModel;
     private String text = "";
+
     private Paint paint;
     private Bitmap bitmap;
     private Canvas canvas;
@@ -42,9 +43,6 @@ public class FirstFragment extends Fragment {
     private float canvasY = 0;
     private int canvasColor;
 
-    private void storeText(String data) {
-        viewModel.setText(data);
-    }
     private void storePaint(Paint data) { viewModel.setPaint(data); }
     private void storeBitmap(Bitmap data) { viewModel.setBitmap(data); }
     private void storeCanvas(Canvas data) { viewModel.setCanvas(data); }
@@ -102,10 +100,7 @@ public class FirstFragment extends Fragment {
                     Toast.LENGTH_SHORT).show();
         });
 
-        binding.loadimage.setOnClickListener(v -> {
-            selectImage();
-            updateDrawingViewModel();
-        });
+        binding.loadimage.setOnClickListener(v -> selectImage());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             binding.brushSizePicker.setTextColor(binding.drawingView.white);
@@ -116,19 +111,16 @@ public class FirstFragment extends Fragment {
             binding.brushSizePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
                 binding.drawingView.brushSize = newVal;
             });
-            updateDrawingViewModel();
         }
 
         binding.stroke.setOnClickListener(v -> {
             binding.drawingView.paint.setStyle(Paint.Style.STROKE);
             binding.drawingView.paint.setStrokeWidth(1);
-            updateDrawingViewModel();
             Toast.makeText(getContext(), "Stroke Bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.fill.setOnClickListener(v -> {
             binding.drawingView.paint.setStyle(Paint.Style.FILL);
-            updateDrawingViewModel();
             Toast.makeText(getContext(), "Fill Bristle", Toast.LENGTH_SHORT).show();
         });
 
@@ -159,7 +151,7 @@ public class FirstFragment extends Fragment {
 
         binding.restore.setOnClickListener(v -> {
             if(bitmap != null) restoreDrawing();
-            updateDrawingViewModel();
+            binding.drawingView.invalidate();
         });
 
         binding.drawingView.setOnTouchListener((v, event) -> {
@@ -167,7 +159,6 @@ public class FirstFragment extends Fragment {
             binding.drawingView.canvasX = event.getX();
             binding.drawingView.canvasY = event.getY();
             convertText(text, false);
-            updateDrawingViewModel();
             return false;
         });
 
@@ -177,13 +168,12 @@ public class FirstFragment extends Fragment {
                 if (keyCode == KeyEvent.KEYCODE_DEL) {
                     binding.drawingView.backspace();
                     updateDrawingViewModel();
+                    binding.drawingView.invalidate();
                     return true;
                 }
-                if(binding.drawingView.keymap.containsKey(keyCode)){
+                if(binding.drawingView.keymap.containsKey(keyCode))
                     convertText(binding.drawingView.keymap
                             .get(keyCode).toString(), true);
-                    updateDrawingViewModel();
-                }
                 return true;
             }
             return false;
@@ -242,12 +232,12 @@ public class FirstFragment extends Fragment {
 
     public void convertText(String s, boolean addHistory){
         binding.drawingView.convertText(s, addHistory);
+        updateDrawingViewModel();
         binding.drawingView.invalidate();
     }
 
     public void restoreDrawing(){
-        binding.drawingView.restoreDrawingView(text,
-                paint,
+        binding.drawingView.restoreDrawingView(paint,
                 bitmap,
                 canvas,
                 history,
@@ -256,31 +246,18 @@ public class FirstFragment extends Fragment {
                 canvasX,
                 canvasY,
                 canvasColor);
-        binding.drawingView.invalidate();
     }
 
     public void updateDrawingViewModel(){
-        text = binding.drawingView.text;
-        paint = binding.drawingView.paint;
-        bitmap = binding.drawingView.bitmap;
-        canvas = binding.drawingView.canvas;
-        history = binding.drawingView.history;
-        brushSize = binding.drawingView.brushSize;
-        brushShape = binding.drawingView.brushShape;
-        canvasX = binding.drawingView.canvasX;
-        canvasY = binding.drawingView.canvasY;
-        canvasColor = binding.drawingView.canvasColor;
-        storeText(text);
-        storePaint(paint);
-        storeBitmap(bitmap);
-        storeCanvas(canvas);
-        storeHistory(history);
-        storeBrushSize(brushSize);
-        storeBrushShape(brushShape);
-        storeCanvasX(canvasX);
-        storeCanvasY(canvasY);
-        storeCanvasColor(canvasColor);
-        binding.drawingView.invalidate();
+        storePaint(binding.drawingView.paint);
+        storeBitmap(binding.drawingView.bitmap);
+        storeCanvas(binding.drawingView.canvas);
+        storeHistory(binding.drawingView.history);
+        storeBrushSize(binding.drawingView.brushSize);
+        storeBrushShape(binding.drawingView.brushShape);
+        storeCanvasX(binding.drawingView.canvasX);
+        storeCanvasY(binding.drawingView.canvasY);
+        storeCanvasColor(binding.drawingView.canvasColor);
     }
 
     @Override

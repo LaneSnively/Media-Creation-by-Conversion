@@ -55,13 +55,11 @@ public class FirstFragment extends Fragment {
     private void storeCanvasX(float data) { viewModel.setCanvasX(data); }
     private void storeCanvasY(float data) { viewModel.setCanvasY(data); }
     private void storeCanvasColor(int data) { viewModel.setCanvasColor(data); }
-    private boolean stored = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-//        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override

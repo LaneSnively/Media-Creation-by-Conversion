@@ -31,6 +31,7 @@ public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
     private SharedViewModel viewModel;
+    private String text = "";
 
     private void storeText(String data) {
         viewModel.setText(data);
@@ -48,6 +49,7 @@ public class SecondFragment extends Fragment {
             Bundle savedInstanceState
     ) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
+        viewModel.getText().observe(getViewLifecycleOwner(), data -> text = data);
         return binding.getRoot();
     }
 
@@ -62,7 +64,10 @@ public class SecondFragment extends Fragment {
         });
 
         binding.tokeyboardinput.setOnClickListener(view1 -> {
-            storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
+            if(binding.inputtext.getText() != null)
+                text = Objects.requireNonNull(binding.inputtext.getText()).toString();
+            if(!text.equals(""))
+                storeText(text);
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });

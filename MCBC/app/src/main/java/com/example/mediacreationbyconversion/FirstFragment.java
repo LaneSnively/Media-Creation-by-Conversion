@@ -128,19 +128,16 @@ public class FirstFragment extends Fragment {
 
         binding.square.setOnClickListener(view14 -> {
             binding.drawingView.brushShape = "square";
-            updateDrawingViewModel();
             Toast.makeText(getContext(), "Square Bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.circle.setOnClickListener(view14 -> {
             binding.drawingView.brushShape = "circle";
-            updateDrawingViewModel();
             Toast.makeText(getContext(), "Circle Bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.character.setOnClickListener(view14 -> {
             binding.drawingView.brushShape = "character";
-            updateDrawingViewModel();
             Toast.makeText(getContext(), "Character Bristle", Toast.LENGTH_SHORT).show();
         });
 
@@ -169,7 +166,6 @@ public class FirstFragment extends Fragment {
             if(event.getAction() == KeyEvent.ACTION_DOWN){
                 if (keyCode == KeyEvent.KEYCODE_DEL) {
                     binding.drawingView.backspace();
-                    updateDrawingViewModel();
                     binding.drawingView.invalidate();
                     return true;
                 }
@@ -234,7 +230,6 @@ public class FirstFragment extends Fragment {
 
     public void convertText(String s, boolean addHistory){
         binding.drawingView.convertText(s, addHistory);
-        updateDrawingViewModel();
         binding.drawingView.invalidate();
     }
 

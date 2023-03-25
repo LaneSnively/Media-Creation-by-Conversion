@@ -102,6 +102,26 @@ public class SharedViewModel extends ViewModel {
         return canvasY;
     }
 
+    private MutableLiveData<Float> offsetX = new MutableLiveData<>();
+
+    public void setOffsetX(Float data) {
+        this.offsetX.setValue(data);
+    }
+
+    public LiveData<Float> getOffsetX() {
+        return offsetX;
+    }
+
+    private MutableLiveData<Float> offsetY = new MutableLiveData<>();
+
+    public void setOffsetY(Float data) {
+        this.offsetY.setValue(data);
+    }
+
+    public LiveData<Float> getOffsetY() {
+        return offsetY;
+    }
+
     private MutableLiveData<Integer> canvasColor = new MutableLiveData<>();
 
     public void setCanvasColor(Integer data) {

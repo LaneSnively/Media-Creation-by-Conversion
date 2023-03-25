@@ -105,6 +105,8 @@ public class DrawingView extends View {
     public String brushShape = "square";
     public float canvasX = 0; //canvas brush horizontal location
     public float canvasY = 0; //canvas brush vertical location
+    public float offsetX = 0;
+    public float offsetY = 0;
     public int canvasColor = black;
 
     public DrawingView(Context context) {
@@ -147,7 +149,13 @@ public class DrawingView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(bitmap, 0, 0, paint);
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapHeight = bitmap.getHeight();
+        int viewWidth = getWidth();
+        int viewHeight = getHeight();
+        offsetX = (float) (viewWidth - bitmapWidth) / 2;
+        offsetY = (float) (viewHeight - bitmapHeight) / 2;
+        canvas.drawBitmap(bitmap, offsetX, offsetY, paint);
     }
 
     public void restoreDrawingView(Paint paint,
@@ -158,6 +166,8 @@ public class DrawingView extends View {
                                    String brushShape,
                                    float canvasX,
                                    float canvasY,
+                                   float offsetX,
+                                   float offsetY,
                                    int canvasColor) {
         this.bitmap = bitmap;
         this.paint = paint;
@@ -167,6 +177,8 @@ public class DrawingView extends View {
         this.brushShape = brushShape;
         this.canvasX = canvasX;
         this.canvasY = canvasY;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
         this.canvasColor = canvasColor;
     }
 
@@ -269,16 +281,16 @@ public class DrawingView extends View {
     }
 
     public void drawSqure() {
-        canvas.drawRect(canvasX, canvasY, canvasX + brushSize, canvasY + brushSize, paint);
+        canvas.drawRect(canvasX - offsetX, canvasY - offsetY, canvasX - offsetX + brushSize, canvasY - offsetY + brushSize, paint);
     }
 
     public void drawCircle() {
-        canvas.drawCircle(canvasX, canvasY, brushSize / 2, paint);
+        canvas.drawCircle(canvasX - offsetX, canvasY - offsetY, brushSize / 2, paint);
     }
 
     public void drawText(String s) {
         paint.setTextSize((float) brushSize);
-        canvas.drawText(s, canvasX, canvasY, paint);
+        canvas.drawText(s, canvasX - offsetX, canvasY - offsetY, paint);
     }
 
     public void convertText(String s, boolean addHistory) {

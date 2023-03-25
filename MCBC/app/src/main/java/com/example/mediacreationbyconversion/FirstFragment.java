@@ -39,6 +39,8 @@ public class FirstFragment extends Fragment {
     private String brushShape;
     private float canvasX = 0;
     private float canvasY = 0;
+    public float offsetX = 0;
+    public float offsetY = 0;
     private int canvasColor;
 
     private void storeText(String data) {
@@ -77,6 +79,14 @@ public class FirstFragment extends Fragment {
         viewModel.setCanvasY(data);
     }
 
+    private void storeOffsetX(float data) {
+        viewModel.setOffsetX(data);
+    }
+
+    private void storeOffsetY(float data) {
+        viewModel.setOffsetY(data);
+    }
+
     private void storeCanvasColor(int data) {
         viewModel.setCanvasColor(data);
     }
@@ -102,6 +112,8 @@ public class FirstFragment extends Fragment {
         viewModel.getBrushShape().observe(getViewLifecycleOwner(), data -> brushShape = data);
         viewModel.getCanvasX().observe(getViewLifecycleOwner(), data -> canvasX = data);
         viewModel.getCanvasY().observe(getViewLifecycleOwner(), data -> canvasY = data);
+        viewModel.getOffsetX().observe(getViewLifecycleOwner(), data -> offsetX = data);
+        viewModel.getOffsetY().observe(getViewLifecycleOwner(), data -> offsetY = data);
         viewModel.getCanvasColor().observe(getViewLifecycleOwner(), data -> canvasColor = data);
         return binding.getRoot();
     }
@@ -289,6 +301,8 @@ public class FirstFragment extends Fragment {
                 brushShape,
                 canvasX,
                 canvasY,
+                offsetX,
+                offsetY,
                 canvasColor);
     }
 
@@ -302,6 +316,8 @@ public class FirstFragment extends Fragment {
         storeBrushShape(binding.drawingView.brushShape);
         storeCanvasX(binding.drawingView.canvasX);
         storeCanvasY(binding.drawingView.canvasY);
+        storeOffsetX(binding.drawingView.offsetX);
+        storeOffsetY(binding.drawingView.offsetY);
         storeCanvasColor(binding.drawingView.canvasColor);
     }
 

@@ -151,6 +151,7 @@ public class DrawingView extends View {
     }
 
     public void restoreDrawingView(Paint paint,
+<<<<<<< HEAD
                                    Bitmap bitmap,
                                    Canvas canvas,
                                    List<Bitmap> history,
@@ -159,6 +160,16 @@ public class DrawingView extends View {
                                    float canvasX,
                                    float canvasY,
                                    int canvasColor){
+=======
+                                      Bitmap bitmap,
+                                      Canvas canvas,
+                                      List<Bitmap> history,
+                                      int brushSize,
+                                      String brushShape,
+                                      float canvasX,
+                                      float canvasY,
+                                      int canvasColor){
+>>>>>>> parent of f195c89 (refactor to allow for persistent text brush)
         this.bitmap = bitmap;
         this.paint = paint;
         this.canvas = canvas;

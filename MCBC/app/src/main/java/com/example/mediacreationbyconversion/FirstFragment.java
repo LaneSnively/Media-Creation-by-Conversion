@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -168,6 +169,7 @@ public class FirstFragment extends Fragment {
             binding.drawingView.canvasY = event.getY();
             convertText(text, false);
             updateDrawingViewModel();
+            Log.v("asdf", text);
             return false;
         });
 
@@ -180,8 +182,9 @@ public class FirstFragment extends Fragment {
                     return true;
                 }
                 if(binding.drawingView.keymap.containsKey(keyCode)){
-                    convertText(binding.drawingView.keymap
-                            .get(keyCode).toString(), true);
+                    String t = binding.drawingView.keymap.get(keyCode).toString();
+                    text = t;
+                    convertText(text, true);
                     updateDrawingViewModel();
                 }
                 return true;
@@ -246,8 +249,7 @@ public class FirstFragment extends Fragment {
     }
 
     public void restoreDrawing(){
-        binding.drawingView.restoreDrawingView(text,
-                paint,
+        binding.drawingView.restoreDrawingView(paint,
                 bitmap,
                 canvas,
                 history,
@@ -260,26 +262,16 @@ public class FirstFragment extends Fragment {
     }
 
     public void updateDrawingViewModel(){
-        text = binding.drawingView.text;
-        paint = binding.drawingView.paint;
-        bitmap = binding.drawingView.bitmap;
-        canvas = binding.drawingView.canvas;
-        history = binding.drawingView.history;
-        brushSize = binding.drawingView.brushSize;
-        brushShape = binding.drawingView.brushShape;
-        canvasX = binding.drawingView.canvasX;
-        canvasY = binding.drawingView.canvasY;
-        canvasColor = binding.drawingView.canvasColor;
         storeText(text);
-        storePaint(paint);
-        storeBitmap(bitmap);
-        storeCanvas(canvas);
-        storeHistory(history);
-        storeBrushSize(brushSize);
-        storeBrushShape(brushShape);
-        storeCanvasX(canvasX);
-        storeCanvasY(canvasY);
-        storeCanvasColor(canvasColor);
+        storePaint(binding.drawingView.paint);
+        storeBitmap(binding.drawingView.bitmap);
+        storeCanvas(binding.drawingView.canvas);
+        storeHistory(binding.drawingView.history);
+        storeBrushSize(binding.drawingView.brushSize);
+        storeBrushShape(binding.drawingView.brushShape);
+        storeCanvasX(binding.drawingView.canvasX);
+        storeCanvasY(binding.drawingView.canvasY);
+        storeCanvasColor(binding.drawingView.canvasColor);
         binding.drawingView.invalidate();
     }
 

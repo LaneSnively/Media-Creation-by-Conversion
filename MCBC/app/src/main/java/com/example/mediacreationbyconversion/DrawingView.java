@@ -97,6 +97,7 @@ public class DrawingView extends View {
         put(KeyEvent.KEYCODE_SPACE, ' ');
     }};
 
+    public String text = "";
     public Paint paint;
     public Bitmap bitmap;
     public Canvas canvas;
@@ -150,15 +151,17 @@ public class DrawingView extends View {
         canvas.drawBitmap(bitmap, 0, 0, paint);
     }
 
-    public void restoreDrawingView(Paint paint,
-                                      Bitmap bitmap,
-                                      Canvas canvas,
-                                      List<Bitmap> history,
-                                      int brushSize,
-                                      String brushShape,
-                                      float canvasX,
-                                      float canvasY,
-                                      int canvasColor){
+    public void restoreDrawingView(String text,
+                                   Paint paint,
+                                   Bitmap bitmap,
+                                   Canvas canvas,
+                                   List<Bitmap> history,
+                                   int brushSize,
+                                   String brushShape,
+                                   float canvasX,
+                                   float canvasY,
+                                   int canvasColor){
+        this.text = text;
         this.bitmap = bitmap;
         this.paint = paint;
         this.canvas = canvas;

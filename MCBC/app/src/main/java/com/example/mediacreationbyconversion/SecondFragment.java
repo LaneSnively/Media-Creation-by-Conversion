@@ -113,7 +113,8 @@ public class SecondFragment extends Fragment {
             }
         } else if (requestCode == CREATE_FILE) {
             try {
-                storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
+                text = Objects.requireNonNull(binding.inputtext.getText()).toString();
+                storeText(text);
                 alterDocument(uri);
             } catch (Exception e) {
             }
@@ -145,7 +146,7 @@ public class SecondFragment extends Fragment {
             FileOutputStream fileOutputStream =
                     new FileOutputStream(txt.getFileDescriptor());
             fileOutputStream.getChannel().truncate(0);
-            fileOutputStream.write(Objects.requireNonNull(binding.inputtext.getText()).toString().getBytes());
+            fileOutputStream.write(text.getBytes());
             fileOutputStream.close();
             txt.close();
         } catch (FileNotFoundException e) {

@@ -113,6 +113,7 @@ public class SecondFragment extends Fragment {
             }
         } else if (requestCode == CREATE_FILE) {
             try {
+                uri = resultData.getData();
                 storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
                 alterDocument(uri);
             } catch (Exception e) {

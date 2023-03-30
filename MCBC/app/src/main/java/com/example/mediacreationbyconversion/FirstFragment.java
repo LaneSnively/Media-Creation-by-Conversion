@@ -191,6 +191,12 @@ public class FirstFragment extends Fragment {
             binding.drawingView.invalidate();
         });
 
+        binding.pastebrush.setOnClickListener(v -> {
+            binding.drawingView.canvasX = 0;
+            binding.drawingView.canvasY = 0;
+            convertText(text, false);
+        });
+
         binding.drawingView.setOnTouchListener((v, event) -> {
             binding.drawingView.requestFocus();
             binding.drawingView.canvasX = event.getX();

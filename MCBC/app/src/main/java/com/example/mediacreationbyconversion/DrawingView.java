@@ -114,16 +114,16 @@ public class DrawingView extends View {
     }};
 
     public Map<Character, Integer> colorMap = new HashMap<Character, Integer>(){{
-        put('0', white);
-        put('1', whiteDark);
-        put('2', whiteDarker);
-        put('3', grayLighter);
-        put('4', grayLight);
-        put('5', gray);
-        put('6', grayDark);
-        put('7', grayDarker);
-        put('8', blackLight);
-        put('9', black);
+        put('1', white);
+        put('2', whiteDark);
+        put('3', whiteDarker);
+        put('4', grayLighter);
+        put('5', grayLight);
+        put('6', gray);
+        put('7', grayDark);
+        put('8', grayDarker);
+        put('9', blackLight);
+        put('0', black);
 
         put('a', pink);
         put('b', brown);

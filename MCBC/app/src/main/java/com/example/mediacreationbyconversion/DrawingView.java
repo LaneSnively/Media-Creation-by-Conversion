@@ -23,11 +23,15 @@ import java.util.Map;
 
 public class DrawingView extends View {
     int white = Color.parseColor("#FFFFFF");
+    int whiteDark = Color.parseColor("#F2F2F2");
+    int whiteDarker = Color.parseColor("#D9D9D9");
+    int grayLighter = Color.parseColor("#BFBFBF");
+    int grayLight = Color.parseColor("#A6A6A6");
+    int gray = Color.parseColor("#8C8C8C");
+    int grayDark = Color.parseColor("#737373");
+    int grayDarker = Color.parseColor("#595959");
+    int blackLight = Color.parseColor("#404040");
     int black = Color.parseColor("#000000");
-
-    int grayLight = Color.parseColor("#A9A9A9");
-    int gray = Color.parseColor("#808080");
-    int grayDark = Color.parseColor("#696969");
 
     int pinkLight = Color.parseColor("#FFC0CB");
     int pink = Color.parseColor("#FF69B4");
@@ -65,7 +69,18 @@ public class DrawingView extends View {
     int blue = Color.parseColor("#0000FF");
     int blueDark = Color.parseColor("#00008B");
 
-    public Map<Integer, Character> keymap = new HashMap<Integer, Character>() {{
+    public Map<Integer, Character> keyMap = new HashMap<Integer, Character>() {{
+        put(KeyEvent.KEYCODE_0, '0');
+        put(KeyEvent.KEYCODE_1, '1');
+        put(KeyEvent.KEYCODE_2, '2');
+        put(KeyEvent.KEYCODE_3, '3');
+        put(KeyEvent.KEYCODE_4, '4');
+        put(KeyEvent.KEYCODE_5, '5');
+        put(KeyEvent.KEYCODE_6, '6');
+        put(KeyEvent.KEYCODE_7, '7');
+        put(KeyEvent.KEYCODE_8, '8');
+        put(KeyEvent.KEYCODE_9, '9');
+
         put(KeyEvent.KEYCODE_A, 'a');
         put(KeyEvent.KEYCODE_B, 'b');
         put(KeyEvent.KEYCODE_C, 'c');
@@ -92,9 +107,50 @@ public class DrawingView extends View {
         put(KeyEvent.KEYCODE_X, 'x');
         put(KeyEvent.KEYCODE_Y, 'y');
         put(KeyEvent.KEYCODE_Z, 'z');
+
         put(KeyEvent.KEYCODE_ENTER, '\n');
         put(KeyEvent.KEYCODE_TAB, '\t');
         put(KeyEvent.KEYCODE_SPACE, ' ');
+    }};
+
+    public Map<Character, Integer> colorMap = new HashMap<Character, Integer>(){{
+        put('0', white);
+        put('1', white);
+        put('2', white);
+        put('3', white);
+        put('4', white);
+        put('5', white);
+        put('6', white);
+        put('7', white);
+        put('8', white);
+        put('9', white);
+
+        put('a', pink);
+        put('b', brown);
+        put('c', blue);
+        put('d', red);
+        put('e', purpleDark);
+        put('f', orange);
+        put('g', brownLight);
+        put('h', yellow);
+        put('i', greenDark);
+        put('j', teal);
+        put('k', tealDark);
+        put('l', blueDark);
+        put('m', yellowDark);
+        put('n', greenLight);
+        put('o', tealDark);
+        put('p', blueDark);
+        put('q', grayDark);
+        put('r', redDark);
+        put('s', purple);
+        put('t', orangeDark);
+        put('u', yellowDark);
+        put('v', greenLight);
+        put('w', pinkDark);
+        put('x', redLight);
+        put('y', brownDark);
+        put('z', purpleLight);
     }};
 
     public Paint paint;
@@ -193,21 +249,16 @@ public class DrawingView extends View {
                 canvasX = canvas.getWidth() - brushSize; //brush hit right side, move back to left
                 if (canvasY <= 0) {
                     canvasY = canvas.getHeight() - brushSize; //brush hit bottom, move back to top
-                } else {
-                    canvasY -= brushSize; //move brush down
-                }
-            } else {
-                canvasX -= brushSize; //move brush right
-            }
+                } else canvasY -= brushSize; //move brush down
+            } else canvasX -= brushSize; //move brush right
         }
     }
 
     public void addHistory() {
         history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
         int historySize = 400;
-        if (history.size() > historySize) {
+        if (history.size() > historySize)
             history.remove((int) (Math.random() * history.size()));
-        }
     }
 
     public void save(Bitmap b) {
@@ -298,121 +349,31 @@ public class DrawingView extends View {
         Character c;
         for (int i = 0; i < s.length(); i++) {
             c = s.charAt(i);
-            switch (c) {
-                case 'q':
-                    paint.setColor(grayDark);
-                    break;
-                case 'w':
-                    paint.setColor(pinkDark);
-                    break;
-                case 'e':
-                    paint.setColor(purpleDark);
-                    break;
-                case 'r':
-                    paint.setColor(redDark);
-                    break;
-                case 't':
-                    paint.setColor(orangeDark);
-                    break;
-                case 'y':
-                    paint.setColor(brownDark);
-                    break;
-                case 'u':
-                    paint.setColor(yellowDark);
-                    break;
-                case 'i':
-                    paint.setColor(greenDark);
-                    break;
-                case 'o':
-                    paint.setColor(tealDark);
-                    break;
-                case 'p':
-                    paint.setColor(blueDark);
-                    break;
-                case 'a':
-                    paint.setColor(pink);
-                    break;
-                case 's':
-                    paint.setColor(purple);
-                    break;
-                case 'd':
-                    paint.setColor(red);
-                    break;
-                case 'f':
-                    paint.setColor(orange);
-                    break;
-                case 'g':
-                    paint.setColor(brown);
-                    break;
-                case 'h':
-                    paint.setColor(yellow);
-                    break;
-                case 'j':
-                    paint.setColor(green);
-                    break;
-                case 'k':
-                    paint.setColor(teal);
-                    break;
-                case 'l':
-                    paint.setColor(blue);
-                    break;
-                case 'z':
-                    paint.setColor(purpleLight);
-                    break;
-                case 'x':
-                    paint.setColor(redLight);
-                    break;
-                case 'c':
-                    paint.setColor(orangeLight);
-                    break;
-                case 'v':
-                    paint.setColor(brownLight);
-                    break;
-                case 'b':
-                    paint.setColor(greenLight);
-                    break;
-                case 'n':
-                    paint.setColor(tealLight);
-                    break;
-                case 'm':
-                    paint.setColor(blueLight);
-                    break;
-                case '\n':
-                    if (addHistory) {
-                        if (canvasY < canvas.getHeight() - brushSize) {
-                            canvasY += brushSize; //move brush down
-                        } else {
-                            canvasY = 0; //brush hit bottom, move back to top
-                        }
-                    } else {
+
+            if(colorMap.containsKey(c)) paint.setColor(colorMap.get(c));
+
+            if(c.equals('\n')){
+                if (addHistory) {
+                    if (canvasY < canvas.getHeight() - brushSize) {
                         canvasY += brushSize; //move brush down
-                    }
-                    if (!addHistory) {
-                        for (int k = 0; k < lineLength; k++)
-                            canvasX -= brushSize;
-                        if (canvasX < 0) canvasX = canvas.getWidth() - brushSize;
-                    }
-                    break;
-//                case '\t':
-//                    break;
-                case ' ':
-                    if (addHistory) {
-                        if (canvasX >= canvas.getWidth() - brushSize) {
-                            canvasX = 0; //brush hit right side, move back to left
-                            if (canvasY >= canvas.getHeight() - brushSize) {
-                                canvasY = 0; //brush hit bottom, move back to top
-                            } else {
-                                canvasY += brushSize; //move brush down
-                            }
-                        } else {
-                            canvasX += brushSize; //move brush right
-                        }
-                    } else {
-                        canvasX += brushSize; //move brush right
-                    }
-                    break;
-                default:
-                    break;
+                    } else canvasY = 0; //brush hit bottom, move back to top
+                } else canvasY += brushSize; //move brush down
+                if (!addHistory) {
+                    for (int k = 0; k < lineLength; k++)
+                        canvasX -= brushSize;
+                    if (canvasX < 0) canvasX = canvas.getWidth() - brushSize;
+                }
+            }
+
+            if(c.equals(' ')){
+                if (addHistory) {
+                    if (canvasX >= canvas.getWidth() - brushSize) {
+                        canvasX = 0; //brush hit right side, move back to left
+                        if (canvasY >= canvas.getHeight() - brushSize) {
+                            canvasY = 0; //brush hit bottom, move back to top
+                        } else canvasY += brushSize; //move brush down
+                    } else canvasX += brushSize; //move brush right
+                } else canvasX += brushSize; //move brush right
             }
 
             if (!c.equals('\n')) lineLength++;
@@ -439,15 +400,9 @@ public class DrawingView extends View {
                         canvasX = 0; //brush hit right side, move back to left
                         if (canvasY >= canvas.getHeight() - brushSize) {
                             canvasY = 0; //brush hit bottom, move back to top
-                        } else {
-                            canvasY += brushSize; //move brush down
-                        }
-                    } else {
-                        canvasX += brushSize; //move brush right
-                    }
-                } else {
-                    canvasX += brushSize; //move brush right
-                }
+                        } else canvasY += brushSize; //move brush down
+                    } else canvasX += brushSize; //move brush right
+                } else canvasX += brushSize; //move brush right
             }
             if (addHistory) addHistory();
         }

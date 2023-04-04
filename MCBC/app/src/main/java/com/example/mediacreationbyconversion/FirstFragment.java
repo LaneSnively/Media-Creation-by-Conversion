@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Build;
@@ -143,7 +144,7 @@ public class FirstFragment extends Fragment {
         binding.loadimage.setOnClickListener(v -> selectImage());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            binding.brushSizePicker.setTextColor(binding.drawingView.white);
+            binding.brushSizePicker.setTextColor(Color.parseColor("#FFFFFF"));
             binding.brushSizePicker.setTextSize(100);
             binding.brushSizePicker.setValue(30);
             binding.brushSizePicker.setMinValue(0);
@@ -213,8 +214,8 @@ public class FirstFragment extends Fragment {
                     binding.drawingView.invalidate();
                     return true;
                 }
-                if (binding.drawingView.keymap.containsKey(keyCode)) {
-                    text = binding.drawingView.keymap.get(keyCode).toString();
+                if (binding.drawingView.keyMap.containsKey(keyCode)) {
+                    text = binding.drawingView.keyMap.get(keyCode).toString();
                     convertText(text, true);
                 }
                 return true;

@@ -25,15 +25,16 @@ public class DrawingView extends View {
     int white = Color.parseColor("#FFFFFF");
     int whiteDark = Color.parseColor("#F2F2F2");
     int whiteDarker = Color.parseColor("#D9D9D9");
+
     int grayLighter = Color.parseColor("#BFBFBF");
     int grayLight = Color.parseColor("#A6A6A6");
     int gray = Color.parseColor("#8C8C8C");
     int grayDark = Color.parseColor("#737373");
     int grayDarker = Color.parseColor("#595959");
+
     int blackLight = Color.parseColor("#404040");
     int black = Color.parseColor("#000000");
 
-    int pinkLight = Color.parseColor("#FFC0CB");
     int pink = Color.parseColor("#FF69B4");
     int pinkDark = Color.parseColor("#FF1493");
 
@@ -45,7 +46,6 @@ public class DrawingView extends View {
     int red = Color.parseColor("#FF0000");
     int redDark = Color.parseColor("#800000");
 
-    int orangeLight = Color.parseColor("#FF7F50");
     int orange = Color.parseColor("#FFA500");
     int orangeDark = Color.parseColor("#FF4500");
 
@@ -53,19 +53,15 @@ public class DrawingView extends View {
     int brown = Color.parseColor("#FF9100");
     int brownDark = Color.parseColor("#DD2C00");
 
-    int yellowLight = Color.parseColor("#FFFFCC");
     int yellow = Color.parseColor("#FFFF00");
     int yellowDark = Color.parseColor("#CCCC00");
 
     int greenLight = Color.parseColor("#98FB98");
-    int green = Color.parseColor("#00FF00");
     int greenDark = Color.parseColor("#556B2F");
 
-    int tealLight = Color.parseColor("#7FFFD4");
     int teal = Color.parseColor("#00CED1");
     int tealDark = Color.parseColor("#008080");
 
-    int blueLight = Color.parseColor("#87CEFA");
     int blue = Color.parseColor("#0000FF");
     int blueDark = Color.parseColor("#00008B");
 
@@ -109,7 +105,6 @@ public class DrawingView extends View {
         put(KeyEvent.KEYCODE_Z, 'z');
 
         put(KeyEvent.KEYCODE_ENTER, '\n');
-        put(KeyEvent.KEYCODE_TAB, '\t');
         put(KeyEvent.KEYCODE_SPACE, ' ');
     }};
 

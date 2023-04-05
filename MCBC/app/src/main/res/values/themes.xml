@@ -3,7 +3,7 @@
     <style name="Theme.MediaCreationByConversion" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:statusBarColor">@color/blackLight</item>
         <item name="android:enforceStatusBarContrast">true</item>
-        <item name="android:colorBackground">@color/blackLight</item>
+        <item name="android:colorBackground">@color/black</item>
     </style>
 
     <style name="Theme.MediaCreationByConversion.NoActionBar">

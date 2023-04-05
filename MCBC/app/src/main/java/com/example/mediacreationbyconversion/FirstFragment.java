@@ -146,9 +146,9 @@ public class FirstFragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             binding.brushSizePicker.setTextColor(Color.parseColor("#FFFFFF"));
             binding.brushSizePicker.setTextSize(100);
-            binding.brushSizePicker.setValue(30);
-            binding.brushSizePicker.setMinValue(0);
+            binding.brushSizePicker.setMinValue(1);
             binding.brushSizePicker.setMaxValue(400);
+            binding.brushSizePicker.setValue(binding.drawingView.brushSize);
             binding.brushSizePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
                 binding.drawingView.brushSize = newVal;
             });

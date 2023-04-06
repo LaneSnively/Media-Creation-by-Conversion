@@ -143,6 +143,11 @@ public class FirstFragment extends Fragment {
 
         binding.loadimage.setOnClickListener(v -> selectImage());
 
+        binding.restore.setOnClickListener(v -> {
+            if (bitmap != null) restoreDrawing();
+            binding.drawingView.invalidate();
+        });
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             binding.brushSizePicker.setTextColor(Color.parseColor("#FFFFFF"));
             binding.brushSizePicker.setTextSize(100);
@@ -218,11 +223,6 @@ public class FirstFragment extends Fragment {
             }
             return false;
         });
-
-        view.postDelayed(() -> {
-            if (bitmap != null) restoreDrawing();
-            binding.drawingView.invalidate();
-        }, 150);
     }
 
     private static final int REQUEST_CODE = 1;

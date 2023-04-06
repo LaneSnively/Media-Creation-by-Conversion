@@ -311,6 +311,8 @@ public class FirstFragment extends Fragment {
                 offsetX,
                 offsetY,
                 canvasColor);
+
+        binding.brushSizePicker.setValue(brushSize);
     }
 
     public void updateDrawingViewModel() {

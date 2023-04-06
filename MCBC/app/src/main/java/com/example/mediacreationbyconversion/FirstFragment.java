@@ -187,14 +187,10 @@ public class FirstFragment extends Fragment {
             imm.showSoftInput(binding.drawingView, InputMethodManager.SHOW_IMPLICIT);
         });
 
-        binding.restore.setOnClickListener(v -> {
-            if (bitmap != null) restoreDrawing();
-            binding.drawingView.invalidate();
-        });
-
         binding.pastebrush.setOnClickListener(v -> {
             binding.drawingView.canvasX = 0;
             binding.drawingView.canvasY = 0;
+            Toast.makeText(getContext(), "brush pasted", Toast.LENGTH_SHORT).show();
             convertText(text, false);
         });
 
@@ -222,6 +218,11 @@ public class FirstFragment extends Fragment {
             }
             return false;
         });
+
+        view.postDelayed(() -> {
+            if (bitmap != null) restoreDrawing();
+            binding.drawingView.invalidate();
+        }, 150);
     }
 
     private static final int REQUEST_CODE = 1;
@@ -263,15 +264,6 @@ public class FirstFragment extends Fragment {
             }
         }
     }
-
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        if(bitmap != null) restoreDrawing();
-//        binding.drawingView.invalidate();
-//        Log.v("asdf", "onresume");
-//
-//    }
 
     public void convertText(String s, boolean addHistory) {
         binding.drawingView.convertText(s, addHistory);

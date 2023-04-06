@@ -3,9 +3,12 @@ package com.example.mediacreationbyconversion;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,13 +28,98 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class SecondFragment extends Fragment {
+    int white = Color.parseColor("#FFFFFF");
+    int whiteDark = Color.parseColor("#F2F2F2");
+    int whiteDarker = Color.parseColor("#D9D9D9");
+
+    int grayLighter = Color.parseColor("#BFBFBF");
+    int grayLight = Color.parseColor("#A6A6A6");
+    int gray = Color.parseColor("#8C8C8C");
+    int grayDark = Color.parseColor("#737373");
+    int grayDarker = Color.parseColor("#595959");
+
+    int blackLight = Color.parseColor("#404040");
+    int black = Color.parseColor("#000000");
+
+    int pink = Color.parseColor("#FF69B4");
+    int pinkDark = Color.parseColor("#FF1493");
+
+    int purpleLight = Color.parseColor("#EE82EE");
+    int purple = Color.parseColor("#9932CC");
+    int purpleDark = Color.parseColor("#800080");
+
+    int redLight = Color.parseColor("#FFA07A");
+    int red = Color.parseColor("#FF0000");
+    int redDark = Color.parseColor("#800000");
+
+    int orange = Color.parseColor("#FFA500");
+    int orangeDark = Color.parseColor("#FF4500");
+
+    int brownLight = Color.parseColor("#FFD180");
+    int brown = Color.parseColor("#FF9100");
+    int brownDark = Color.parseColor("#DD2C00");
+
+    int yellow = Color.parseColor("#FFFF00");
+    int yellowDark = Color.parseColor("#CCCC00");
+
+    int greenLight = Color.parseColor("#98FB98");
+    int greenDark = Color.parseColor("#556B2F");
+
+    int teal = Color.parseColor("#00CED1");
+    int tealDark = Color.parseColor("#008080");
+
+    int blue = Color.parseColor("#0000FF");
+    int blueDark = Color.parseColor("#00008B");
+
+    public Map<Integer, Character> colorMap = new HashMap<Integer, Character>(){{
+        put(white, '1');
+        put(whiteDark, '2');
+        put(whiteDarker, '3');
+        put(grayLighter, '4');
+        put(grayLight, '5');
+        put(gray, '6');
+        put(grayDark, '7');
+        put(grayDarker, '8');
+        put(blackLight, '9');
+        put(black, '0');
+
+        put(pink, 'a');
+        put(brown, 'b');
+        put(blue, 'c');
+        put(red, 'd');
+        put(purpleDark, 'e');
+        put(orange, 'f');
+        put(brownLight, 'g');
+        put(yellow, 'h');
+        put(greenDark, 'i');
+        put(teal, 'j');
+        put(tealDark, 'k');
+        put(blueDark, 'l');
+        put(yellowDark, 'm');
+        put(greenLight, 'n');
+        put(tealDark, 'o');
+        put(blueDark, 'p');
+        put(grayDark, 'q');
+        put(redDark, 'r');
+        put(purple, 's');
+        put(orangeDark, 't');
+        put(yellowDark, 'u');
+        put(greenLight, 'v');
+        put(pinkDark, 'w');
+        put(redLight, 'x');
+        put(brownDark, 'y');
+        put(purpleLight, 'z');
+    }};
 
     private FragmentSecondBinding binding;
     private SharedViewModel viewModel;
     private String text = "";
+    private Bitmap bitmap;
 
     private void storeText(String data) {
         viewModel.setText(data);
@@ -50,6 +138,7 @@ public class SecondFragment extends Fragment {
     ) {
         binding = FragmentSecondBinding.inflate(inflater, container, false);
         viewModel.getText().observe(getViewLifecycleOwner(), data -> text = data);
+        viewModel.getBitmap().observe(getViewLifecycleOwner(), data -> bitmap = data);
         return binding.getRoot();
     }
 
@@ -70,6 +159,14 @@ public class SecondFragment extends Fragment {
                 storeText(text);
             NavHostFragment.findNavController(SecondFragment.this)
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
+        });
+
+        binding.convertToText.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "drawing began\nconverting\nto text", Toast.LENGTH_SHORT).show();
+            if(bitmap != null) text = convertBitmapToString(bitmap);
+            binding.inputtext.setText(text);
+            storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
+            Toast.makeText(getContext(), "drawing finished\nconverting\nto text", Toast.LENGTH_SHORT).show();
         });
 
         binding.selectfile.setOnClickListener(v -> readFile());
@@ -154,6 +251,41 @@ public class SecondFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String convertBitmapToString(Bitmap b) {
+        StringBuilder result = new StringBuilder();
+        for (int y = 0; y < b.getHeight(); y++) {
+            for (int x = 0; x < b.getWidth(); x++) {
+                int pixelColor = b.getPixel(x, y);
+                int closestColor = findClosestColor(pixelColor);
+                char character = colorMap.get(closestColor);
+                result.append(character);
+            }
+            result.append('\n');
+        }
+        result.append('\n');
+        return result.toString();
+    }
+
+    private int findClosestColor(int pixelColor) {
+        int minDistance = Integer.MAX_VALUE;
+        int closestColor = 0;
+        for (Map.Entry<Integer, Character> entry : colorMap.entrySet()) {
+            int distance = colorDistance(pixelColor, entry.getKey());
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestColor = entry.getKey();
+            }
+        }
+        return closestColor;
+    }
+
+    private int colorDistance(int color1, int color2) {
+        int rDiff = Color.red(color1) - Color.red(color2);
+        int gDiff = Color.green(color1) - Color.green(color2);
+        int bDiff = Color.blue(color1) - Color.blue(color2);
+        return rDiff * rDiff + gDiff * gDiff + bDiff * bDiff;
     }
 
     @Override

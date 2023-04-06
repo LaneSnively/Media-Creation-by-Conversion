@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -162,11 +161,10 @@ public class SecondFragment extends Fragment {
         });
 
         binding.convertToText.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "drawing began\nconverting\nto text", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "drawing began converting to text", Toast.LENGTH_SHORT).show();
             if(bitmap != null) text = convertBitmapToString(bitmap);
             binding.inputtext.setText(text);
             storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
-            Toast.makeText(getContext(), "drawing finished\nconverting\nto text", Toast.LENGTH_SHORT).show();
         });
 
         binding.selectfile.setOnClickListener(v -> readFile());
@@ -175,6 +173,10 @@ public class SecondFragment extends Fragment {
             createFile();
             Toast.makeText(getContext(), "saved brush", Toast.LENGTH_SHORT).show();
         });
+
+        view.postDelayed(() -> {
+            if(bitmap != null) binding.canvas.setImageBitmap(bitmap);
+        }, 150);
     }
 
     private static final int READ_REQUEST_CODE = 42;

@@ -6,21 +6,50 @@
     android:layout_height="match_parent"
     tools:context=".SecondFragment">
 
+    <TextView
+        android:id="@+id/viewcanvas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="view canvas"
+        android:textAlignment="center"
+        android:textColor="@color/teal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/resettext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="manage text"
+        android:textAlignment="center"
+        android:textColor="@color/teal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <Button
         android:id="@+id/convertToText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="-11dp"
-        android:backgroundTint="@color/tealDark"
-        android:text="convert\ndrawing to\ntext"
+        android:layout_marginStart="0dp"
+        android:backgroundTint="@color/redDark"
+        android:text="convert\ncanvas to\ntext"
         android:textAllCaps="false"
-        android:textColor="@color/orange"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.12"
-        app:layout_constraintTop_toBottomOf="@+id/tokeyboardinput"
+        android:textColor="@color/blueLight"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/savefile"
         app:layout_constraintWidth_percent="0.3" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/keyboard"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -31,8 +60,9 @@
         android:paddingBottom="0dp"
         android:scaleType="centerInside"
         android:src="@drawable/color_keyboard_layout"
+        android:background="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintHeight_percent="0.12"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputtext"
@@ -45,7 +75,7 @@
         android:layout_marginTop="-5dp"
         android:layout_marginStart="0dp"
         android:backgroundTint="@color/red"
-        android:text="save\ntext\nbrush"
+        android:text="save\nbrush"
         android:textAllCaps="false"
         android:textColor="@color/blueDark"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,15 +87,14 @@
         android:id="@+id/selectfile"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="-11dp"
-        android:layout_marginEnd="0dp"
-        android:backgroundTint="@color/redDark"
-        android:text="select\ntext\nbrush"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="-5dp"        android:backgroundTint="@color/purpleDark"
+        android:text="select\ntext as\nbrush"
         android:textAllCaps="false"
-        android:textColor="@color/blueLight"
+        android:textColor="@color/greenLight"
+        app:layout_constraintBottom_toTopOf="@+id/resettext"
+        app:layout_constraintHeight_percent="0.225"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHeight_percent="0.12"
-        app:layout_constraintTop_toBottomOf="@+id/savefile"
         app:layout_constraintWidth_percent="0.3" />
 
     <Button
@@ -75,7 +104,7 @@
         android:layout_marginTop="-5dp"
         android:layout_marginEnd="0dp"
         android:backgroundTint="@color/yellow"
-        android:text="draw\nwith\nbrush"
+        android:text="edit\ncanvas"
         android:textAllCaps="false"
         android:textColor="@color/redDark"
         app:layout_constraintHeight_percent="0.12"
@@ -87,7 +116,7 @@
         android:id="@+id/inputtext"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:hint=" Edit your 'text brush' here.\n\n Characters correspond to colors.\n\n Characters represent bristles in the brush."
+        android:hint=" edit your 'text brush' here\n\n keyboard characters represent colors\n\n characters represent bristles in the brush"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,4 +125,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="1" />
+
+    <ImageButton
+        android:id="@+id/canvas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/black"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon"
+        app:layout_constraintBottom_toTopOf="@id/viewcanvas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.385"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.7" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

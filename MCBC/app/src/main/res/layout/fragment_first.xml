@@ -6,17 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="-5dp"
+        android:background="@android:color/black"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/keyboard"
+        app:layout_constraintWidth_percent="0.4" />
+
     <Button
         android:id="@+id/loadimage"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="0dp"
         android:layout_marginBottom="-5dp"
         android:backgroundTint="@color/purpleDark"
-        android:text="load\nimage"
+        android:text="select\nimage as\ncanvas"
         android:textAllCaps="false"
         android:textColor="@color/greenLight"
         app:layout_constraintBottom_toTopOf="@+id/resetcanvas"
-        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHeight_percent="0.225"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.3" />
 
@@ -24,7 +43,7 @@
         android:id="@+id/resetcanvas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Canvas"
+        android:text="manage canvas"
         android:textAlignment="center"
         android:textColor="@color/teal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,20 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/restore"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="-11dp"
-        android:backgroundTint="@color/purple"
-        android:text="restore\nprevious\ndrawing"
-        android:textAllCaps="false"
-        android:textColor="@color/greenLight"
-        app:layout_constraintBottom_toTopOf="@+id/loadimage"
-        app:layout_constraintHeight_percent="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.3" />
 
     <Button
         android:id="@+id/pastebrush"
@@ -58,7 +63,7 @@
         android:text="paste\nbrush"
         android:textAllCaps="false"
         android:textColor="@color/orange"
-        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHeight_percent="0.14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/totextinput"
         app:layout_constraintWidth_percent="0.3" />
@@ -103,8 +108,9 @@
         android:paddingBottom="0dp"
         android:scaleType="centerInside"
         android:src="@drawable/color_keyboard_layout"
+        android:background="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintHeight_percent="0.12"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/drawing_view"
@@ -117,7 +123,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="-5dp"
         android:backgroundTint="@color/red"
-        android:text="save\nimage"
+        android:text="save\ncanvas"
         android:textAllCaps="false"
         android:textColor="@color/blueDark"
         app:layout_constraintStart_toStartOf="parent"
@@ -132,11 +138,11 @@
         android:layout_marginTop="-11dp"
         android:layout_marginStart="0dp"
         android:backgroundTint="@color/redDark"
-        android:text="save\nimages\nfor GIF"
+        android:text="save 50\ncanvases\nfor GIF"
         android:textAllCaps="false"
         android:textColor="@color/blueLight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHeight_percent="0.14"
         app:layout_constraintTop_toBottomOf="@+id/save"
         app:layout_constraintWidth_percent="0.3" />
 
@@ -144,12 +150,12 @@
         android:id="@+id/brush"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bristle Settings"
+        android:text="bristle settings"
         android:textAlignment="center"
         android:textColor="@color/teal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -158,16 +164,16 @@
         android:id="@+id/square"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="0dp"
         android:layout_marginBottom="-11dp"
         android:backgroundTint="@color/blueDark"
-        android:text="🟨"
+        android:text="🟧"
+        android:textSize="25dp"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@id/character"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintHorizontal_bias="0.623"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintWidth_percent="0.15" />
 
     <Button
         android:id="@+id/circle"
@@ -176,86 +182,81 @@
         android:layout_marginBottom="-11dp"
         android:backgroundTint="@color/blue"
         android:text="🟠"
+        android:textSize="25dp"
         android:textAllCaps="false"
         android:textColor="@color/yellow"
         app:layout_constraintBottom_toTopOf="@id/character"
         app:layout_constraintEnd_toStartOf="@id/square"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintWidth_percent="0.15" />
 
     <Button
         android:id="@+id/character"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="-5dp"
-        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
         android:backgroundTint="@color/blueLight"
-        android:text="character"
+        android:text="χαρακτήρες"
         android:textAllCaps="false"
         android:textColor="@color/yellowLight"
         app:layout_constraintBottom_toTopOf="@+id/brush"
-        app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.4" />
+        app:layout_constraintHeight_percent="0.085"
+        app:layout_constraintWidth_percent="0.3" />
 
     <Button
         android:id="@+id/stroke"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="-11dp"
-        android:layout_marginEnd="0dp"
         android:backgroundTint="@color/tealLight"
-        android:text="stroke"
+        android:text="✒️"
+        android:textSize="25dp"
         android:textAllCaps="false"
         android:textColor="@color/redLight"
         app:layout_constraintBottom_toTopOf="@+id/circle"
         app:layout_constraintEnd_toStartOf="@+id/fill"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintWidth_percent="0.15" />
 
     <Button
         android:id="@+id/fill"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="0dp"
         android:layout_marginBottom="-11dp"
         android:backgroundTint="@color/teal"
-        android:text="fill"
+        android:text="🖌️"
+        android:textSize="25dp"
         android:textAllCaps="false"
         android:textColor="@color/redDark"
         app:layout_constraintBottom_toTopOf="@+id/square"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.085"
-        app:layout_constraintHorizontal_bias="0.625"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintWidth_percent="0.15" />
 
     <NumberPicker
         android:id="@+id/brushSizePicker"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="-5dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="-12dp"
         android:backgroundTint="@color/yellowLight"
         android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@id/brushsize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.26"
-        app:layout_constraintWidth_percent="0.3" />
+        app:layout_constraintEnd_toStartOf="@+id/stroke"
+        app:layout_constraintHeight_percent="0.27"
+        app:layout_constraintWidth_percent="0.4" />
 
     <TextView
         android:id="@+id/brushsize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bristle Size"
+        android:text="  bristle size\n(pixel density)"
         android:textColor="@color/teal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />

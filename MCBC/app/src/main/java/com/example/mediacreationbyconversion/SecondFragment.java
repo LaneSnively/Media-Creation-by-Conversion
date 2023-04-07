@@ -161,7 +161,7 @@ public class SecondFragment extends Fragment {
         });
 
         binding.convertToText.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "drawing began converting to text", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "begin converting canvas to text", Toast.LENGTH_SHORT).show();
             if(bitmap != null) text = convertBitmapToString(bitmap);
             binding.inputtext.setText(text);
             storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
@@ -175,7 +175,7 @@ public class SecondFragment extends Fragment {
         });
 
         view.postDelayed(() -> {
-            if(bitmap != null) binding.canvas.setImageBitmap(bitmap);
+            if(bitmap != null && binding != null) binding.canvas.setImageBitmap(bitmap);
         }, 150);
     }
 

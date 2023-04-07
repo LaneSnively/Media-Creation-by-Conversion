@@ -176,7 +176,7 @@ public class SecondFragment extends Fragment {
 
         view.postDelayed(() -> {
             if(bitmap != null && binding != null) binding.canvas.setImageBitmap(bitmap);
-        }, 150);
+        }, 100);
     }
 
     private static final int READ_REQUEST_CODE = 42;

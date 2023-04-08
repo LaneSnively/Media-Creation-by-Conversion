@@ -32,16 +32,16 @@ import java.util.Map;
 import java.util.Objects;
 
 public class SecondFragment extends Fragment {
-    int color0 = Color.parseColor("#FFFFFF"); // Perfect White
-    int color1 = Color.parseColor("#E6E6E6"); // Light Gray
-    int color2 = Color.parseColor("#CCCCCC"); // Medium Light Gray
-    int color3 = Color.parseColor("#B3B3B3"); // Medium Gray
-    int color4 = Color.parseColor("#999999"); // Medium Dark Gray
-    int color5 = Color.parseColor("#808080"); // Dark Gray
-    int color6 = Color.parseColor("#666666"); // Charcoal
-    int color7 = Color.parseColor("#4D4D4D"); // Very Dark Gray
-    int color8 = Color.parseColor("#333333"); // Super Dark Gray
-    int color9 = Color.parseColor("#000000"); // Perfect Black
+    int color0 = Color.parseColor("#000000"); // Perfect Black
+    int color1 = Color.parseColor("#FFFFFF"); // Perfect White
+    int color2 = Color.parseColor("#E6E6E6"); // Light Gray
+    int color3 = Color.parseColor("#CCCCCC"); // Medium Light Gray
+    int color4 = Color.parseColor("#B3B3B3"); // Medium Gray
+    int color5 = Color.parseColor("#999999"); // Medium Dark Gray
+    int color6 = Color.parseColor("#808080"); // Dark Gray
+    int color7 = Color.parseColor("#666666"); // Charcoal
+    int color8 = Color.parseColor("#4D4D4D"); // Very Dark Gray
+    int color9 = Color.parseColor("#333333"); // Super Dark Gray
 
     int qLight = Color.parseColor("#F08080"); // Light Coral
     int qDark = Color.parseColor("#8B0000"); // Dark Red

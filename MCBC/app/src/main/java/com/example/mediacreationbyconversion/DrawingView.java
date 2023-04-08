@@ -408,7 +408,7 @@ public class DrawingView extends View {
     }
 
     public void drawCircle() {
-        canvas.drawCircle(canvasX - offsetX, canvasY - offsetY, brushSize / 2, paint);
+        canvas.drawCircle(canvasX - offsetX, canvasY - offsetY, (float) brushSize / 2, paint);
     }
 
     public void drawText(String s) {

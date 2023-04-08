@@ -19,51 +19,78 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class DrawingView extends View {
-    int white = Color.parseColor("#FFFFFF");
-    int whiteDark = Color.parseColor("#F2F2F2");
-    int whiteDarker = Color.parseColor("#D9D9D9");
+    int color0 = Color.parseColor("#FFFFFF"); // Perfect White
+    int color1 = Color.parseColor("#E6E6E6"); // Light Gray
+    int color2 = Color.parseColor("#CCCCCC"); // Medium Light Gray
+    int color3 = Color.parseColor("#B3B3B3"); // Medium Gray
+    int color4 = Color.parseColor("#999999"); // Medium Dark Gray
+    int color5 = Color.parseColor("#808080"); // Dark Gray
+    int color6 = Color.parseColor("#666666"); // Charcoal
+    int color7 = Color.parseColor("#4D4D4D"); // Very Dark Gray
+    int color8 = Color.parseColor("#333333"); // Super Dark Gray
+    int color9 = Color.parseColor("#000000"); // Perfect Black
 
-    int grayLighter = Color.parseColor("#BFBFBF");
-    int grayLight = Color.parseColor("#A6A6A6");
-    int gray = Color.parseColor("#8C8C8C");
-    int grayDark = Color.parseColor("#737373");
-    int grayDarker = Color.parseColor("#595959");
+    int qLight = Color.parseColor("#F08080"); // Light Coral
+    int qDark = Color.parseColor("#8B0000"); // Dark Red
+    int wLight = Color.parseColor("#87CEFA"); // Light Sky Blue
+    int wDark = Color.parseColor("#00008B"); // Dark Blue
+    int eLight = Color.parseColor("#98FB98"); // Pale Green
+    int eDark = Color.parseColor("#006400"); // Dark Green
+    int rLight = Color.parseColor("#FFB6C1"); // Light Pink
+    int rDark = Color.parseColor("#8B008B"); // Dark Magenta
+    int tLight = Color.parseColor("#AFEEEE"); // Pale Turquoise
+    int tDark = Color.parseColor("#008B8B"); // Dark Cyan
+    int yLight = Color.parseColor("#FFFACD"); // Lemon Chiffon
+    int yDark = Color.parseColor("#6B8E23"); // Olive Drab
+    int uLight = Color.parseColor("#E6E6FA"); // Lavender
+    int uDark = Color.parseColor("#4B0082"); // Indigo
+    int iLight = Color.parseColor("#DB7093"); // Pale Violet Red
+    int iDark = Color.parseColor("#B22222"); // Firebrick
+    int oLight = Color.parseColor("#EEE8AA"); // Pale Goldenrod
+    int oDark = Color.parseColor("#B8860B"); // Dark Goldenrod
+    int pLight = Color.parseColor("#D8BFD8"); // Thistle
+    int pDark = Color.parseColor("#BA55D3"); // Medium Orchid
 
-    int blackLight = Color.parseColor("#404040");
-    int black = Color.parseColor("#000000");
+    int aLight = Color.parseColor("#FFA07A"); // Light Salmon
+    int aDark = Color.parseColor("#E9967A"); // Dark Salmon
+    int sLight = Color.parseColor("#ADD8E6"); // Light Blue
+    int sDark = Color.parseColor("#191970"); // Midnight Blue
+    int dLight = Color.parseColor("#98FB98"); // Pale Green
+    int dDark = Color.parseColor("#006400"); // Dark Green
+    int fLight = Color.parseColor("#F5DEB3"); // Wheat
+    int fDark = Color.parseColor("#A0522D"); // Sienna
+    int gLight = Color.parseColor("#AFEEEE"); // Pale Turquoise
+    int gDark = Color.parseColor("#008B8B"); // Dark Cyan
+    int hLight = Color.parseColor("#DB7093"); // Pale Violet Red
+    int hDark = Color.parseColor("#B22222"); // Firebrick
+    int jLight = Color.parseColor("#E6E6FA"); // Lavender
+    int jDark = Color.parseColor("#4B0082"); // Indigo
+    int kLight = Color.parseColor("#FFFACD"); // Lemon Chiffon
+    int kDark = Color.parseColor("#6B8E23"); // Olive Drab
+    int lLight = Color.parseColor("#D8BFD8"); // Thistle
+    int lDark = Color.parseColor("#BA55D3"); // Medium Orchid
 
-    int pink = Color.parseColor("#FF69B4");
-    int pinkDark = Color.parseColor("#FF1493");
+    int zLight = Color.parseColor("#EEE8AA"); // Pale Goldenrod
+    int zDark = Color.parseColor("#B8860B"); // Dark Goldenrod
+    int xLight = Color.parseColor("#FFB6C1"); // Light Pink
+    int xDark = Color.parseColor("#8B008B"); // Dark Magenta
+    int cLight = Color.parseColor("#ADD8E6"); // Light Blue
+    int cDark = Color.parseColor("#191970"); // Midnight Blue
+    int vLight = Color.parseColor("#F08080"); // Light Coral
+    int vDark = Color.parseColor("#8B0000"); // Dark Red
+    int bLight = Color.parseColor("#F5DEB3"); // Wheat
+    int bDark = Color.parseColor("#A0522D"); // Sienna
+    int nLight = Color.parseColor("#98FB98"); // Pale Green
+    int nDark = Color.parseColor("#006400"); // Dark Green
+    int mLight = Color.parseColor("#E6E6FA"); // Lavender
+    int mDark = Color.parseColor("#4B0082"); // Indigo
 
-    int purpleLight = Color.parseColor("#EE82EE");
-    int purple = Color.parseColor("#9932CC");
-    int purpleDark = Color.parseColor("#800080");
-
-    int redLight = Color.parseColor("#FFA07A");
-    int red = Color.parseColor("#FF0000");
-    int redDark = Color.parseColor("#800000");
-
-    int orange = Color.parseColor("#FFA500");
-    int orangeDark = Color.parseColor("#FF4500");
-
-    int brownLight = Color.parseColor("#FFD180");
-    int brown = Color.parseColor("#FF9100");
-    int brownDark = Color.parseColor("#DD2C00");
-
-    int yellow = Color.parseColor("#FFFF00");
-    int yellowDark = Color.parseColor("#CCCC00");
-
-    int greenLight = Color.parseColor("#98FB98");
-    int greenDark = Color.parseColor("#556B2F");
-
-    int teal = Color.parseColor("#00CED1");
-    int tealDark = Color.parseColor("#008080");
-
-    int blue = Color.parseColor("#0000FF");
-    int blueDark = Color.parseColor("#00008B");
+    int comma = Color.parseColor("#FFFACD"); // Lemon Chiffon
+    int period = Color.parseColor("#DB7093"); // Pale Violet Red
 
     public Map<Integer, Character> keyMap = new HashMap<Integer, Character>() {{
         put(KeyEvent.KEYCODE_0, '0');
@@ -106,46 +133,78 @@ public class DrawingView extends View {
 
         put(KeyEvent.KEYCODE_ENTER, '\n');
         put(KeyEvent.KEYCODE_SPACE, ' ');
+        put(KeyEvent.KEYCODE_PERIOD, '.');
+        put(KeyEvent.KEYCODE_COMMA, ',');
     }};
 
     public Map<Character, Integer> colorMap = new HashMap<Character, Integer>(){{
-        put('1', white);
-        put('2', whiteDark);
-        put('3', whiteDarker);
-        put('4', grayLighter);
-        put('5', grayLight);
-        put('6', gray);
-        put('7', grayDark);
-        put('8', grayDarker);
-        put('9', blackLight);
-        put('0', black);
+        put('0', color0);
+        put('1', color1);
+        put('2', color2);
+        put('3', color3);
+        put('4', color4);
+        put('5', color5);
+        put('6', color6);
+        put('7', color7);
+        put('8', color8);
+        put('9', color9);
 
-        put('a', pink);
-        put('b', brown);
-        put('c', blue);
-        put('d', red);
-        put('e', purpleDark);
-        put('f', orange);
-        put('g', brownLight);
-        put('h', yellow);
-        put('i', greenDark);
-        put('j', teal);
-        put('k', tealDark);
-        put('l', blueDark);
-        put('m', yellowDark);
-        put('n', greenLight);
-        put('o', tealDark);
-        put('p', blueDark);
-        put('q', grayDark);
-        put('r', redDark);
-        put('s', purple);
-        put('t', orangeDark);
-        put('u', yellowDark);
-        put('v', greenLight);
-        put('w', pinkDark);
-        put('x', redLight);
-        put('y', brownDark);
-        put('z', purpleLight);
+        put('a', aLight);
+        put('b', bLight);
+        put('c', cLight);
+        put('d', dLight);
+        put('e', eLight);
+        put('f', fLight);
+        put('g', gLight);
+        put('h', hLight);
+        put('i', iLight);
+        put('j', jLight);
+        put('k', kLight);
+        put('l', lLight);
+        put('m', mLight);
+        put('n', nLight);
+        put('o', oLight);
+        put('p', pLight);
+        put('q', qLight);
+        put('r', rLight);
+        put('s', sLight);
+        put('t', tLight);
+        put('u', uLight);
+        put('v', vLight);
+        put('w', wLight);
+        put('x', xLight);
+        put('y', yLight);
+        put('z', zLight);
+
+        put('A', aDark);
+        put('B', bDark);
+        put('C', cDark);
+        put('D', dDark);
+        put('E', eDark);
+        put('F', fDark);
+        put('G', gDark);
+        put('H', hDark);
+        put('I', iDark);
+        put('J', jDark);
+        put('K', kDark);
+        put('L', lDark);
+        put('M', mDark);
+        put('N', nDark);
+        put('O', oDark);
+        put('P', pDark);
+        put('Q', qDark);
+        put('R', rDark);
+        put('S', sDark);
+        put('T', tDark);
+        put('U', uDark);
+        put('V', vDark);
+        put('W', wDark);
+        put('X', xDark);
+        put('Y', yDark);
+        put('Z', zDark);
+
+        put(',', comma);
+        put('.', period);
     }};
 
     public Paint paint;
@@ -158,7 +217,8 @@ public class DrawingView extends View {
     public float canvasY = 0; //canvas brush vertical location
     public float offsetX = 0;
     public float offsetY = 0;
-    public int canvasColor = black;
+    public int canvasColor = color9;
+    public boolean shift = false;
 
     public DrawingView(Context context) {
         super(context);
@@ -184,7 +244,7 @@ public class DrawingView extends View {
     private void init() {
         paint = new Paint();
         paint.setStrokeWidth(5);
-        paint.setColor(black);
+        paint.setColor(color9);
         paint.setStyle(Paint.Style.FILL);
     }
 
@@ -233,6 +293,23 @@ public class DrawingView extends View {
         this.canvasColor = canvasColor;
     }
 
+    public void clearDrawingView() {
+        bitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        canvas = new Canvas(bitmap);
+        canvas.drawColor(paint.getColor());
+        history.clear();
+        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
+        canvasX = 0;
+        canvasY = 0;
+        int bitmapWidth = bitmap.getWidth();
+        int bitmapHeight = bitmap.getHeight();
+        int viewWidth = getWidth();
+        int viewHeight = getHeight();
+        offsetX = (float) (viewWidth - bitmapWidth) / 2;
+        offsetY = (float) (viewHeight - bitmapHeight) / 2;
+        canvas.drawBitmap(bitmap, offsetX, offsetY, paint);
+    }
+
     public void backspace() {
         if (history.isEmpty()) {
             history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
@@ -251,7 +328,7 @@ public class DrawingView extends View {
 
     public void addHistory() {
         history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
-        int historySize = 400;
+        int historySize = 333;
         if (history.size() > historySize)
             history.remove((int) (Math.random() * history.size()));
     }
@@ -345,7 +422,10 @@ public class DrawingView extends View {
         for (int i = 0; i < s.length(); i++) {
             c = s.charAt(i);
 
-            if(colorMap.containsKey(c)) paint.setColor(colorMap.get(c));
+            if(colorMap.containsKey(c)) {
+                if(shift) paint.setColor(colorMap.get(c.toString().toUpperCase().toCharArray()[0]));
+                else paint.setColor(colorMap.get(c));
+            }
 
             if(c.equals('\n')){
                 if (addHistory) {

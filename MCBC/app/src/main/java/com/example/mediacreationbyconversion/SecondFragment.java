@@ -32,87 +32,143 @@ import java.util.Map;
 import java.util.Objects;
 
 public class SecondFragment extends Fragment {
-    int white = Color.parseColor("#FFFFFF");
-    int whiteDark = Color.parseColor("#F2F2F2");
-    int whiteDarker = Color.parseColor("#D9D9D9");
+    int color0 = Color.parseColor("#FFFFFF"); // Perfect White
+    int color1 = Color.parseColor("#E6E6E6"); // Light Gray
+    int color2 = Color.parseColor("#CCCCCC"); // Medium Light Gray
+    int color3 = Color.parseColor("#B3B3B3"); // Medium Gray
+    int color4 = Color.parseColor("#999999"); // Medium Dark Gray
+    int color5 = Color.parseColor("#808080"); // Dark Gray
+    int color6 = Color.parseColor("#666666"); // Charcoal
+    int color7 = Color.parseColor("#4D4D4D"); // Very Dark Gray
+    int color8 = Color.parseColor("#333333"); // Super Dark Gray
+    int color9 = Color.parseColor("#000000"); // Perfect Black
 
-    int grayLighter = Color.parseColor("#BFBFBF");
-    int grayLight = Color.parseColor("#A6A6A6");
-    int gray = Color.parseColor("#8C8C8C");
-    int grayDark = Color.parseColor("#737373");
-    int grayDarker = Color.parseColor("#595959");
+    int qLight = Color.parseColor("#F08080"); // Light Coral
+    int qDark = Color.parseColor("#8B0000"); // Dark Red
+    int wLight = Color.parseColor("#87CEFA"); // Light Sky Blue
+    int wDark = Color.parseColor("#00008B"); // Dark Blue
+    int eLight = Color.parseColor("#98FB98"); // Pale Green
+    int eDark = Color.parseColor("#006400"); // Dark Green
+    int rLight = Color.parseColor("#FFB6C1"); // Light Pink
+    int rDark = Color.parseColor("#8B008B"); // Dark Magenta
+    int tLight = Color.parseColor("#AFEEEE"); // Pale Turquoise
+    int tDark = Color.parseColor("#008B8B"); // Dark Cyan
+    int yLight = Color.parseColor("#FFFACD"); // Lemon Chiffon
+    int yDark = Color.parseColor("#6B8E23"); // Olive Drab
+    int uLight = Color.parseColor("#E6E6FA"); // Lavender
+    int uDark = Color.parseColor("#4B0082"); // Indigo
+    int iLight = Color.parseColor("#DB7093"); // Pale Violet Red
+    int iDark = Color.parseColor("#B22222"); // Firebrick
+    int oLight = Color.parseColor("#EEE8AA"); // Pale Goldenrod
+    int oDark = Color.parseColor("#B8860B"); // Dark Goldenrod
+    int pLight = Color.parseColor("#D8BFD8"); // Thistle
+    int pDark = Color.parseColor("#BA55D3"); // Medium Orchid
 
-    int blackLight = Color.parseColor("#404040");
-    int black = Color.parseColor("#000000");
+    int aLight = Color.parseColor("#FFA07A"); // Light Salmon
+    int aDark = Color.parseColor("#E9967A"); // Dark Salmon
+    int sLight = Color.parseColor("#ADD8E6"); // Light Blue
+    int sDark = Color.parseColor("#191970"); // Midnight Blue
+    int dLight = Color.parseColor("#98FB98"); // Pale Green
+    int dDark = Color.parseColor("#006400"); // Dark Green
+    int fLight = Color.parseColor("#F5DEB3"); // Wheat
+    int fDark = Color.parseColor("#A0522D"); // Sienna
+    int gLight = Color.parseColor("#AFEEEE"); // Pale Turquoise
+    int gDark = Color.parseColor("#008B8B"); // Dark Cyan
+    int hLight = Color.parseColor("#DB7093"); // Pale Violet Red
+    int hDark = Color.parseColor("#B22222"); // Firebrick
+    int jLight = Color.parseColor("#E6E6FA"); // Lavender
+    int jDark = Color.parseColor("#4B0082"); // Indigo
+    int kLight = Color.parseColor("#FFFACD"); // Lemon Chiffon
+    int kDark = Color.parseColor("#6B8E23"); // Olive Drab
+    int lLight = Color.parseColor("#D8BFD8"); // Thistle
+    int lDark = Color.parseColor("#BA55D3"); // Medium Orchid
 
-    int pink = Color.parseColor("#FF69B4");
-    int pinkDark = Color.parseColor("#FF1493");
+    int zLight = Color.parseColor("#EEE8AA"); // Pale Goldenrod
+    int zDark = Color.parseColor("#B8860B"); // Dark Goldenrod
+    int xLight = Color.parseColor("#FFB6C1"); // Light Pink
+    int xDark = Color.parseColor("#8B008B"); // Dark Magenta
+    int cLight = Color.parseColor("#ADD8E6"); // Light Blue
+    int cDark = Color.parseColor("#191970"); // Midnight Blue
+    int vLight = Color.parseColor("#F08080"); // Light Coral
+    int vDark = Color.parseColor("#8B0000"); // Dark Red
+    int bLight = Color.parseColor("#F5DEB3"); // Wheat
+    int bDark = Color.parseColor("#A0522D"); // Sienna
+    int nLight = Color.parseColor("#98FB98"); // Pale Green
+    int nDark = Color.parseColor("#006400"); // Dark Green
+    int mLight = Color.parseColor("#E6E6FA"); // Lavender
+    int mDark = Color.parseColor("#4B0082"); // Indigo
 
-    int purpleLight = Color.parseColor("#EE82EE");
-    int purple = Color.parseColor("#9932CC");
-    int purpleDark = Color.parseColor("#800080");
+    int comma = Color.parseColor("#FFFACD"); // Lemon Chiffon
+    int period = Color.parseColor("#DB7093"); // Pale Violet Red
 
-    int redLight = Color.parseColor("#FFA07A");
-    int red = Color.parseColor("#FF0000");
-    int redDark = Color.parseColor("#800000");
+    public Map<Integer, Character> reversedColorMap = new HashMap<Integer, Character>() {{
+        put(color0, '0');
+        put(color1, '1');
+        put(color2, '2');
+        put(color3, '3');
+        put(color4, '4');
+        put(color5, '5');
+        put(color6, '6');
+        put(color7, '7');
+        put(color8, '8');
+        put(color9, '9');
 
-    int orange = Color.parseColor("#FFA500");
-    int orangeDark = Color.parseColor("#FF4500");
+        put(aLight, 'a');
+        put(bLight, 'b');
+        put(cLight, 'c');
+        put(dLight, 'd');
+        put(eLight, 'e');
+        put(fLight, 'f');
+        put(gLight, 'g');
+        put(hLight, 'h');
+        put(iLight, 'i');
+        put(jLight, 'j');
+        put(kLight, 'k');
+        put(lLight, 'l');
+        put(mLight, 'm');
+        put(nLight, 'n');
+        put(oLight, 'o');
+        put(pLight, 'p');
+        put(qLight, 'q');
+        put(rLight, 'r');
+        put(sLight, 's');
+        put(tLight, 't');
+        put(uLight, 'u');
+        put(vLight, 'v');
+        put(wLight, 'w');
+        put(xLight, 'x');
+        put(yLight, 'y');
+        put(zLight, 'z');
 
-    int brownLight = Color.parseColor("#FFD180");
-    int brown = Color.parseColor("#FF9100");
-    int brownDark = Color.parseColor("#DD2C00");
+        put(aDark, 'A');
+        put(bDark, 'B');
+        put(cDark, 'C');
+        put(dDark, 'D');
+        put(eDark, 'E');
+        put(fDark, 'F');
+        put(gDark, 'G');
+        put(hDark, 'H');
+        put(iDark, 'I');
+        put(jDark, 'J');
+        put(kDark, 'K');
+        put(lDark, 'L');
+        put(mDark, 'M');
+        put(nDark, 'N');
+        put(oDark, 'O');
+        put(pDark, 'P');
+        put(qDark, 'Q');
+        put(rDark, 'R');
+        put(sDark, 'S');
+        put(tDark, 'T');
+        put(uDark, 'U');
+        put(vDark, 'V');
+        put(wDark, 'W');
+        put(xDark, 'X');
+        put(yDark, 'Y');
+        put(zDark, 'Z');
 
-    int yellow = Color.parseColor("#FFFF00");
-    int yellowDark = Color.parseColor("#CCCC00");
-
-    int greenLight = Color.parseColor("#98FB98");
-    int greenDark = Color.parseColor("#556B2F");
-
-    int teal = Color.parseColor("#00CED1");
-    int tealDark = Color.parseColor("#008080");
-
-    int blue = Color.parseColor("#0000FF");
-    int blueDark = Color.parseColor("#00008B");
-
-    public Map<Integer, Character> colorMap = new HashMap<Integer, Character>(){{
-        put(white, '1');
-        put(whiteDark, '2');
-        put(whiteDarker, '3');
-        put(grayLighter, '4');
-        put(grayLight, '5');
-        put(gray, '6');
-        put(grayDark, '7');
-        put(grayDarker, '8');
-        put(blackLight, '9');
-        put(black, '0');
-
-        put(pink, 'a');
-        put(brown, 'b');
-        put(blue, 'c');
-        put(red, 'd');
-        put(purpleDark, 'e');
-        put(orange, 'f');
-        put(brownLight, 'g');
-        put(yellow, 'h');
-        put(greenDark, 'i');
-        put(teal, 'j');
-        put(tealDark, 'k');
-        put(blueDark, 'l');
-        put(yellowDark, 'm');
-        put(greenLight, 'n');
-        put(tealDark, 'o');
-        put(blueDark, 'p');
-        put(grayDark, 'q');
-        put(redDark, 'r');
-        put(purple, 's');
-        put(orangeDark, 't');
-        put(yellowDark, 'u');
-        put(greenLight, 'v');
-        put(pinkDark, 'w');
-        put(redLight, 'x');
-        put(brownDark, 'y');
-        put(purpleLight, 'z');
+        put(comma, ',');
+        put(period, '.');
     }};
 
     private FragmentSecondBinding binding;
@@ -151,7 +207,7 @@ public class SecondFragment extends Fragment {
             imm.showSoftInput(binding.inputtext, InputMethodManager.SHOW_IMPLICIT);
         });
 
-        binding.tokeyboardinput.setOnClickListener(view1 -> {
+        binding.tokeyboardinput.setOnClickListener(v -> {
             if (binding.inputtext.getText() != null)
                 text = Objects.requireNonNull(binding.inputtext.getText()).toString();
             if (!text.equals(""))
@@ -164,7 +220,12 @@ public class SecondFragment extends Fragment {
             Toast.makeText(getContext(), "begin converting canvas to text", Toast.LENGTH_SHORT).show();
             if(bitmap != null) text = convertBitmapToString(bitmap);
             binding.inputtext.setText(text);
-            storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
+        });
+
+        binding.cleartext.setOnClickListener(v -> {
+            text = "";
+            storeText(text);
+            binding.inputtext.setText(null);
         });
 
         binding.selectfile.setOnClickListener(v -> readFile());
@@ -176,7 +237,7 @@ public class SecondFragment extends Fragment {
 
         view.postDelayed(() -> {
             if(bitmap != null && binding != null) binding.canvas.setImageBitmap(bitmap);
-        }, 100);
+        }, 10);
     }
 
     private static final int READ_REQUEST_CODE = 42;
@@ -206,14 +267,14 @@ public class SecondFragment extends Fragment {
             try {
                 uri = resultData.getData();
                 binding.inputtext.setText(readTextFromUri(uri));
-                storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
+                text = binding.inputtext.getText().toString();
+                storeText(text);
                 binding.inputtext.invalidate();
             } catch (Exception e) {
             }
         } else if (requestCode == CREATE_FILE) {
             try {
                 uri = resultData.getData();
-                storeText(Objects.requireNonNull(binding.inputtext.getText()).toString());
                 alterDocument(uri);
             } catch (Exception e) {
             }
@@ -261,7 +322,7 @@ public class SecondFragment extends Fragment {
             for (int x = 0; x < b.getWidth(); x++) {
                 int pixelColor = b.getPixel(x, y);
                 int closestColor = findClosestColor(pixelColor);
-                char character = colorMap.get(closestColor);
+                char character = reversedColorMap.get(closestColor);
                 result.append(character);
             }
             result.append('\n');
@@ -273,7 +334,7 @@ public class SecondFragment extends Fragment {
     private int findClosestColor(int pixelColor) {
         int minDistance = Integer.MAX_VALUE;
         int closestColor = 0;
-        for (Map.Entry<Integer, Character> entry : colorMap.entrySet()) {
+        for (Map.Entry<Integer, Character> entry : reversedColorMap.entrySet()) {
             int distance = colorDistance(pixelColor, entry.getKey());
             if (distance < minDistance) {
                 minDistance = distance;

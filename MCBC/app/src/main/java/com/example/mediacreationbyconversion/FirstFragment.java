@@ -122,14 +122,14 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.totextinput.setOnClickListener(view15 -> {
+        binding.totextinput.setOnClickListener(v -> {
             updateDrawingViewModel();
             NavHostFragment
                     .findNavController(FirstFragment.this)
                     .navigate(R.id.action_FirstFragment_to_SecondFragment);
         });
 
-        binding.save.setOnClickListener(view16 -> {
+        binding.save.setOnClickListener(v -> {
             binding.drawingView.save(binding.drawingView.bitmap);
             Toast.makeText(getContext(), "image saved", Toast.LENGTH_SHORT).show();
         });
@@ -143,8 +143,8 @@ public class FirstFragment extends Fragment {
 
         binding.loadimage.setOnClickListener(v -> selectImage());
 
-        binding.restore.setOnClickListener(v -> {
-            if (bitmap != null) restoreDrawing();
+        binding.clearcanvas.setOnClickListener(v -> {
+            binding.drawingView.clearDrawingView();
             binding.drawingView.invalidate();
         });
 
@@ -170,17 +170,17 @@ public class FirstFragment extends Fragment {
             Toast.makeText(getContext(), "Fill Bristle", Toast.LENGTH_SHORT).show();
         });
 
-        binding.square.setOnClickListener(view14 -> {
+        binding.square.setOnClickListener(v -> {
             binding.drawingView.brushShape = "square";
             Toast.makeText(getContext(), "Square Bristle", Toast.LENGTH_SHORT).show();
         });
 
-        binding.circle.setOnClickListener(view14 -> {
+        binding.circle.setOnClickListener(v -> {
             binding.drawingView.brushShape = "circle";
             Toast.makeText(getContext(), "Circle Bristle", Toast.LENGTH_SHORT).show();
         });
 
-        binding.character.setOnClickListener(view14 -> {
+        binding.character.setOnClickListener(v -> {
             binding.drawingView.brushShape = "character";
             Toast.makeText(getContext(), "Character Bristle", Toast.LENGTH_SHORT).show();
         });
@@ -209,6 +209,8 @@ public class FirstFragment extends Fragment {
 
         binding.drawingView.requestFocus();
         binding.drawingView.setOnKeyListener((v, keyCode, event) -> {
+            if(event.isShiftPressed()) binding.drawingView.shift = true;
+            else binding.drawingView.shift = false;
             if (event.getAction() == KeyEvent.ACTION_DOWN) {
                 if (keyCode == KeyEvent.KEYCODE_DEL) {
                     binding.drawingView.backspace();
@@ -223,6 +225,19 @@ public class FirstFragment extends Fragment {
             }
             return false;
         });
+
+        view.postDelayed(() -> {
+            if(binding != null) {
+                if (bitmap != null) {
+                    restoreDrawing();
+                    binding.drawingView.invalidate();
+                }
+                if(!text.equals("")){
+                    binding.textbrushview.setText(text);
+                    binding.textbrushview.invalidate();
+                }
+            }
+        }, 10);
     }
 
     private static final int REQUEST_CODE = 1;
@@ -267,7 +282,6 @@ public class FirstFragment extends Fragment {
 
     public void convertText(String s, boolean addHistory) {
         binding.drawingView.convertText(s, addHistory);
-        updateDrawingViewModel();
         binding.drawingView.invalidate();
     }
 

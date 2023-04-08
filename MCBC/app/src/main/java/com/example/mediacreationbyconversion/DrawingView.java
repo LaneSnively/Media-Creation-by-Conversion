@@ -217,7 +217,7 @@ public class DrawingView extends View {
     public float canvasY = 0; //canvas brush vertical location
     public float offsetX = 0;
     public float offsetY = 0;
-    public int canvasColor = color9;
+    public int canvasColor = color0;
     public boolean shift = false;
 
     public DrawingView(Context context) {
@@ -244,7 +244,7 @@ public class DrawingView extends View {
     private void init() {
         paint = new Paint();
         paint.setStrokeWidth(5);
-        paint.setColor(color9);
+        paint.setColor(color0);
         paint.setStyle(Paint.Style.FILL);
     }
 

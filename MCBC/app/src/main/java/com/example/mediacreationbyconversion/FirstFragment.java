@@ -137,7 +137,7 @@ public class FirstFragment extends Fragment {
         binding.saveEvery.setOnClickListener(v -> {
             int count = binding.drawingView.saveEvery();
             Toast.makeText(getContext(),
-                    "Saved " + count + " images for a GIF",
+                    "saved " + count + " images for a GIF",
                     Toast.LENGTH_SHORT).show();
         });
 
@@ -162,27 +162,27 @@ public class FirstFragment extends Fragment {
         binding.stroke.setOnClickListener(v -> {
             binding.drawingView.paint.setStyle(Paint.Style.STROKE);
             binding.drawingView.paint.setStrokeWidth(1);
-            Toast.makeText(getContext(), "Stroke Bristle", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "stroke bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.fill.setOnClickListener(v -> {
             binding.drawingView.paint.setStyle(Paint.Style.FILL);
-            Toast.makeText(getContext(), "Fill Bristle", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "fill bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.square.setOnClickListener(v -> {
             binding.drawingView.brushShape = "square";
-            Toast.makeText(getContext(), "Square Bristle", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "square bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.circle.setOnClickListener(v -> {
             binding.drawingView.brushShape = "circle";
-            Toast.makeText(getContext(), "Circle Bristle", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "circle bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.character.setOnClickListener(v -> {
             binding.drawingView.brushShape = "character";
-            Toast.makeText(getContext(), "Character Bristle", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "character bristle", Toast.LENGTH_SHORT).show();
         });
 
         binding.keyboard.setOnClickListener(v -> {
@@ -195,7 +195,7 @@ public class FirstFragment extends Fragment {
         binding.pastebrush.setOnClickListener(v -> {
             binding.drawingView.canvasX = 0;
             binding.drawingView.canvasY = 0;
-            Toast.makeText(getContext(), "brush pasted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "pasting large text brushes can take a while", Toast.LENGTH_LONG).show();
             convertText(text, false);
         });
 
@@ -233,6 +233,7 @@ public class FirstFragment extends Fragment {
                     binding.drawingView.invalidate();
                 }
                 if(!text.equals("")){
+                    Toast.makeText(getContext(), "loading large text brushes can take a while", Toast.LENGTH_LONG).show();
                     binding.textbrushview.setText(text);
                     binding.textbrushview.invalidate();
                 }

@@ -217,7 +217,7 @@ public class SecondFragment extends Fragment {
         });
 
         binding.convertToText.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "begin converting canvas to text", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "began converting canvas pixels to text brush", Toast.LENGTH_LONG).show();
             if(bitmap != null) text = convertBitmapToString(bitmap);
             binding.inputtext.setText(text);
         });

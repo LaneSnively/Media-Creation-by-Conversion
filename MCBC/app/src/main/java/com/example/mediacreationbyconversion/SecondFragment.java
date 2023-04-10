@@ -237,6 +237,7 @@ public class SecondFragment extends Fragment {
 
         view.postDelayed(() -> {
             if(bitmap != null && binding != null) binding.canvas.setImageBitmap(bitmap);
+            if(!text.equals("") && binding != null) binding.inputtext.setText(text);
         }, 10);
     }
 

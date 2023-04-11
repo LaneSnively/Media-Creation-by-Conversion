@@ -416,18 +416,49 @@ public class DrawingView extends View {
         canvas.drawText(s, canvasX - offsetX, canvasY - offsetY, paint);
     }
 
-    public void convertText(String s, boolean addHistory) {
+    public int convertText(String s, boolean addHistory) {
         int lineLength = 0;
         Character c;
+        boolean isPixelatedImage = s.length() > 5000;
+        int imageBrushSize = brushSize;
         for (int i = 0; i < s.length(); i++) {
             c = s.charAt(i);
 
             if(colorMap.containsKey(c)) {
-                if(shift) paint.setColor(colorMap.get(c.toString().toUpperCase().toCharArray()[0]));
-                else paint.setColor(colorMap.get(c));
+                if(isPixelatedImage) {
+                    brushSize = 1;
+                    int w;
+                    for(w = 0; w < imageBrushSize; w++){
+                        if(i + w < s.length()){
+                            c = s.charAt(i + w);
+                            if(c.equals('\n')) break;
+                        } else {
+                            return 1;
+                        }
+                    }
+                    if (w > 0) i+= w-1;
+                    if(colorMap.containsKey(c)){
+                        if(shift) paint.setColor(colorMap.get(c.toString().toUpperCase().toCharArray()[0]));
+                        else paint.setColor(colorMap.get(c));
+                    }
+                } else{
+                    if(shift) paint.setColor(colorMap.get(c.toString().toUpperCase().toCharArray()[0]));
+                    else paint.setColor(colorMap.get(c));
+                }
             }
 
             if(c.equals('\n')){
+                if(isPixelatedImage){
+                    int skippedLines = 0;
+                    for(int skipOffset = 0; skipOffset + i < s.length(); skipOffset++){
+                        c = s.charAt(skipOffset + i);
+                        if(c.equals('\n')) skippedLines++;
+                        if(skippedLines >= imageBrushSize) {
+                            i += skipOffset;
+                            break;
+                        }
+                    }
+                }
                 if (addHistory) {
                     if (canvasY < canvas.getHeight() - brushSize) {
                         canvasY += brushSize; //move brush down
@@ -482,5 +513,7 @@ public class DrawingView extends View {
             if (addHistory) addHistory();
         }
         if (!addHistory) addHistory();
+        brushSize = imageBrushSize;
+        return 1;
     }
 }

@@ -195,7 +195,10 @@ public class FirstFragment extends Fragment {
         binding.pastebrush.setOnClickListener(v -> {
             binding.drawingView.canvasX = 0;
             binding.drawingView.canvasY = 0;
-            Toast.makeText(getContext(), "pasting large text brushes can take a while", Toast.LENGTH_LONG).show();
+            if(text.length() > 5000)
+                Toast.makeText(getContext(),
+                        "pasting large text brushes can take a while",
+                        Toast.LENGTH_LONG).show();
             convertText(text, false);
         });
 
@@ -232,15 +235,14 @@ public class FirstFragment extends Fragment {
                     restoreDrawing();
                     binding.drawingView.invalidate();
                 }
-                if(text.length() > 5000)
-                    Toast.makeText(getContext(),
-                            "loading large text brushes can take a while",
-                            Toast.LENGTH_LONG).show();
                 if(!text.equals("")){
                     binding.textbrushview.setText(text);
                     binding.textbrushview.invalidate();
                 }
                 if(text.length() > 5000){
+                    Toast.makeText(getContext(),
+                            "loading large text brushes can take a while",
+                            Toast.LENGTH_LONG).show();
                     binding.brushSizePicker.setMinValue(1);
                     binding.brushSizePicker.setMaxValue(50);
                     binding.brushSizePicker.setValue(1);

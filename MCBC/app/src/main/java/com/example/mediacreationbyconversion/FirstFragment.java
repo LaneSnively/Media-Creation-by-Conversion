@@ -235,10 +235,6 @@ public class FirstFragment extends Fragment {
                     restoreDrawing();
                     binding.drawingView.invalidate();
                 }
-                if(!text.equals("")){
-                    binding.textbrushview.setText(text);
-                    binding.textbrushview.invalidate();
-                }
                 if(text.length() > 5000){
                     Toast.makeText(getContext(),
                             "loading large text brushes can take a while",
@@ -250,6 +246,10 @@ public class FirstFragment extends Fragment {
                     binding.brushSizePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
                         binding.drawingView.brushSize = newVal;
                     });
+                }
+                if(!text.equals("")){
+                    binding.textbrushview.setText(text);
+                    binding.textbrushview.invalidate();
                 }
             }
         }, 10);

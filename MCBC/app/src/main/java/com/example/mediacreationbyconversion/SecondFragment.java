@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +24,13 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.mediacreationbyconversion.databinding.FragmentSecondBinding;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -231,7 +235,7 @@ public class SecondFragment extends Fragment {
         binding.selectfile.setOnClickListener(v -> readFile());
 
         binding.savefile.setOnClickListener(v -> {
-            createFile();
+            save(text);
             Toast.makeText(getContext(), "saved brush", Toast.LENGTH_SHORT).show();
         });
 
@@ -249,6 +253,31 @@ public class SecondFragment extends Fragment {
         }, 10);
     }
 
+    public void save(String t) {
+        File dir = new File(Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
+                "ChromaticTypewriter");
+        if (!dir.exists()) dir.mkdirs();
+        File file = new File(dir, "TextBrush.txt");
+        boolean newFile = false;
+        long num = 1;
+        while (!newFile) {
+            if (file.exists()) {
+                file = new File(dir, "TextBrush" + num + ".txt");
+                num++;
+            } else newFile = true;
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(t.getBytes(StandardCharsets.UTF_8));
+            fos.close();
+            MediaScannerConnection.scanFile(getContext(), new String[]{file.toString()},
+                    null, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static final int READ_REQUEST_CODE = 42;
 
     public void readFile() {
@@ -257,36 +286,22 @@ public class SecondFragment extends Fragment {
         intent.setType("text/plain"); // Only show text files in the file picker
         startActivityForResult(intent, READ_REQUEST_CODE);
     }
-
-    private static final int CREATE_FILE = 43;
-
-    private void createFile() {
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/plain"); // Only show text files in the file picker
-        intent.putExtra(Intent.EXTRA_TITLE, "brush.txt");
-        startActivityForResult(intent, CREATE_FILE);
-    }
-
+    
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         super.onActivityResult(requestCode, resultCode, resultData);
         Uri uri = null;
-        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK && resultData != null && resultData.getData() != null) {
+        if (resultCode == Activity.RESULT_OK && resultData != null && resultData.getData() != null) {
             try {
+                Toast.makeText(getContext(),
+                        "loading large text brushes can take a while",
+                        Toast.LENGTH_LONG).show();
                 uri = resultData.getData();
                 binding.inputtext.setText(readTextFromUri(uri));
                 text = binding.inputtext.getText().toString();
                 storeText(text);
                 binding.inputtext.invalidate();
-            } catch (Exception e) {
-            }
-        } else if (requestCode == CREATE_FILE) {
-            try {
-                uri = resultData.getData();
-                alterDocument(uri);
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
         }
     }
 
@@ -306,23 +321,6 @@ public class SecondFragment extends Fragment {
             e.printStackTrace();
         }
         return stringBuilder.toString();
-    }
-
-    private void alterDocument(Uri uri) {
-        try {
-            ParcelFileDescriptor txt = getActivity().getContentResolver().
-                    openFileDescriptor(uri, "w");
-            FileOutputStream fileOutputStream =
-                    new FileOutputStream(txt.getFileDescriptor());
-            fileOutputStream.getChannel().truncate(0);
-            fileOutputStream.write(Objects.requireNonNull(binding.inputtext.getText()).toString().getBytes());
-            fileOutputStream.close();
-            txt.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public String convertBitmapToString(Bitmap b) {

@@ -286,7 +286,7 @@ public class SecondFragment extends Fragment {
         intent.setType("text/plain"); // Only show text files in the file picker
         startActivityForResult(intent, READ_REQUEST_CODE);
     }
-    
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         super.onActivityResult(requestCode, resultCode, resultData);

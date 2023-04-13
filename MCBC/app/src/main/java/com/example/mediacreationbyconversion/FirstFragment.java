@@ -129,6 +129,13 @@ public class FirstFragment extends Fragment {
                     .navigate(R.id.action_FirstFragment_to_SecondFragment);
         });
 
+        binding.tofullscreen.setOnClickListener(v -> {
+            updateDrawingViewModel();
+            NavHostFragment
+                    .findNavController(FirstFragment.this)
+                    .navigate(R.id.action_FirstFragment_to_ThirdFragment);
+        });
+
         binding.save.setOnClickListener(v -> {
             binding.drawingView.save(binding.drawingView.bitmap);
             Toast.makeText(getContext(), "image saved", Toast.LENGTH_SHORT).show();

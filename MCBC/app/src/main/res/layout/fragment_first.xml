@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
+    <Button
+        android:id="@+id/tofullscreen"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="-10dp"
+        android:backgroundTint="@color/yellow"
+        android:text="full\nscreen"
+        android:textAllCaps="false"
+        android:textColor="@color/redDark"
+        app:layout_constraintBottom_toTopOf="@+id/brushSizePicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.26" />
+
     <TextView
         android:id="@+id/textbrushview"
         android:layout_width="0dp"
@@ -257,12 +273,12 @@
         android:id="@+id/brushSizePicker"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="-15dp"
+        android:layout_marginBottom="-21dp"
         android:backgroundTint="@color/yellowLight"
         android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@id/brushsize"
         app:layout_constraintEnd_toStartOf="@+id/stroke"
-        app:layout_constraintHeight_percent="0.23"
+        app:layout_constraintHeight_percent="0.12"
         app:layout_constraintWidth_percent="0.3" />
 
     <TextView

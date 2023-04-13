@@ -169,27 +169,61 @@ public class FirstFragment extends Fragment {
         binding.stroke.setOnClickListener(v -> {
             binding.drawingView.paint.setStyle(Paint.Style.STROKE);
             binding.drawingView.paint.setStrokeWidth(1);
-            Toast.makeText(getContext(), "stroke bristle", Toast.LENGTH_SHORT).show();
+
+            binding.stroke.setBackgroundColor(Color.parseColor("#00008B")); // blueDark
+            binding.stroke.setTextColor(Color.parseColor("#7FFFD4")); // tealLight
+
+            binding.fill.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+            binding.fill.setTextColor(Color.parseColor("#00008B")); // blueDark
         });
 
         binding.fill.setOnClickListener(v -> {
             binding.drawingView.paint.setStyle(Paint.Style.FILL);
-            Toast.makeText(getContext(), "fill bristle", Toast.LENGTH_SHORT).show();
+
+            binding.fill.setBackgroundColor(Color.parseColor("#00008B")); // blueDark
+            binding.fill.setTextColor(Color.parseColor("#7FFFD4")); // tealLight
+
+            binding.stroke.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+            binding.stroke.setTextColor(Color.parseColor("#00008B")); // blueDark
         });
 
         binding.square.setOnClickListener(v -> {
             binding.drawingView.brushShape = "square";
-            Toast.makeText(getContext(), "square bristle", Toast.LENGTH_SHORT).show();
+
+            binding.square.setBackgroundColor(Color.parseColor("#00008B")); // blueDark
+            binding.square.setTextColor(Color.parseColor("#7FFFD4")); // tealLight
+
+            binding.circle.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+            binding.circle.setTextColor(Color.parseColor("#00008B")); // blueDark
+
+            binding.character.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+            binding.character.setTextColor(Color.parseColor("#00008B")); // blueDark
         });
 
         binding.circle.setOnClickListener(v -> {
             binding.drawingView.brushShape = "circle";
-            Toast.makeText(getContext(), "circle bristle", Toast.LENGTH_SHORT).show();
+
+            binding.circle.setBackgroundColor(Color.parseColor("#00008B")); // blueDark
+            binding.circle.setTextColor(Color.parseColor("#7FFFD4")); // tealLight
+
+            binding.square.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+            binding.square.setTextColor(Color.parseColor("#00008B")); // blueDark
+
+            binding.character.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+            binding.character.setTextColor(Color.parseColor("#00008B")); // blueDark
         });
 
         binding.character.setOnClickListener(v -> {
             binding.drawingView.brushShape = "character";
-            Toast.makeText(getContext(), "character bristle", Toast.LENGTH_SHORT).show();
+
+            binding.character.setBackgroundColor(Color.parseColor("#00008B")); // blueDark
+            binding.character.setTextColor(Color.parseColor("#7FFFD4")); // tealLight
+
+            binding.circle.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+            binding.circle.setTextColor(Color.parseColor("#00008B")); // blueDark
+
+            binding.square.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+            binding.square.setTextColor(Color.parseColor("#00008B")); // blueDark
         });
 
         binding.keyboard.setOnClickListener(v -> {

@@ -293,6 +293,7 @@ public class FirstFragment extends Fragment {
                 }
 
                 Bitmap scaledImage = Bitmap.createScaledBitmap(mutableB, desiredWidth, desiredHeight, true);
+                binding.drawingView.clearDrawingView();
                 binding.drawingView.bitmap = scaledImage;
                 binding.drawingView.canvas = new Canvas(scaledImage);
                 binding.drawingView.invalidate();

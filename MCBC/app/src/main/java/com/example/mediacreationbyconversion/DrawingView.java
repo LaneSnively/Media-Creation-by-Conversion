@@ -312,6 +312,7 @@ public class DrawingView extends View {
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
         canvas.drawColor(canvasColor);
+        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
     }
 
     @Override
@@ -324,7 +325,6 @@ public class DrawingView extends View {
         offsetX = (float) (viewWidth - bitmapWidth) / 2;
         offsetY = (float) (viewHeight - bitmapHeight) / 2;
         canvas.drawBitmap(bitmap, offsetX, offsetY, paint);
-        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
     }
 
     public void restoreDrawingView(Paint paint,

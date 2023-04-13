@@ -229,6 +229,8 @@ public class FirstFragment extends Fragment {
                 }
                 if (binding.drawingView.keyMap.containsKey(keyCode)) {
                     text = binding.drawingView.keyMap.get(keyCode).toString();
+                    binding.textbrushview.setText(text);
+                    binding.textbrushview.invalidate();
                     convertText(text, true);
                 }
                 return true;
@@ -293,9 +295,12 @@ public class FirstFragment extends Fragment {
                 }
 
                 Bitmap scaledImage = Bitmap.createScaledBitmap(mutableB, desiredWidth, desiredHeight, true);
-                binding.drawingView.clearDrawingView();
                 binding.drawingView.bitmap = scaledImage;
                 binding.drawingView.canvas = new Canvas(scaledImage);
+                int startX = (binding.drawingView.getWidth() - binding.drawingView.canvas.getWidth()) / 2;
+                int startY = (binding.drawingView.getHeight() - binding.drawingView.canvas.getHeight()) / 2;
+                binding.drawingView.canvasX = startX;
+                binding.drawingView.canvasY = startY;
                 binding.drawingView.invalidate();
             } catch (Exception e) {
                 e.printStackTrace();

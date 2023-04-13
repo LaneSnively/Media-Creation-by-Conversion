@@ -312,7 +312,6 @@ public class DrawingView extends View {
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
         canvas.drawColor(canvasColor);
-        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
     }
 
     @Override
@@ -325,6 +324,7 @@ public class DrawingView extends View {
         offsetX = (float) (viewWidth - bitmapWidth) / 2;
         offsetY = (float) (viewHeight - bitmapHeight) / 2;
         canvas.drawBitmap(bitmap, offsetX, offsetY, paint);
+        history.add(bitmap.copy(Bitmap.Config.ARGB_8888, true));
     }
 
     public void restoreDrawingView(Paint paint,
@@ -518,9 +518,9 @@ public class DrawingView extends View {
                     }
                 }
                 if (addHistory) {
-                    if (canvasY < canvas.getHeight() - brushSize) {
+                    if (canvasY - offsetY < canvas.getHeight() - brushSize) {
                         canvasY += brushSize; //move brush down
-                    } else canvasY = 0; //brush hit bottom, move back to top
+                    } else canvasY = offsetY; //brush hit bottom, move back to top
                 } else canvasY += brushSize; //move brush down
                 if (!addHistory) {
                     for (int k = 0; k < lineLength; k++)
@@ -531,10 +531,10 @@ public class DrawingView extends View {
 
             if(c.equals(' ')){
                 if (addHistory) {
-                    if (canvasX >= canvas.getWidth() - brushSize) {
-                        canvasX = 0; //brush hit right side, move back to left
-                        if (canvasY >= canvas.getHeight() - brushSize) {
-                            canvasY = 0; //brush hit bottom, move back to top
+                    if (canvasX - offsetX >= canvas.getWidth() - brushSize) {
+                        canvasX = offsetX; //brush hit right side, move back to left
+                        if (canvasY - offsetY >= canvas.getHeight() - brushSize) {
+                            canvasY = offsetY; //brush hit bottom, move back to top
                         } else canvasY += brushSize; //move brush down
                     } else canvasX += brushSize; //move brush right
                 } else canvasX += brushSize; //move brush right
@@ -558,12 +558,12 @@ public class DrawingView extends View {
                         break;
                 }
 
-                //rectangle brush moving logic
+                //brush moving logic
                 if (addHistory) {
-                    if (canvasX >= canvas.getWidth() - brushSize) {
-                        canvasX = 0; //brush hit right side, move back to left
-                        if (canvasY >= canvas.getHeight() - brushSize) {
-                            canvasY = 0; //brush hit bottom, move back to top
+                    if (canvasX - offsetX >= canvas.getWidth() - brushSize) {
+                        canvasX = offsetX; //brush hit right side, move back to left
+                        if (canvasY - offsetY >= canvas.getHeight() - brushSize) {
+                            canvasY = offsetY; //brush hit bottom, move back to top
                         } else canvasY += brushSize; //move brush down
                     } else canvasX += brushSize; //move brush right
                 } else canvasX += brushSize; //move brush right

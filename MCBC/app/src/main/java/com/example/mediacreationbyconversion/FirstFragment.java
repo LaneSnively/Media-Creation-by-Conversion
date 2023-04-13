@@ -276,7 +276,50 @@ public class FirstFragment extends Fragment {
             if(binding != null) {
                 if (bitmap != null) {
                     restoreDrawing();
+                    binding.brushSizePicker.setValue(brushSize);
                     binding.drawingView.invalidate();
+
+                    if(binding.drawingView.brushShape.equals("circle")){
+                        binding.circle.setBackgroundColor(Color.parseColor("#00008B")); // blueDark
+                        binding.circle.setTextColor(Color.parseColor("#7FFFD4")); // tealLight
+
+                        binding.square.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+                        binding.square.setTextColor(Color.parseColor("#00008B")); // blueDark
+
+                        binding.character.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+                        binding.character.setTextColor(Color.parseColor("#00008B")); // blueDark
+                    } else if(binding.drawingView.brushShape.equals("square")){
+                        binding.square.setBackgroundColor(Color.parseColor("#00008B")); // blueDark
+                        binding.square.setTextColor(Color.parseColor("#7FFFD4")); // tealLight
+
+                        binding.circle.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+                        binding.circle.setTextColor(Color.parseColor("#00008B")); // blueDark
+
+                        binding.character.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+                        binding.character.setTextColor(Color.parseColor("#00008B")); // blueDark
+                    } else if(binding.drawingView.brushShape.equals("character")){
+                        binding.character.setBackgroundColor(Color.parseColor("#00008B")); // blueDark
+                        binding.character.setTextColor(Color.parseColor("#7FFFD4")); // tealLight
+
+                        binding.circle.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+                        binding.circle.setTextColor(Color.parseColor("#00008B")); // blueDark
+
+                        binding.square.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+                        binding.square.setTextColor(Color.parseColor("#00008B")); // blueDark
+                    }
+                    if(binding.drawingView.paint.getStyle().equals(Paint.Style.FILL)){
+                        binding.fill.setBackgroundColor(Color.parseColor("#00008B")); // blueDark
+                        binding.fill.setTextColor(Color.parseColor("#7FFFD4")); // tealLight
+
+                        binding.stroke.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+                        binding.stroke.setTextColor(Color.parseColor("#00008B")); // blueDark
+                    } else if(binding.drawingView.paint.getStyle().equals(Paint.Style.STROKE)){
+                        binding.stroke.setBackgroundColor(Color.parseColor("#00008B")); // blueDark
+                        binding.stroke.setTextColor(Color.parseColor("#7FFFD4")); // tealLight
+
+                        binding.fill.setBackgroundColor(Color.parseColor("#7FFFD4")); // tealLight
+                        binding.fill.setTextColor(Color.parseColor("#00008B")); // blueDark
+                    }
                 }
                 if(text.length() > 5000){
                     Toast.makeText(getContext(),
@@ -374,8 +417,6 @@ public class FirstFragment extends Fragment {
                 offsetX,
                 offsetY,
                 canvasColor);
-
-        binding.brushSizePicker.setValue(brushSize);
     }
 
     public void updateDrawingViewModel() {

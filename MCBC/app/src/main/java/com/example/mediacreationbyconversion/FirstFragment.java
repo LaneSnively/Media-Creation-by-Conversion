@@ -159,7 +159,7 @@ public class FirstFragment extends Fragment {
             binding.brushSizePicker.setTextColor(Color.parseColor("#FFFFFF"));
             binding.brushSizePicker.setTextSize(100);
             binding.brushSizePicker.setMinValue(1);
-            binding.brushSizePicker.setMaxValue(400);
+            binding.brushSizePicker.setMaxValue(500);
             binding.brushSizePicker.setValue(binding.drawingView.brushSize);
             binding.brushSizePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
                 binding.drawingView.brushSize = newVal;
@@ -248,13 +248,8 @@ public class FirstFragment extends Fragment {
                     Toast.makeText(getContext(),
                             "loading large text brushes can take a while",
                             Toast.LENGTH_LONG).show();
-                    binding.brushSizePicker.setMinValue(1);
-                    binding.brushSizePicker.setMaxValue(50);
                     binding.brushSizePicker.setValue(1);
                     binding.drawingView.brushSize = 1;
-                    binding.brushSizePicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
-                        binding.drawingView.brushSize = newVal;
-                    });
                 }
                 if(!text.equals("")){
                     binding.textbrushview.setText(text);

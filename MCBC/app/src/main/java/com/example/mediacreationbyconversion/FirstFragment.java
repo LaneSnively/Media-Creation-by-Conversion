@@ -286,7 +286,7 @@ public class FirstFragment extends Fragment {
                     binding.drawingView.brushSize = 1;
                 }
                 if(!text.equals("")){
-                    binding.textbrushview.setText(text);
+                    binding.textbrushview.setText("text brush:\n" + text);
                     binding.textbrushview.invalidate();
                 }
             }

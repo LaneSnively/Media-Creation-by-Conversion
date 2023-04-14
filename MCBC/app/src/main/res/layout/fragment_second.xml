@@ -73,11 +73,11 @@
         android:paddingTop="0dp"
         android:paddingRight="0dp"
         android:paddingBottom="0dp"
-        android:scaleType="centerInside"
+        android:scaleType="fitXY"
         android:src="@drawable/color_keyboard_layout"
         android:background="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintHeight_percent="0.075"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputtext"
@@ -102,7 +102,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="0dp"
-        android:layout_marginBottom="-5dp"        android:backgroundTint="@color/purpleDark"
+        android:layout_marginBottom="-5dp"
+        android:backgroundTint="@color/purpleDark"
         android:text="select\ntext as\nbrush"
         android:textAllCaps="false"
         android:textColor="@color/greenLight"
@@ -144,6 +145,7 @@
         android:id="@+id/canvas"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
         android:background="@android:color/black"
         android:paddingLeft="0dp"
         android:paddingTop="0dp"
@@ -153,9 +155,9 @@
         android:src="@drawable/icon"
         app:layout_constraintBottom_toTopOf="@id/viewcanvas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.36"
+        app:layout_constraintHeight_percent="0.355"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.7" />
+        app:layout_constraintWidth_percent="0.69" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

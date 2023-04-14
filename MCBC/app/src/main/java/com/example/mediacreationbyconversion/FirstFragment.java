@@ -263,7 +263,7 @@ public class FirstFragment extends Fragment {
                 }
                 if (binding.drawingView.keyMap.containsKey(keyCode)) {
                     text = binding.drawingView.keyMap.get(keyCode).toString();
-                    binding.textbrushview.setText(text);
+                    binding.textbrushview.setText("text brush:\n" + text);
                     binding.textbrushview.invalidate();
                     convertText(text, true);
                 }

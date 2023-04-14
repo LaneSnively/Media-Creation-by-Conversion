@@ -48,4 +48,65 @@
     <color name="blueLight">#87CEFA</color>
     <color name="blue">#0000FF</color>
     <color name="blueDark">#00008B</color>
+
+    <color name="Q">#5E1230</color>
+    <color name="W">#4B1249</color>
+    <color name="E">#011053</color>
+    <color name="R">#002750</color>
+    <color name="T">#0E4A42</color>
+    <color name="Y">#124828</color>
+    <color name="U">#2D4A1C</color>
+    <color name="I">#514E00</color>
+    <color name="O">#512301</color>
+    <color name="P">#400404</color>
+
+    <color name="q">#9D2050</color>
+    <color name="w">#A529A0</color>
+    <color name="e">#012199</color>
+    <color name="r">#014A97</color>
+    <color name="t">#1F9382</color>
+    <color name="y">#24904E</color>
+    <color name="u">#5E983D</color>
+    <color name="i">#989000</color>
+    <color name="o">#984100</color>
+    <color name="p">#980A0A</color>
+
+    <color name="A">#EB3B7F</color>
+    <color name="S">#0738EB</color>
+    <color name="D">#0071EA</color>
+    <color name="F">#2FEAD1</color>
+    <color name="G">#38DD7A</color>
+    <color name="H">#8FEA5F</color>
+    <color name="J">#EADE00</color>
+    <color name="K">#E97317</color>
+    <color name="L">#E71011</color>
+
+    <color name="a">#FE5D98</color>
+    <color name="s">#335FFD</color>
+    <color name="d">#3395FD</color>
+    <color name="f">#33FEE3</color>
+    <color name="g">#4FF490</color>
+    <color name="h">#9EFE67</color>
+    <color name="j">#FAF419</color>
+    <color name="k">#FE903C</color>
+    <color name="l">#FD3636</color>
+
+    <color name="Z">#FE8DB9</color>
+    <color name="X">#73B6FD</color>
+    <color name="C">#8EFEEE</color>
+    <color name="V">#C9FEAB</color>
+    <color name="B">#FEF773</color>
+    <color name="N">#FEB781</color>
+    <color name="M">#FD807D</color>
+
+    <color name="z">#FECFFD</color>
+    <color name="x">#BEDCFE</color>
+    <color name="c">#CBFEF7</color>
+    <color name="v">#CBF9DC</color>
+    <color name="b">#FDFBBE</color>
+    <color name="n">#FEEDBF</color>
+    <color name="m">#FEDDC2</color>
+
+    <color name="comma">#FDCCDF</color>
+    <color name="period">#FEC8C8</color>
 </resources>

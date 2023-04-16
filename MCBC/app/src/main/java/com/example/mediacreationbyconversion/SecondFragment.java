@@ -31,7 +31,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -341,21 +343,33 @@ public class SecondFragment extends Fragment {
     private int findClosestColor(int pixelColor) {
         int minDistance = Integer.MAX_VALUE;
         int closestColor = 0;
-        for (Map.Entry<Integer, Character> entry : reversedColorMap.entrySet()) {
-            int distance = colorDistance(pixelColor, entry.getKey());
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestColor = entry.getKey();
+        List<Integer> colorsList = new ArrayList<>(reversedColorMap.keySet());
+        boolean isPixelColorGray = isColorGray(pixelColor);
+        for (int i = 0; i < colorsList.size(); i++) {
+            int currentColor = colorsList.get(i);
+            if (!isPixelColorGray && isColorGray(currentColor)) continue;
+            int currentDistance = colorDistance(pixelColor, currentColor);
+            if (currentDistance < minDistance) {
+                minDistance = currentDistance;
+                closestColor = currentColor;
             }
         }
         return closestColor;
+    }
+
+    private boolean isColorGray(int color) {
+        int r = Color.red(color);
+        int g = Color.green(color);
+        int b = Color.blue(color);
+        int grayThreshold = 40;
+        return Math.abs(g - b) <= grayThreshold;
     }
 
     private int colorDistance(int color1, int color2) {
         int rDiff = Color.red(color1) - Color.red(color2);
         int gDiff = Color.green(color1) - Color.green(color2);
         int bDiff = Color.blue(color1) - Color.blue(color2);
-        return rDiff * rDiff + gDiff * gDiff + bDiff * bDiff;
+        return (rDiff * rDiff) + (gDiff * gDiff) + (bDiff * bDiff);
     }
 
     @Override

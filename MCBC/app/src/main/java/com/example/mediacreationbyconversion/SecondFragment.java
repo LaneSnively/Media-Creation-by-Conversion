@@ -361,8 +361,8 @@ public class SecondFragment extends Fragment {
         int r = Color.red(color);
         int g = Color.green(color);
         int b = Color.blue(color);
-        int grayThreshold = 40;
-        return Math.abs(g - b) <= grayThreshold;
+        int grayThreshold = 35;
+        return Math.abs(r - g) <= grayThreshold && Math.abs(g - b) <= grayThreshold && Math.abs(b - r) <= grayThreshold;
     }
 
     private int colorDistance(int color1, int color2) {

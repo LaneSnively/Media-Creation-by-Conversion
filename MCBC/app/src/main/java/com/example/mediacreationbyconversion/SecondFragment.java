@@ -235,6 +235,7 @@ public class SecondFragment extends Fragment {
         binding.selectfile.setOnClickListener(v -> readFile());
 
         binding.savefile.setOnClickListener(v -> {
+            text = Objects.requireNonNull(binding.inputtext.getText()).toString();
             save(text);
             Toast.makeText(getContext(), "saved brush", Toast.LENGTH_SHORT).show();
         });

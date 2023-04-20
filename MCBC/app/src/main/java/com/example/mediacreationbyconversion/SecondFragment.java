@@ -237,9 +237,11 @@ public class SecondFragment extends Fragment {
         binding.selectfile.setOnClickListener(v -> readFile());
 
         binding.savefile.setOnClickListener(v -> {
-            text = Objects.requireNonNull(binding.inputtext.getText()).toString();
-            save(text);
-            Toast.makeText(getContext(), "saved brush", Toast.LENGTH_SHORT).show();
+            if(binding.inputtext.getText() != null) text = binding.inputtext.getText().toString();
+            if(!text.equals("")){
+                save(text);
+                Toast.makeText(getContext(), "saved brush", Toast.LENGTH_SHORT).show();
+            } else Toast.makeText(getContext(), "no brush to save", Toast.LENGTH_SHORT).show();
         });
 
         view.postDelayed(() -> {

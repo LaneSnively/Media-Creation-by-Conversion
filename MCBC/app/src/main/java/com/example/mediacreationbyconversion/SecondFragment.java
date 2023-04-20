@@ -221,8 +221,10 @@ public class SecondFragment extends Fragment {
         });
 
         binding.convertToText.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "began converting canvas pixels to text brush", Toast.LENGTH_LONG).show();
-            if(bitmap != null) text = convertBitmapToString(bitmap);
+            if(bitmap != null){
+                Toast.makeText(getContext(), "began converting canvas pixels to text brush", Toast.LENGTH_LONG).show();
+                text = convertBitmapToString(bitmap);
+            }
             binding.inputtext.setText(text);
         });
 
@@ -243,13 +245,7 @@ public class SecondFragment extends Fragment {
         view.postDelayed(() -> {
             if(binding != null){
                 if(bitmap != null) binding.canvas.setImageBitmap(bitmap);
-                if(!text.equals("")) {
-                    if(text.length() > 5000)
-                        Toast.makeText(getContext(),
-                                "loading large text brushes can take a while",
-                                Toast.LENGTH_LONG).show();
-                    binding.inputtext.setText(text);
-                }
+                if(!text.equals("") && text.length() < 5000) binding.inputtext.setText(text);
             }
         }, 10);
     }
@@ -291,17 +287,14 @@ public class SecondFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         super.onActivityResult(requestCode, resultCode, resultData);
-        Uri uri = null;
         if (resultCode == Activity.RESULT_OK && resultData != null && resultData.getData() != null) {
             try {
-                Toast.makeText(getContext(),
-                        "loading large text brushes can take a while",
-                        Toast.LENGTH_LONG).show();
-                uri = resultData.getData();
-                binding.inputtext.setText(readTextFromUri(uri));
-                text = binding.inputtext.getText().toString();
+                text = readTextFromUri(resultData.getData());
                 storeText(text);
-                binding.inputtext.invalidate();
+                binding.inputtext.setText(null);
+                Toast.makeText(getContext(),
+                        "successfully loaded text brush",
+                        Toast.LENGTH_LONG).show();
             } catch (Exception e) {}
         }
     }
@@ -356,7 +349,7 @@ public class SecondFragment extends Fragment {
         int rDiff = Color.red(color1) - Color.red(color2);
         int gDiff = Color.green(color1) - Color.green(color2);
         int bDiff = Color.blue(color1) - Color.blue(color2);
-        return rDiff * rDiff + gDiff * gDiff + bDiff * bDiff;
+        return (rDiff * rDiff) + (gDiff * gDiff) + (bDiff * bDiff);
     }
 
     @Override

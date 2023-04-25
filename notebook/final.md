@@ -1,44 +1,83 @@
-Final Project "Notebook"
+# Final Project "Notebook"
 
-A synopsis of your project goal(s) [15 pt]
+1. A synopsis of your project goal(s) [15 pt]
 
+________________________________________________________________________________________
 
-Link to all written status updates [5 pt]
+2. Link to all written status updates [5 pt]
 
+[status 1](https://github.com/LaneSnively/Media-Creation-by-Conversion/blob/main/status/status1.md)
 
-Links to all videos created (see other assignments) [5 pt]
+[status 2](https://github.com/LaneSnively/Media-Creation-by-Conversion/blob/main/status/status2.md)
 
+[status 3](https://github.com/LaneSnively/Media-Creation-by-Conversion/blob/main/status/status3.md)
 
-Project Planning and Execution [15 pt]
-Link to (or markdown version of) Design Requirements & Specification
+[status 4](https://github.com/LaneSnively/Media-Creation-by-Conversion/blob/main/status/status4.md)
 
+________________________________________________________________________________________
 
-Finalized Plan of Work (including expected vs actual)
+3. Links to all videos created (see other assignments) [5 pt]
 
+The [presentation](https://youtu.be/tBWheXyS7kI) of the app for Undergraduate Research and Inquiry day at the University of Wyoming
 
-Summary of Final Implementation: [40 pt]
-Design,
+A [demonstration](https://youtu.be/0zvmb9u2RgA) of the app
 
+The initial [elevator pitch](https://youtu.be/Ek7wyrkMSQw) for the project
 
-Limitations,
+________________________________________________________________________________________
 
+4. Project Planning and Execution [15 pt]
 
-Future Direction,
-
-
-Statement of Work
-Whole Team
-
-
-1 per  team member
+* Link to (or markdown version of) Design Requirements & Specification
 
 
-Reflection on your team's ability to design, implement, and evaluate a solution. [20 pt]
-Lessons Learned
+________________________________________________________________________________________
+
+* Finalized Plan of Work (including expected vs actual)
 
 
-"If you had to do it all over again"
+________________________________________________________________________________________
+
+5. Summary of Final Implementation: [40 pt]
+* Design,
 
 
-Advice for future teams
+________________________________________________________________________________________
 
+* Limitations,
+
+
+________________________________________________________________________________________
+
+* Future Direction,
+
+
+________________________________________________________________________________________
+
+* Statement of Work
+* * Whole Team
+
+
+________________________________________________________________________________________
+
+* * 1 per  team member
+
+
+________________________________________________________________________________________
+
+6. Reflection on your team's ability to design, implement, and evaluate a solution. [20 pt]
+
+* Lessons Learned
+
+
+________________________________________________________________________________________
+
+* "If you had to do it all over again"
+
+
+________________________________________________________________________________________
+
+* Advice for future teams
+
+
+________________________________________________________________________________________

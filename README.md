@@ -5,4 +5,8 @@ The [Chromatic Typewriter](https://play.google.com/store/apps/details?id=com.dd.
 
 The [presentation](https://youtu.be/tBWheXyS7kI) of the app for Undergraduate Research and Inquiry day at the University of Wyoming
 
-The [demonstration](https://youtu.be/0zvmb9u2RgA) of the app
+The [slides](https://docs.google.com/presentation/d/1wYOAajPif1WJP_Na4VMvrirb4INQLZSYBpztJ6zFlGE/edit?usp=sharing) for the presentation
+
+A [demonstration](https://youtu.be/0zvmb9u2RgA) of the app
+
+The initial [elevator pitch](https://youtu.be/Ek7wyrkMSQw) for the project

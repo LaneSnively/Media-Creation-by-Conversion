@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=ListUtils
+comment1.params=fn\ list
+comment1.target=java.util.List\ map(java.util.function.Function,\ java.util.List)
+comment2.params=fn\ list
+comment2.target=java.util.List\ flatmap(java.util.function.Function,\ java.util.List)
+comment3.params=fn\ list
+comment3.target=java.util.List\ filter(java.util.function.Function,\ java.util.List)
+comment4.params=list1\ list2
+comment4.target=java.util.List\ zip(java.util.List,\ java.util.List)
+comment5.params=fn\ list\ identity
+comment5.target=java.lang.Object\ fold(java.util.function.BinaryOperator,\ java.util.List,\ java.lang.Object)
+numComments=6

@@ -2,6 +2,8 @@
 
 1. A synopsis of your project goal(s) [15 pt]
 
+I wanted to be able to create art using a real chromatic typewriter but they are difficult to attain. I looked for software that simulated a chromatic typewriter and couldn't find one. I wanted to create it so that I could use it. I wanted to publish the app so that it is available to any artist. 
+
 ________________________________________________________________________________________
 
 2. Link to all written status updates [5 pt]
@@ -30,11 +32,13 @@ ________________________________________________________________________________
 
 * Link to (or markdown version of) Design Requirements & Specification
 
+[MCBC planning folder](https://github.com/LaneSnively/Media-Creation-by-Conversion/tree/main/Senior%20Design%20work/Planning)
 
 ________________________________________________________________________________________
 
 * Finalized Plan of Work (including expected vs actual)
 
+I wanted the settings to be an external page but it made more sense for the settings to be on the same page as the canvas editor. Pretty much the only thing that was different between the outcome and the plan is the colors of the app design. The functionality matched the planning almost exactly. 
 
 ________________________________________________________________________________________
 

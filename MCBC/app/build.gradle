@@ -10,8 +10,8 @@ android {
         applicationId "com.dd.chromatictypewriter"
         minSdk 21
         targetSdk 33
-        versionCode 420
-        versionName "420"
+        versionCode 8008135
+        versionName "8008135"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

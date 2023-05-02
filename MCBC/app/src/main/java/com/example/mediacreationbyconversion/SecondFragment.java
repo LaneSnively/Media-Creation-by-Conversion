@@ -331,7 +331,7 @@ public class SecondFragment extends Fragment {
                 try {
                     Bitmap immutableB = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
                     Bitmap mutableB = immutableB.copy(Bitmap.Config.ARGB_8888, true);
-                    Toast.makeText(getContext(), "began to chromatic typewriterify image", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "began to CHROMATIC TYPEWRITERify image", Toast.LENGTH_SHORT).show();
                     save(chromaticTypewriterifyImage(mutableB));
                     Toast.makeText(getContext(), "image saved", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
@@ -371,6 +371,19 @@ public class SecondFragment extends Fragment {
 
     public Bitmap chromaticTypewriterifyImage(Bitmap b){
         for (int y = 0; y < b.getHeight(); y++) {
+            double percentage = y/(double) b.getHeight() * 100;
+            if(percentage > 10.0 && percentage < 10.1)
+                Toast.makeText(getContext(),
+                        "10% complete",
+                        Toast.LENGTH_SHORT).show();
+            else if(percentage > 25.0 && percentage < 25.1)
+                Toast.makeText(getContext(),
+                        "25% complete",
+                        Toast.LENGTH_SHORT).show();
+            else if(percentage > 50.0 && percentage < 50.1)
+                Toast.makeText(getContext(),
+                        "50% complete",
+                        Toast.LENGTH_SHORT).show();
             for (int x = 0; x < b.getWidth(); x++) {
                 int pixelColor = b.getPixel(x, y);
                 int closestColor = findClosestColor(pixelColor);

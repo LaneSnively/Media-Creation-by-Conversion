@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -220,6 +222,8 @@ public class SecondFragment extends Fragment {
                     .navigate(R.id.action_SecondFragment_to_FirstFragment);
         });
 
+        binding.chromatictypewriterify.setOnClickListener(v -> selectImage());
+
         binding.convertToText.setOnClickListener(v -> {
             if(bitmap != null){
                 Toast.makeText(getContext(), "began converting canvas pixels to text brush", Toast.LENGTH_LONG).show();
@@ -277,6 +281,38 @@ public class SecondFragment extends Fragment {
         }
     }
 
+    public void save(Bitmap b) {
+        File dir = new File(Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                "ChromaticTypewriter");
+        if (!dir.exists()) dir.mkdirs();
+        File file = new File(dir, "ChromaticTypewriter.jpeg");
+        boolean newFile = false;
+        long num = 1;
+        while (!newFile) {
+            if (file.exists()) {
+                file = new File(dir, "ChromaticTypewriter" + num + ".jpeg");
+                num++;
+            } else newFile = true;
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.close();
+            MediaScannerConnection.scanFile(getContext(), new String[]{file.toString()},
+                    null, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static final int REQUEST_CODE = 1;
+
+    private void selectImage() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
     private static final int READ_REQUEST_CODE = 42;
 
     public void readFile() {
@@ -290,14 +326,28 @@ public class SecondFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         super.onActivityResult(requestCode, resultCode, resultData);
         if (resultCode == Activity.RESULT_OK && resultData != null && resultData.getData() != null) {
-            try {
-                text = readTextFromUri(resultData.getData());
-                storeText(text);
-                binding.inputtext.setText(null);
-                Toast.makeText(getContext(),
-                        "successfully loaded text brush",
-                        Toast.LENGTH_LONG).show();
-            } catch (Exception e) {}
+            if (requestCode == REQUEST_CODE){
+                Uri uri = resultData.getData();
+                try {
+                    Bitmap immutableB = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
+                    Bitmap mutableB = immutableB.copy(Bitmap.Config.ARGB_8888, true);
+                    Toast.makeText(getContext(), "began to chromatic typewriterify image", Toast.LENGTH_LONG).show();
+                    save(chromaticTypewriterifyImage(mutableB));
+                    Toast.makeText(getContext(), "image saved", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else if (requestCode == READ_REQUEST_CODE){
+                try {
+                    text = readTextFromUri(resultData.getData());
+                    storeText(text);
+                    binding.inputtext.setText(null);
+                    Toast.makeText(getContext(),
+                            "successfully loaded text brush",
+                            Toast.LENGTH_LONG).show();
+                } catch (Exception e) {}
+            }
         }
     }
 
@@ -317,6 +367,17 @@ public class SecondFragment extends Fragment {
             e.printStackTrace();
         }
         return stringBuilder.toString();
+    }
+
+    public Bitmap chromaticTypewriterifyImage(Bitmap b){
+        for (int y = 0; y < b.getHeight(); y++) {
+            for (int x = 0; x < b.getWidth(); x++) {
+                int pixelColor = b.getPixel(x, y);
+                int closestColor = findClosestColor(pixelColor);
+                b.setPixel(x, y, closestColor);
+            }
+        }
+        return b;
     }
 
     public String convertBitmapToString(Bitmap b) {

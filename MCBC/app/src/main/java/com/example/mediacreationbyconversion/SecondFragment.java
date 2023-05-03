@@ -370,20 +370,21 @@ public class SecondFragment extends Fragment {
     }
 
     public Bitmap chromaticTypewriterifyImage(Bitmap b){
+        boolean quarter = false;
+        boolean half = false;
         for (int y = 0; y < b.getHeight(); y++) {
             double percentage = y/(double) b.getHeight() * 100;
-            if(percentage > 10.0 && percentage < 10.1)
-                Toast.makeText(getContext(),
-                        "10% complete",
-                        Toast.LENGTH_SHORT).show();
-            else if(percentage > 25.0 && percentage < 25.1)
+            if(percentage > 25.0 && percentage < 26.0 && !quarter){
+                quarter = true;
                 Toast.makeText(getContext(),
                         "25% complete",
                         Toast.LENGTH_SHORT).show();
-            else if(percentage > 50.0 && percentage < 50.1)
+            } else if(percentage > 50.0 && percentage < 51.0 && !half){
+                half = true;
                 Toast.makeText(getContext(),
                         "50% complete",
                         Toast.LENGTH_SHORT).show();
+            }
             for (int x = 0; x < b.getWidth(); x++) {
                 int pixelColor = b.getPixel(x, y);
                 int closestColor = findClosestColor(pixelColor);

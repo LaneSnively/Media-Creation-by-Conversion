@@ -9,8 +9,6 @@ The [slides](https://docs.google.com/presentation/d/1taTN_1qCd23NajEXMFXGLc9JDr2
 
 A [demonstration](https://youtu.be/0zvmb9u2RgA) of the app
 
-The initial [elevator pitch](https://youtu.be/Ek7wyrkMSQw) for the project
-
 Chromatic Typewriter is designed to provide a unique 2D digital art creation experience. Alphabet characters that are mapped to colors in a one-to-one ratio allow users to create 2D art using their keyboard.
 
 2D art generation by artificial intelligence is becoming ubiquitous and is sufficient for those that require nothing more than completed work. Artists can experience a unique benefit from the meditative process of creating different kinds of art, which is bypassed entirely when the creative process is outsourced to machines. Traditional methods to create art can be tedious and exhausting, digitally or otherwise. Occasionally, artists require a refreshing technique to revitalize their creativity.

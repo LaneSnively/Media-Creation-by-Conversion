@@ -4,14 +4,14 @@ plugins {
 
 android {
     namespace 'com.example.mediacreationbyconversion'
-    compileSdk 33
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.dd.chromatictypewriter"
         minSdk 21
-        targetSdk 33
-        versionCode 8008135
-        versionName "8008135"
+        targetSdk 35
+        versionCode 314159
+        versionName "314159"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

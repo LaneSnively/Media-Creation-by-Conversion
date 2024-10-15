@@ -17,7 +17,7 @@ The input device that most digital art creation tools require is often a stylus 
 
 ![asdf](https://lanesnively.github.io/images/50c7ece.jpg)
 
-They keyboard characters represent stamps
+keyboard characters represent stamps that can be dipped in any color ink
 
 ![asdf](https://github.com/LaneSnively/Media-Creation-by-Conversion/blob/main/71XkHczZYoL._AC_UF894%2C1000_QL80_.jpg)
 
@@ -29,6 +29,6 @@ which can be used in conjunction to create an array of stamps at once
 
 ![asdf](https://github.com/LaneSnively/Media-Creation-by-Conversion/blob/main/25-Western.jpg)
 
-when you 'Chromatic Typewriterify' an image, it resembles the following
+when you 'Chromatic Typewriterify' an image, it simulates the act of converting each pixel in the image to a stamp like the following
 
 ![asdf](https://raw.githubusercontent.com/LaneSnively/Media-Creation-by-Conversion/refs/heads/main/chromaticTypewriterStamp.webp)

@@ -16,3 +16,19 @@ Chromatic Typewriter is designed to provide a unique 2D digital art creation exp
 The input device that most digital art creation tools require is often a stylus pen to imitate the sensation of drawing with an ink pen. Instead, Chromatic Typewriter assigns a keyboard as the input device to give art creation a more casual user experience. With the Chromatic Typewriter, users can interactively draw directly from the keyboard. Users can also edit text and convert it into a drawing, which enables complex drawings to be loaded from the text.
 
 ![asdf](https://lanesnively.github.io/images/50c7ece.jpg)
+
+They keyboard characters represent stamps
+
+![asdf](https://github.com/LaneSnively/Media-Creation-by-Conversion/blob/main/71XkHczZYoL._AC_UF894%2C1000_QL80_.jpg)
+
+rather than using one at a time by typing them, you can 'remove them to use individually'
+
+![asdf](https://github.com/LaneSnively/Media-Creation-by-Conversion/blob/main/22892.jpg)
+
+which can be used in conjunction to create an array of stamps at once
+
+![asdf](https://github.com/LaneSnively/Media-Creation-by-Conversion/blob/main/25-Western.jpg)
+
+when you 'Chromatic Typewriterify' an image, it resembles the following
+
+![asdf](https://raw.githubusercontent.com/LaneSnively/Media-Creation-by-Conversion/refs/heads/main/chromaticTypewriterStamp.webp)

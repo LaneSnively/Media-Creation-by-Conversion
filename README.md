@@ -1,5 +1,5 @@
 # Media Creation by Conversion
-Senior Design Project for University of Wyoming Computer Science
+Senior Design Project for University of Wyoming Computer Science 
 
 The [Chromatic Typewriter](https://play.google.com/store/apps/details?id=com.dd.chromatictypewriter) app is available on the Google Play store.
 
@@ -13,7 +13,7 @@ Chromatic Typewriter is designed to provide a unique 2D digital art creation exp
 
 2D art generation by artificial intelligence is becoming ubiquitous and is sufficient for those that require nothing more than completed work. Artists can experience a unique benefit from the meditative process of creating different kinds of art, which is bypassed entirely when the creative process is outsourced to machines. Traditional methods to create art can be tedious and exhausting, digitally or otherwise. Occasionally, artists require a refreshing technique to revitalize their creativity.
 
-The input device that most digital art creation tools require is often a stylus pen to imitate the sensation of drawing with an ink pen. Instead, Chromatic Typewriter assigns a keyboard as the input device to give art creation a more casual user experience. With the Chromatic Typewriter, users can interactively draw directly from the keyboard. Users can also edit text and convert it into a drawing, which enables complex drawings to be loaded from the text.
+The input device that most digital art creation tools require is often a stylus pen to imitate the sensation of drawing with an ink pen. Instead, Chromatic Typewriter assigns a keyboard as the input device to give art creation a more casual user experience. With the Chromatic Typewriter, users can interactively draw directly from the keyboard. Users can also edit text and convert it into a drawing, enabling users to paint with their keyboard by mapping keyboard characters to colors, ostensibly concealing steganographic messages. 
 
 ![asdf](https://lanesnively.github.io/images/50c7ece.jpg)
 
